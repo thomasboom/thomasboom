@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codenamr CLI Installation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: white;
+            color: black;
+        }
+        .card {
+            text-align: center;
+            width: 600px;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 20px 0 10px 0;
+        }
+        p {
+            margin: 10px 0;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', monospace;
+        }
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            background-color: black;
+            color: white;
+            transition: background-color 0.3s;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #333;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: black;
+                color: white;
+            }
+            .card {
+                background-color: black;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            button {
+                background-color: white;
+                color: black;
+            }
+            button:hover {
+                background-color: #ccc;
+            }
+            pre {
+                background-color: #333;
+            }
+        }
+        @media (max-width: 600px) {
+            .card {
+                width: 90%;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Install Codenamr CLI</h1>
+        <p>Codenamr is a tool for generating memorable code names in various formats.</p>
+        <h2>Installation</h2>
+        <p>Run this command in your terminal:</p>
+        <pre><code>curl -fsSL https://codenamr.vercel.app/install.sh | bash</code></pre>
+        <button id="copyInstall">Copy Install Command</button>
+        <h2>Update</h2>
+        <p>To update to the latest version:</p>
+        <pre><code>curl -fsSL https://codenamr.vercel.app/update.sh | bash</code></pre>
+        <button id="copyUpdate">Copy Update Command</button>
+        <h2>Uninstall</h2>
+        <p>To uninstall:</p>
+        <pre><code>curl -fsSL https://codenamr.vercel.app/uninstall.sh | bash</code></pre>
+        <button id="copyUninstall">Copy Uninstall Command</button>
+    </div>
+    <script>
+        function copyToClipboard(text, button) {
+            const originalText = button.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        document.getElementById('copyInstall').addEventListener('click', function() {
+            copyToClipboard('curl -fsSL https://codenamr.vercel.app/install.sh | bash', this);
+        });
+        document.getElementById('copyUpdate').addEventListener('click', function() {
+            copyToClipboard('curl -fsSL https://codenamr.vercel.app/update.sh | bash', this);
+        });
+        document.getElementById('copyUninstall').addEventListener('click', function() {
+            copyToClipboard('curl -fsSL https://codenamr.vercel.app/uninstall.sh | bash', this);
+        });
+    </script>
+</body>
+</html>
