@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function Navigation() {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -19,8 +21,11 @@ export default function Navigation() {
       <a href="#about" onClick={(e) => { e.preventDefault(); scrollTo('about'); }}>
         <span className="nav-number">03</span> About
       </a>
+      <Link href="/blog">
+        <span className="nav-number">04</span> Blog
+      </Link>
       <a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}>
-        <span className="nav-number">04</span> Contact
+        <span className="nav-number">05</span> Contact
       </a>
     </nav>
   );
