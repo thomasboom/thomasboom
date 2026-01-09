@@ -2,7 +2,7 @@ export default function Contact() {
   const contacts = [
     { label: 'thomasnowprod@proton.me', href: 'mailto:thomasnowprod@proton.me' },
     { label: 'github.com/thomasboom', href: 'https://github.com/thomasboom' },
-    { label: '@thomasnowprod', href: 'https://bsky.app/profile/thomasnowprod.bsky.social' },
+    { label: '@thomasboom123', href: 'https://bsky.app/profile/thomasboom123.bsky.social' },
   ];
 
   return (
