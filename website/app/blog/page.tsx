@@ -1,13 +1,5 @@
 import Link from 'next/link';
-
-interface Post {
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-}
-
-const posts: Post[] = [];
+import { posts } from './posts';
 
 export default function BlogPage() {
   return (
@@ -33,7 +25,7 @@ export default function BlogPage() {
               <div className="post-card">
                 <div className="post-date">{post.date}</div>
                 <h2 className="post-title">{post.title}</h2>
-                <p className="post-excerpt">{post.excerpt}</p>
+                <p className="post-excerpt">{post.content.split('\n')[0]}</p>
               </div>
             </Link>
           ))

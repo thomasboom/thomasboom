@@ -7,6 +7,7 @@ export default function NewBlogPost() {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [content, setContent] = useState('');
+  const [copied, setCopied] = useState(false);
 
   const slug = title
     .toLowerCase()
@@ -14,24 +15,22 @@ export default function NewBlogPost() {
     .trim()
     .replace(/\s+/g, '-');
 
-  const generateCode = () => {
-    const listingCode = `  {
-    slug: '${slug}',
-    title: '${title}',
-    date: '${date}',
-    excerpt: '${content.substring(0, 100)}...'
-  },`;
+  const copyToClipboard = async () => {
+    await navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
-    const postCode = `  '${slug}': {
+  const generateCode = () => {
+    return `  {
+    slug: '${slug}',
     title: '${title}',
     date: '${date}',
     content: \`${content}\`
   },`;
-
-    return { listingCode, postCode };
   };
 
-  const { listingCode, postCode } = generateCode();
+  const code = generateCode();
 
   return (
     <div className="blog-editor">
@@ -73,27 +72,29 @@ export default function NewBlogPost() {
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Write your blog post here... Use ## for headings, - for lists, and regular text for paragraphs."
+              placeholder="Write your blog post here... Use ## for headings, - for lists, [text](url) for links, and regular text for paragraphs."
               rows={20}
             />
           </div>
         </div>
 
         <div className="code-output">
-          <h3>1. Add to app/blog/page.tsx posts array:</h3>
-          <pre><code>{listingCode}</code></pre>
-
-          <h3>2. Add to app/blog/[slug]/page.tsx posts object:</h3>
-          <pre><code>{postCode}</code></pre>
+          <div className="code-header">
+            <h3>1. Add to app/blog/posts.ts posts array:</h3>
+            <button onClick={copyToClipboard} className="copy-button">
+              {copied ? 'Copied!' : 'Copy'}
+            </button>
+          </div>
+          <pre><code>{code}</code></pre>
 
           <div className="instructions">
             <h3>Instructions:</h3>
             <ol>
               <li>Fill out the form on the left</li>
-              <li>Copy the code snippets above</li>
-              <li>Open the two blog files</li>
-              <li>Paste the code into the posts array/object</li>
-              <li>Save the files and your post will be live!</li>
+              <li>Copy the code snippet above</li>
+              <li>Open app/blog/posts.ts</li>
+              <li>Paste the code into the posts array</li>
+              <li>Save the file and your post will be live!</li>
             </ol>
           </div>
         </div>
