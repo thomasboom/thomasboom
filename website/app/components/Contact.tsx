@@ -4,6 +4,7 @@ export default function Contact() {
     { label: 'GitHub', href: 'https://github.com/thomasboom' },
     { label: 'Bluesky', href: 'https://bsky.app/profile/thomasboom123.bsky.social' },
     { label: 'Mastodon', href: 'https://mastodon.social/@thomasnow/' },
+    { label: 'SimpleX', href: 'https://smp10.simplex.im/a#jBZThpSaprUifiAuVeRN0Ikvq-YRCRDcqWSDaIV6MoM' }
   ];
 
   return (
