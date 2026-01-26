@@ -9,8 +9,7 @@ export default function BlogPage() {
           <span>Blog</span>
         </h1>
         <p className="meta">
-          Thoughts & Writing
-          <span>On development, technology, and more</span>
+          Thoughts & Writing on development, technology, and more. Human perspectives and human witten.
         </p>
       </div>
       
