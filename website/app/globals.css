@@ -644,6 +644,11 @@ body {
     margin-bottom: 8px;
 }
 
+.inline-link {
+    color: white;
+    text-decoration: underline;
+}
+
 .empty-state {
     padding: 48px;
     border: 1px solid var(--border);
