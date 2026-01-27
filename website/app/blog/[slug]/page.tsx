@@ -1,5 +1,22 @@
 import Link from 'next/link';
 import { posts } from '../posts';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = posts.find(p => p.slug === slug);
+  
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    other: {
+      "fediverse:creator": "@thomasboom@mastodon.social",
+    },
+  };
+}
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
