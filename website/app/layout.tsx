@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Thomas Boom",
   description: "Developer - Building mobile apps & web tools",
+  other: {
+    "me": "https://mastodon.social/@thomasboom",
+  },
 };
 
 export default function RootLayout({
