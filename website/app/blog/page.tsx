@@ -24,7 +24,7 @@ export default function BlogPage() {
               <div className="post-card">
                 <div className="post-date">{post.date}</div>
                 <h2 className="post-title">{post.title}</h2>
-                <p className="post-excerpt">{post.content.substring(0, 200)}...</p>
+                <p className="post-excerpt">{post.content.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').substring(0, 200)}...</p>
               </div>
             </Link>
           ))
