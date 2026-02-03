@@ -61,7 +61,7 @@ export function Comments({ postSlug }: CommentsProps) {
         <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
-          placeholder="Share your thoughts..."
+          placeholder="Share your thoughts, just keep it respectful..."
           className="comment-input"
           rows={3}
           maxLength={1000}
