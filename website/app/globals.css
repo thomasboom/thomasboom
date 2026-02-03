@@ -845,3 +845,146 @@ body {
 .copy-button:hover::before {
     transform: scaleY(1);
 }
+
+.comments-section {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+}
+
+.comments-title {
+    font-size: 24px;
+    margin-bottom: 32px;
+    color: var(--text);
+}
+
+.comment-form {
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.comment-name-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.comment-name-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--accent-dim);
+}
+
+.comment-input {
+    width: 100%;
+    padding: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    min-height: 100px;
+    transition: all 0.3s ease;
+}
+
+.comment-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--accent-dim);
+}
+
+.comment-form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.character-count {
+    font-size: 12px;
+    color: #666;
+}
+
+.comment-submit {
+    padding: 12px 24px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.comment-submit:hover:not(:disabled) {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.comment-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.comments-loading,
+.comments-empty {
+    font-size: 14px;
+    color: #666;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.comment {
+    padding: 20px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.comment:hover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.comment-author {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.comment-content {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    word-wrap: break-word;
+}
+
+.comment-date {
+    font-size: 11px;
+    color: #666;
+}

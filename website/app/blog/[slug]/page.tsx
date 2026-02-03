@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { posts } from '../posts';
 import type { Metadata } from 'next';
+import { Comments } from '../../components/Comments';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -75,6 +76,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           })}
         </div>
       </div>
+      <Comments postSlug={slug} />
       <Link href="/" className="back-link">← Back to home</Link>
     </div>
   );
