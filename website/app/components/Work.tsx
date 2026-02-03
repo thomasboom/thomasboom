@@ -18,11 +18,11 @@ export default function Work() {
         <div className="tech"><span>Flutter</span><span>Dart</span><span>Gemini API</span></div>
       </article> */}
 
-      {/* <article className="work-item">
-        <h3><a href="https://github.com/ThomasNowProductions/Clickshare" target="_blank" rel="noopener noreferrer">Clickshare</a></h3>
+      <article className="work-item">
+        <h3><a href="https://github.com/ThomasNowProductions/Flick" target="_blank" rel="noopener noreferrer">Flick</a></h3>
         <p>A digital business card to share your contact info instantly</p>
-        <div className="tech"><span>Flutter</span><span>Dart</span><span>Supabase</span></div>
-      </article> */}
+        <div className="tech"><span>NextJS</span><span>Vercel</span><span>Convex</span></div>
+      </article>
 
       <article className="work-item">
         <h3><a href="https://github.com/ThomasNowProductions/yam_launcher" target="_blank" rel="noopener noreferrer">YAM Launcher</a></h3>
