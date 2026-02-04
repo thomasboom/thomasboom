@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 
@@ -17,6 +17,20 @@ export function Comments({ postSlug }: CommentsProps) {
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [replyName, setReplyName] = useState("");
   const [replyContent, setReplyContent] = useState("");
+  const nameStorageKey = "blog-comment-name";
+
+  useEffect(() => {
+    const savedName = localStorage.getItem(nameStorageKey);
+    if (savedName) {
+      setName(savedName);
+      setReplyName(savedName);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!name.trim()) return;
+    localStorage.setItem(nameStorageKey, name.trim());
+  }, [name]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
