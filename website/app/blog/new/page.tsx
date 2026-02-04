@@ -3,9 +3,16 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+const getToday = () => {
+  const now = new Date();
+  const tzOffsetMs = now.getTimezoneOffset() * 60_000;
+  return new Date(now.getTime() - tzOffsetMs).toISOString().slice(0, 10);
+};
+
 export default function NewBlogPost() {
   const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(getToday());
+  const [isCustomDate, setIsCustomDate] = useState(false);
   const [content, setContent] = useState('');
   const [copied, setCopied] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,21 +24,33 @@ export default function NewBlogPost() {
 
   useEffect(() => {
     const saved = localStorage.getItem(autosaveKey);
-    if (!saved) return;
+    if (!saved) {
+      setDate(getToday());
+      return;
+    }
     try {
-      const data = JSON.parse(saved) as { title?: string; date?: string; content?: string };
+      const data = JSON.parse(saved) as {
+        title?: string;
+        date?: string;
+        content?: string;
+        isCustomDate?: boolean;
+      };
       setTitle(data.title ?? '');
-      setDate(data.date ?? '');
       setContent(data.content ?? '');
+      const today = getToday();
+      const shouldUseSavedDate = Boolean(data.isCustomDate && data.date);
+      setDate(shouldUseSavedDate ? (data.date as string) : today);
+      setIsCustomDate(Boolean(data.isCustomDate && data.date !== today));
     } catch {
       localStorage.removeItem(autosaveKey);
+      setDate(getToday());
     }
   }, []);
 
   useEffect(() => {
-    const payload = JSON.stringify({ title, date, content });
+    const payload = JSON.stringify({ title, date, content, isCustomDate });
     localStorage.setItem(autosaveKey, payload);
-  }, [title, date, content]);
+  }, [title, date, content, isCustomDate]);
 
   const slug = title
     .toLowerCase()
@@ -204,7 +223,11 @@ export default function NewBlogPost() {
             <input
               type="date"
               value={date}
-              onChange={(e) => setDate(e.target.value)}
+              onChange={(e) => {
+                const nextDate = e.target.value;
+                setDate(nextDate);
+                setIsCustomDate(nextDate !== getToday());
+              }}
             />
           </div>
 
