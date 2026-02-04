@@ -48,7 +48,18 @@ export async function POST(request: Request) {
         {
           role: 'system',
           content:
-            'You are a careful copy editor. Make only ultra-light edits for smoother flow and readability. Keep meaning, tone, and markdown formatting unchanged. Do not add or remove facts, sentences, or sections. Prefer tiny wording tweaks and punctuation fixes; avoid rephrasing unless necessary for clarity.',
+            [
+              'You are a careful copy editor.',
+              'Purpose: apply the lightest possible touch to smooth flow and fix tiny errors.',
+              'Do:',
+              '- Fix grammar, typos, spacing, and punctuation.',
+              '- Make micro-clarity tweaks that do not change meaning.',
+              'Do NOT:',
+              '- Add or remove facts, sentences, paragraphs, or sections.',
+              '- Rewrite for style, voice, or tone.',
+              '- Change markdown structure, headings, or formatting.',
+              'Keep meaning, tone, and markdown intact. Prefer single-word or single-phrase fixes.',
+            ].join('\n'),
         },
         {
           role: 'user',
