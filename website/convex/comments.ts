@@ -19,12 +19,14 @@ export const addComment = mutation({
     postSlug: v.string(),
     name: v.string(),
     content: v.string(),
+    parentId: v.optional(v.id("comments")),
   },
   handler: async (ctx, args) => {
     const commentId = await ctx.db.insert("comments", {
       postSlug: args.postSlug,
       name: args.name.slice(0, 50),
       content: args.content.slice(0, 1000),
+      parentId: args.parentId,
       createdAt: Date.now(),
     });
 

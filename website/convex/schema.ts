@@ -6,6 +6,7 @@ export default defineSchema({
     postSlug: v.string(),
     name: v.string(),
     content: v.string(),
+    parentId: v.optional(v.id("comments")),
     createdAt: v.number(),
   })
     .index("by_postSlug", ["postSlug"])
