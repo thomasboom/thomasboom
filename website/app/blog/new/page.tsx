@@ -8,6 +8,7 @@ export default function NewBlogPost() {
   const [date, setDate] = useState('');
   const [content, setContent] = useState('');
   const [copied, setCopied] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const slug = title
     .toLowerCase()
@@ -31,7 +32,6 @@ export default function NewBlogPost() {
   };
 
   const code = generateCode();
-
   return (
     <div className="blog-editor">
       <div className="editor-header">
@@ -68,7 +68,24 @@ export default function NewBlogPost() {
           </div>
 
           <div className="form-group">
-            <label>Content</label>
+            <label className="content-label">
+              Content
+              <span className="markdown-help" aria-label="Markdown help">
+                ?
+                <span className="markdown-tooltip">
+                  <strong>Markdown Cheatsheet</strong>
+                  <span># Heading 1</span>
+                  <span>## Heading 2</span>
+                  <span>**Bold** / *Italic*</span>
+                  <span>- Bulleted list</span>
+                  <span>1. Numbered list</span>
+                  <span>[Text](url)</span>
+                  <span>`inline code`</span>
+                  <span>```code block```</span>
+                  <span>&gt; Quote</span>
+                </span>
+              </span>
+            </label>
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
@@ -76,29 +93,59 @@ export default function NewBlogPost() {
               rows={20}
             />
           </div>
+
+          <button
+            type="button"
+            className="generate-button"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Generate Post Snippet
+          </button>
         </div>
 
-        <div className="code-output">
-          <div className="code-header">
-            <h3>1. Add to app/blog/posts.ts posts array:</h3>
-            <button onClick={copyToClipboard} className="copy-button">
-              {copied ? 'Copied!' : 'Copy'}
-            </button>
-          </div>
-          <pre><code>{code}</code></pre>
-
-          <div className="instructions">
-            <h3>Instructions:</h3>
-            <ol>
-              <li>Fill out the form on the left</li>
-              <li>Copy the code snippet above</li>
-              <li>Open app/blog/posts.ts</li>
-              <li>Paste the code into the posts array</li>
-              <li>Save the file and your post will be live!</li>
-            </ol>
-          </div>
-        </div>
       </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay" role="dialog" aria-modal="true">
+          <div className="modal">
+            <div className="modal-header">
+              <h3>Post Snippet</h3>
+              <button
+                className="modal-close"
+                onClick={() => setIsModalOpen(false)}
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+            <p className="modal-subtitle">1. Add to app/blog/posts.ts posts array:</p>
+            <div className="modal-code">
+              <pre><code>{code}</code></pre>
+            </div>
+            <div className="modal-actions">
+              <button onClick={copyToClipboard} className="copy-button">
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+              <button
+                className="secondary-button"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Done
+              </button>
+            </div>
+            <div className="instructions">
+              <h3>Instructions:</h3>
+              <ol>
+                <li>Fill out the form on the left</li>
+                <li>Copy the code snippet above</li>
+                <li>Open app/blog/posts.ts</li>
+                <li>Paste the code into the posts array</li>
+                <li>Save the file and your post will be live!</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Link href="/blog" className="back-link">← Back to blog</Link>
     </div>
