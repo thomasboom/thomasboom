@@ -9,6 +9,8 @@ export default function NewBlogPost() {
   const [content, setContent] = useState('');
   const [copied, setCopied] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAiWorking, setIsAiWorking] = useState(false);
+  const [aiError, setAiError] = useState('');
   const autosaveKey = 'blog-new-post-autosave';
 
   useEffect(() => {
@@ -51,6 +53,42 @@ export default function NewBlogPost() {
   };
 
   const code = generateCode();
+
+  const runAiCorrect = async () => {
+    if (!title && !content) {
+      setAiError('Add a title or content before using AI correct.');
+      return;
+    }
+
+    setAiError('');
+    setIsAiWorking(true);
+
+    try {
+      const response = await fetch('/api/ai-correct', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, content }),
+      });
+
+      const data = (await response.json()) as { title?: string; content?: string; error?: string };
+
+      if (!response.ok) {
+        throw new Error(data.error ?? 'AI correction failed.');
+      }
+
+      if (typeof data.title === 'string') {
+        setTitle(data.title);
+      }
+      if (typeof data.content === 'string') {
+        setContent(data.content);
+      }
+    } catch (error) {
+      setAiError(error instanceof Error ? error.message : 'AI correction failed.');
+    } finally {
+      setIsAiWorking(false);
+    }
+  };
+
   return (
     <div className="blog-editor">
       <div className="editor-header">
@@ -113,13 +151,26 @@ export default function NewBlogPost() {
             />
           </div>
 
-          <button
-            type="button"
-            className="generate-button"
-            onClick={() => setIsModalOpen(true)}
-          >
-            Generate Post Snippet
-          </button>
+          <div className="editor-actions">
+            <button
+              type="button"
+              className="generate-button"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Generate Post Snippet
+            </button>
+            <button
+              type="button"
+              className="ai-button"
+              onClick={runAiCorrect}
+              disabled={isAiWorking}
+            >
+              {isAiWorking ? 'AI Working…' : 'AI Correct'}
+            </button>
+          </div>
+          <div className={`ai-status${aiError ? ' error' : ''}`}>
+            {aiError || 'Light grammar touch-up via OpenRouter.'}
+          </div>
         </div>
 
       </div>
