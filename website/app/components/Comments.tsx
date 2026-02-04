@@ -3,10 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
+import type { Id, Doc } from "../../convex/_generated/dataModel";
 
 interface CommentsProps {
   postSlug: string;
 }
+
+type CommentWithChildren = Doc<"comments"> & { children: CommentWithChildren[] };
 
 export function Comments({ postSlug }: CommentsProps) {
   const comments = useQuery(api.comments.getCommentsByPost, { postSlug });
@@ -14,7 +17,7 @@ export function Comments({ postSlug }: CommentsProps) {
   const [name, setName] = useState("");
   const [newComment, setNewComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [replyingTo, setReplyingTo] = useState<string | null>(null);
+  const [replyingTo, setReplyingTo] = useState<Id<"comments"> | null>(null);
   const [replyName, setReplyName] = useState("");
   const [replyContent, setReplyContent] = useState("");
   const nameStorageKey = "blog-comment-name";
@@ -83,17 +86,17 @@ export function Comments({ postSlug }: CommentsProps) {
   };
 
   const threadedComments = useMemo(() => {
-    if (!comments) return [];
+    if (!comments) return [] as CommentWithChildren[];
     const sorted = [...comments].sort((a, b) => a.createdAt - b.createdAt);
-    const map = new Map<string, (typeof comments)[number] & { children: any[] }>();
-    const roots: (typeof comments)[number] & { children: any[] }[] = [];
+    const map = new Map<Id<"comments">, CommentWithChildren>();
+    const roots: CommentWithChildren[] = [];
 
     sorted.forEach((comment) => {
       map.set(comment._id, { ...comment, children: [] });
     });
 
     map.forEach((comment) => {
-      const parentId = (comment as any).parentId as string | undefined;
+      const parentId = (comment as any).parentId as Id<"comments"> | undefined;
       if (parentId && map.has(parentId)) {
         map.get(parentId)!.children.push(comment);
       } else {
@@ -104,7 +107,7 @@ export function Comments({ postSlug }: CommentsProps) {
     return roots;
   }, [comments]);
 
-  const renderComment = (comment: any, depth = 0) => {
+  const renderComment = (comment: CommentWithChildren, depth = 0) => {
     const isReplying = replyingTo === comment._id;
     return (
       <div key={comment._id} className={`comment ${depth > 0 ? "comment-reply" : ""}`}>
@@ -170,7 +173,7 @@ export function Comments({ postSlug }: CommentsProps) {
 
         {comment.children?.length > 0 && (
           <div className="comment-children">
-            {comment.children.map((child: any) => renderComment(child, depth + 1))}
+            {comment.children.map((child) => renderComment(child, depth + 1))}
           </div>
         )}
       </div>
