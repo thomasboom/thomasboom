@@ -1009,6 +1009,78 @@ body {
     margin-bottom: 16px;
 }
 
+.diff-modal {
+    width: min(960px, 100%);
+}
+
+.diff-section {
+    margin-bottom: 16px;
+}
+
+.diff-title {
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+
+.diff-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+}
+
+.diff-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.diff-column-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #777;
+}
+
+.diff-block {
+    background: #101010;
+    border: 1px solid var(--border);
+    padding: 12px;
+    max-height: 280px;
+    overflow: auto;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.diff-token {
+    white-space: pre-wrap;
+}
+
+.diff-token.add {
+    color: #9ef0b0;
+    background: rgba(80, 180, 120, 0.2);
+}
+
+.diff-token.remove {
+    color: #ffb3b3;
+    background: rgba(200, 80, 80, 0.2);
+}
+
+.diff-token.same {
+    color: #cfcfcf;
+}
+
+@media (max-width: 880px) {
+    .diff-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .secondary-button {
     padding: 8px 16px;
     border: 1px solid var(--border);

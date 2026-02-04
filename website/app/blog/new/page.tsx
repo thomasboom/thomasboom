@@ -9,8 +9,10 @@ export default function NewBlogPost() {
   const [content, setContent] = useState('');
   const [copied, setCopied] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDiffOpen, setIsDiffOpen] = useState(false);
   const [isAiWorking, setIsAiWorking] = useState(false);
   const [aiError, setAiError] = useState('');
+  const [aiDraft, setAiDraft] = useState<{ title: string; content: string } | null>(null);
   const autosaveKey = 'blog-new-post-autosave';
 
   useEffect(() => {
@@ -54,6 +56,84 @@ export default function NewBlogPost() {
 
   const code = generateCode();
 
+  const tokenize = (text: string) => text.split(/(\s+)/).filter(Boolean);
+
+  const buildWordDiff = (before: string, after: string) => {
+    const beforeTokens = tokenize(before);
+    const afterTokens = tokenize(after);
+    const totalCells = beforeTokens.length * afterTokens.length;
+
+    if (totalCells > 4_000_000) {
+      return {
+        left: before ? [{ text: before, type: 'remove' as const }] : [],
+        right: after ? [{ text: after, type: 'add' as const }] : [],
+      };
+    }
+
+    const columns = afterTokens.length + 1;
+    const directions = new Uint8Array((beforeTokens.length + 1) * columns);
+    let previous = new Uint32Array(columns);
+    let current = new Uint32Array(columns);
+
+    for (let i = 1; i <= beforeTokens.length; i += 1) {
+      current[0] = 0;
+      for (let j = 1; j <= afterTokens.length; j += 1) {
+        const beforeToken = beforeTokens[i - 1];
+        const afterToken = afterTokens[j - 1];
+        const index = i * columns + j;
+
+        if (beforeToken === afterToken) {
+          current[j] = previous[j - 1] + 1;
+          directions[index] = 1;
+        } else if (previous[j] >= current[j - 1]) {
+          current[j] = previous[j];
+          directions[index] = 2;
+        } else {
+          current[j] = current[j - 1];
+          directions[index] = 3;
+        }
+      }
+      const swap = previous;
+      previous = current;
+      current = swap;
+    }
+
+    const left: Array<{ text: string; type: 'same' | 'remove' }> = [];
+    const right: Array<{ text: string; type: 'same' | 'add' }> = [];
+    let i = beforeTokens.length;
+    let j = afterTokens.length;
+
+    while (i > 0 || j > 0) {
+      const index = i * columns + j;
+      if (i > 0 && j > 0 && directions[index] === 1) {
+        left.push({ text: beforeTokens[i - 1], type: 'same' });
+        right.push({ text: afterTokens[j - 1], type: 'same' });
+        i -= 1;
+        j -= 1;
+      } else if (i > 0 && (j === 0 || directions[index] === 2)) {
+        left.push({ text: beforeTokens[i - 1], type: 'remove' });
+        i -= 1;
+      } else {
+        right.push({ text: afterTokens[j - 1], type: 'add' });
+        j -= 1;
+      }
+    }
+
+    left.reverse();
+    right.reverse();
+
+    return { left, right };
+  };
+
+  const applyAiDraft = () => {
+    if (!aiDraft) return;
+    setTitle(aiDraft.title);
+    setContent(aiDraft.content);
+    setAiDraft(null);
+    setIsDiffOpen(false);
+    setAiError('');
+  };
+
   const runAiCorrect = async () => {
     if (!title && !content) {
       setAiError('Add a title or content before using AI correct.');
@@ -76,12 +156,16 @@ export default function NewBlogPost() {
         throw new Error(data.error ?? 'AI correction failed.');
       }
 
-      if (typeof data.title === 'string') {
-        setTitle(data.title);
+      const nextTitle = typeof data.title === 'string' ? data.title : title;
+      const nextContent = typeof data.content === 'string' ? data.content : content;
+
+      if (nextTitle === title && nextContent === content) {
+        setAiError('AI suggested no changes.');
+        return;
       }
-      if (typeof data.content === 'string') {
-        setContent(data.content);
-      }
+
+      setAiDraft({ title: nextTitle, content: nextContent });
+      setIsDiffOpen(true);
     } catch (error) {
       setAiError(error instanceof Error ? error.message : 'AI correction failed.');
     } finally {
@@ -215,6 +299,108 @@ export default function NewBlogPost() {
                 <li>Paste the code into the posts array</li>
                 <li>Save the file and your post will be live!</li>
               </ol>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isDiffOpen && aiDraft && (
+        <div className="modal-overlay" role="dialog" aria-modal="true">
+          <div className="modal diff-modal">
+            <div className="modal-header">
+              <h3>AI Suggested Changes</h3>
+              <button
+                className="modal-close"
+                onClick={() => {
+                  setIsDiffOpen(false);
+                  setAiDraft(null);
+                }}
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+            <p className="modal-subtitle">Review the diff before applying.</p>
+
+            <div className="diff-section">
+              <div className="diff-title">Title</div>
+              <div className="diff-grid">
+                {(() => {
+                  const diff = buildWordDiff(title, aiDraft.title);
+                  return (
+                    <>
+                      <div className="diff-column">
+                        <div className="diff-column-label">Original</div>
+                        <div className="diff-block">
+                          {diff.left.map((token, index) => (
+                            <span key={`title-left-${index}`} className={`diff-token ${token.type}`}>
+                              {token.text}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="diff-column">
+                        <div className="diff-column-label">AI Version</div>
+                        <div className="diff-block">
+                          {diff.right.map((token, index) => (
+                            <span key={`title-right-${index}`} className={`diff-token ${token.type}`}>
+                              {token.text}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
+
+            <div className="diff-section">
+              <div className="diff-title">Content</div>
+              <div className="diff-grid">
+                {(() => {
+                  const diff = buildWordDiff(content, aiDraft.content);
+                  return (
+                    <>
+                      <div className="diff-column">
+                        <div className="diff-column-label">Original</div>
+                        <div className="diff-block">
+                          {diff.left.map((token, index) => (
+                            <span key={`content-left-${index}`} className={`diff-token ${token.type}`}>
+                              {token.text}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="diff-column">
+                        <div className="diff-column-label">AI Version</div>
+                        <div className="diff-block">
+                          {diff.right.map((token, index) => (
+                            <span key={`content-right-${index}`} className={`diff-token ${token.type}`}>
+                              {token.text}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
+
+            <div className="modal-actions">
+              <button className="copy-button" onClick={applyAiDraft}>
+                Apply Changes
+              </button>
+              <button
+                className="secondary-button"
+                onClick={() => {
+                  setIsDiffOpen(false);
+                  setAiDraft(null);
+                }}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>
