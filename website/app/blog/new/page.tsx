@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function NewBlogPost() {
@@ -9,6 +9,25 @@ export default function NewBlogPost() {
   const [content, setContent] = useState('');
   const [copied, setCopied] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const autosaveKey = 'blog-new-post-autosave';
+
+  useEffect(() => {
+    const saved = localStorage.getItem(autosaveKey);
+    if (!saved) return;
+    try {
+      const data = JSON.parse(saved) as { title?: string; date?: string; content?: string };
+      setTitle(data.title ?? '');
+      setDate(data.date ?? '');
+      setContent(data.content ?? '');
+    } catch {
+      localStorage.removeItem(autosaveKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    const payload = JSON.stringify({ title, date, content });
+    localStorage.setItem(autosaveKey, payload);
+  }, [title, date, content]);
 
   const slug = title
     .toLowerCase()
@@ -128,7 +147,10 @@ export default function NewBlogPost() {
               </button>
               <button
                 className="secondary-button"
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => {
+                  localStorage.removeItem(autosaveKey);
+                  setIsModalOpen(false);
+                }}
               >
                 Done
               </button>
