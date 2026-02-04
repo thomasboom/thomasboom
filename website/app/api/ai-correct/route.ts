@@ -43,17 +43,17 @@ export async function POST(request: Request) {
     },
     body: JSON.stringify({
       model,
-      temperature: 0.2,
+      temperature: 0.1,
       messages: [
         {
           role: 'system',
           content:
-            'You are a careful copy editor. Make only minimal, light grammar and clarity fixes. Keep meaning, tone, and markdown formatting unchanged. Do not add new facts or sections.',
+            'You are a careful copy editor. Make only ultra-light edits for smoother flow and readability. Keep meaning, tone, and markdown formatting unchanged. Do not add or remove facts, sentences, or sections. Prefer tiny wording tweaks and punctuation fixes; avoid rephrasing unless necessary for clarity.',
         },
         {
           role: 'user',
           content: [
-            'Fix the following blog draft in very slight ways (grammar, typos, spacing).',
+            'Fix the following blog draft with the lightest possible touch for smoother flow (grammar, typos, spacing, micro-clarity).',
             'Return JSON ONLY with keys "title" and "content".',
             '',
             'Title:',
