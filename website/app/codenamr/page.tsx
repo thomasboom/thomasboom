@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 const commands = [
   {
@@ -44,9 +45,9 @@ export default function Codenamr() {
           <p className="codenamr-desc">
             Generate memorable code names in various formats.
           </p>
-          <a href="/" className="back-link">
+          <Link href="/" className="back-link">
             ← Back to Portfolio
-          </a>
+          </Link>
         </div>
 
         <div className="codenamr-commands">

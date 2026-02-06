@@ -96,7 +96,7 @@ export function Comments({ postSlug }: CommentsProps) {
     });
 
     map.forEach((comment) => {
-      const parentId = (comment as any).parentId as Id<"comments"> | undefined;
+      const parentId = comment.parentId as Id<"comments"> | undefined;
       if (parentId && map.has(parentId)) {
         map.get(parentId)!.children.push(comment);
       } else {
