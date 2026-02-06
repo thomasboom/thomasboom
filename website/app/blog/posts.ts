@@ -7,6 +7,20 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'why-i-moved-back-to-bluesky',
+    title: 'Why I moved back to Bluesky',
+    date: '2026-02-06',
+    content: `A few days ago, I made a [blogpost](https://thomasboom.vercel.app/blog/why-i-switched-to-mastodon) about my journey switching to [Mastodon](https://joinmastodon.org/), and the reasons why I didn't switch with [Bluesky](https://bsky.social), and I still 100% stand with those opinions: Bluesky isn't perfect and with the current architecture it never will be.
+
+As I mentioned in my [Mastodon setup blogpost](https://thomasboom.vercel.app/blog/my-mastodon-setup), [elk.zone](https://elk.zone) fixed the second largest problem I had with Mastodon: its UI/UX. Even though Elk is still in Alpha, it is so incredible, and I can't wait for the future of the project.
+
+But the largest problem wasn't UI/UX: it was user engagement and, surprisingly, discovery. I'm a big chronological feed guy, and on both of the platforms, that is possible. On Mastodon though, it was a little too good. There, depending on your instance, is no discoverability, or a really bad one, and I just need some fresh content in my feed from time to time. Engagement was by far the largest bottleneck in this entire experiment: at Bluesky, every time I refreshed my feed, something new appeared, but on Mastodon, I would easily go hours without.
+
+Should I follow more people then? Yes. Are there enough high quality accounts to do so? No. Please, if you use Bluesky, setup a bridge via [Bridgy Fed](https://fed.brid.gy/), it's a one time effort, but a huge lifesaver for us Mastodon users.
+
+I did say "us" Mastodon users, but I really should say "them", even though the decentralization and interoperability is so cool, it's just not worth it to me (yet). Once Bluesky (maybe ever) joins the Fediverse, or there is a huge user gain at Mastodon, it's a 100% switch for me.`
+  },
+  {
     slug: "i-opened-a-pr-on-an-open-source-project-it-changed-the-way-i-think",
     title:
       "I opened a PR on an open source project. It changed the way I think.",
