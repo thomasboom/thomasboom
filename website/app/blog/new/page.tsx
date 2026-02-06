@@ -300,17 +300,18 @@ export default function NewBlogPost() {
               <pre><code>{code}</code></pre>
             </div>
             <div className="modal-actions">
-              <button onClick={copyToClipboard} className="copy-button">
-                {copied ? 'Copied!' : 'Copy'}
-              </button>
               <button
                 className="secondary-button"
-                onClick={() => {
+                onClick={async () => {
+                  await copyToClipboard();
                   localStorage.removeItem(autosaveKey);
                   setIsModalOpen(false);
                 }}
               >
                 Done
+              </button>
+              <button onClick={copyToClipboard} className="copy-button">
+                {copied ? 'Copied!' : 'Copy'}
               </button>
             </div>
             <div className="instructions">
