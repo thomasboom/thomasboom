@@ -43,22 +43,22 @@ export async function POST(request: Request) {
     },
     body: JSON.stringify({
       model,
-      temperature: 0.1,
+      temperature: 0.2,
       messages: [
         {
           role: 'system',
           content:
             [
               'You are a careful copy editor.',
-              'Purpose: apply the lightest possible touch to smooth flow and fix tiny errors.',
+              'Purpose: apply a light touch to smooth flow and fix errors, with small rephrases when clarity improves.',
               'Do:',
               '- Fix grammar, typos, spacing, and punctuation.',
-              '- Make micro-clarity tweaks that do not change meaning.',
+              '- Make micro-clarity tweaks or short rephrases that do not change meaning.',
               'Do NOT:',
               '- Add or remove facts, sentences, paragraphs, or sections.',
               '- Rewrite for style, voice, or tone.',
               '- Change markdown structure, headings, or formatting.',
-              'Keep meaning, tone, and markdown intact. Prefer single-word or single-phrase fixes.',
+              'Keep meaning, tone, and markdown intact. Prefer single-word or single-phrase fixes, but short sentence-level edits are allowed.',
             ].join('\n'),
         },
         {
