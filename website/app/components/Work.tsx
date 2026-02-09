@@ -27,7 +27,7 @@ export default function Work() {
       <article className="work-item">
         <h3><a href="https://github.com/ThomasNowProductions/yam_launcher" target="_blank" rel="noopener noreferrer">YAM Launcher</a></h3>
         <p>Yet Another Minimalist launcher for Android</p>
-        <div className="tech"><span>Flutter</span><span>Dart</span></div>
+        <div className="tech"><span>Kotlin</span><span>Google Play Store</span></div>
       </article>
 
       <article className="work-item">
