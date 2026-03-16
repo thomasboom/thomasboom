@@ -8,7 +8,7 @@
  * @module
  */
 
-import type * as comments from "../comments.js";
+import type * as quotes from "../quotes.js";
 
 import type {
   ApiFromModules,
@@ -17,7 +17,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-  comments: typeof comments;
+  quotes: typeof quotes;
 }>;
 
 /**

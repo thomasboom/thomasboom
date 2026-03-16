@@ -21,8 +21,8 @@ export default function Navigation() {
       <a href="#about" onClick={(e) => { e.preventDefault(); scrollTo('about'); }}>
         <span className="nav-number">03</span> About
       </a>
-      <Link href="/blog">
-        <span className="nav-number">04</span> Blog
+      <Link href="/quotes">
+        <span className="nav-number">04</span> Quotes
       </Link>
       <a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}>
         <span className="nav-number">05</span> Contact
