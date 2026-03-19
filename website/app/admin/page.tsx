@@ -2,8 +2,8 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { useQuery, useMutation } from "convex/react";
-import { api } from "../../../convex/_generated/api";
-import { Id, Doc } from "../../../convex/_generated/dataModel";
+import { api } from "../../convex/_generated/api";
+import { Id, Doc } from "../../convex/_generated/dataModel";
 import Link from "next/link";
 
 const ADMIN_PASSWORD_HASH = process.env.NEXT_PUBLIC_ADMIN_PASSWORD_HASH || "";

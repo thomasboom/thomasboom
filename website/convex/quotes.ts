@@ -63,3 +63,73 @@ export const getRandomQuote = query({
     return quotes[randomIndex];
   },
 });
+
+export const vote = mutation({
+  args: {
+    quoteId: v.id("quotes"),
+    userId: v.string(),
+    vote: v.number(),
+  },
+  handler: async (ctx, args) => {
+    const existingVotes = await ctx.db
+      .query("quoteVotes")
+      .withIndex("by_quote_user", (q) =>
+        q.eq("quoteId", args.quoteId).eq("userId", args.userId)
+      )
+      .collect();
+
+    if (existingVotes.length > 0) {
+      const existingVote = existingVotes[0];
+      if (existingVote.vote === args.vote) {
+        await ctx.db.delete(existingVote._id);
+        return { action: "removed" };
+      } else {
+        await ctx.db.patch(existingVote._id, { vote: args.vote });
+        return { action: "updated" };
+      }
+    }
+
+    await ctx.db.insert("quoteVotes", {
+      quoteId: args.quoteId,
+      userId: args.userId,
+      vote: args.vote,
+    });
+    return { action: "added" };
+  },
+});
+
+export const getVoteCounts = query({
+  args: {
+    quoteId: v.id("quotes"),
+  },
+  handler: async (ctx, args) => {
+    const votes = await ctx.db
+      .query("quoteVotes")
+      .withIndex("by_quote_user", (q) => q.eq("quoteId", args.quoteId))
+      .collect();
+
+    let upvotes = 0;
+    let downvotes = 0;
+    for (const v of votes) {
+      if (v.vote === 1) upvotes++;
+      else if (v.vote === -1) downvotes++;
+    }
+    return { upvotes, downvotes, score: upvotes - downvotes };
+  },
+});
+
+export const getUserVote = query({
+  args: {
+    quoteId: v.id("quotes"),
+    userId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const votes = await ctx.db
+      .query("quoteVotes")
+      .withIndex("by_quote_user", (q) =>
+        q.eq("quoteId", args.quoteId).eq("userId", args.userId)
+      )
+      .collect();
+    return votes.length > 0 ? votes[0].vote : 0;
+  },
+});
