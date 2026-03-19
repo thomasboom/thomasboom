@@ -81,8 +81,7 @@ export default function QuotesAdminPage() {
     }
   };
 
-  const handleAddQuote = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const addQuoteToDatabase = async () => {
     if (!text.trim()) return;
 
     setIsSubmitting(true);
@@ -95,6 +94,11 @@ export default function QuotesAdminPage() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleAddQuote = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await addQuoteToDatabase();
   };
 
   const handleDelete = async (id: Id<"quotes">) => {
@@ -158,6 +162,12 @@ export default function QuotesAdminPage() {
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                addQuoteToDatabase();
+              }
+            }}
             placeholder="Enter your quote here..."
             required
           />
@@ -181,7 +191,9 @@ export default function QuotesAdminPage() {
             Existing Quotes
           </h2>
           <div className="quotes-list">
-            {quotes.map((quote) => (
+            {quotes
+              .sort((a, b) => b.createdAt - a.createdAt)
+              .map((quote) => (
               <div key={quote._id} className="quote-card">
                 <p className="quote-card-text">&ldquo;{quote.text}&rdquo;</p>
                 <div className="quote-card-meta">
