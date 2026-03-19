@@ -67,7 +67,10 @@ export default function Work() {
             AIRun
           </a>
         </h3>
-        <p>Execute AI prompts directly from your terminal</p>
+        <p>
+          Forgot that you have dozens of AI CLIs installed? Find the one you
+          need before executing your prompt
+        </p>
         <div className="tech">
           <span>Rust</span>
           <span>CLI</span>
