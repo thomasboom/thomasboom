@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
-import { Id } from '../../../convex/_generated/dataModel';
+import { Id, Doc } from '../../../convex/_generated/dataModel';
 import Link from 'next/link';
 
 const ADMIN_PASSWORD_HASH = process.env.NEXT_PUBLIC_ADMIN_PASSWORD_HASH || '';
@@ -21,6 +21,30 @@ const getToday = () => {
   return new Date(now.getTime() - tzOffsetMs).toISOString().slice(0, 10);
 };
 
+const getNextAvailableDate = (quotes: Doc<"quotes">[]) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Get all scheduled dates as Date objects
+  const scheduledDates = quotes
+    .filter(quote => quote.scheduledDate)
+    .map(quote => {
+      const date = new Date(quote.scheduledDate);
+      date.setHours(0, 0, 0, 0);
+      return date.getTime();
+    });
+
+  // Find the next available date
+  let checkDate = new Date(today); // eslint-disable-line prefer-const
+  while (scheduledDates.includes(checkDate.getTime())) {
+    checkDate.setDate(checkDate.getDate() + 1);
+  }
+
+  // Format as YYYY-MM-DD
+  const tzOffsetMs = checkDate.getTimezoneOffset() * 60_000;
+  return new Date(checkDate.getTime() - tzOffsetMs).toISOString().slice(0, 10);
+};
+
 export default function QuotesAdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
@@ -31,8 +55,20 @@ export default function QuotesAdminPage() {
   const deleteQuote = useMutation(api.quotes.deleteQuote);
 
   const [text, setText] = useState('');
-  const [scheduledDate, setScheduledDate] = useState(getToday());
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const nextAvailableDate = useMemo(() => {
+    if (!quotes) return getToday();
+    return getNextAvailableDate(quotes);
+  }, [quotes]);
+
+  const [scheduledDate, setScheduledDate] = useState('');
+
+  useEffect(() => {
+    if (nextAvailableDate) {
+      setScheduledDate(nextAvailableDate);
+    }
+  }, [nextAvailableDate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,7 +89,7 @@ export default function QuotesAdminPage() {
     try {
       await addQuote({ text: text.trim(), scheduledDate });
       setText('');
-      setScheduledDate(getToday());
+      // The scheduledDate will be updated automatically via useEffect when quotes change
     } catch (err) {
       console.error('Failed to add quote:', err);
     } finally {
