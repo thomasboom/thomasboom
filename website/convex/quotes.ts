@@ -43,6 +43,18 @@ export const deleteQuote = mutation({
   },
 });
 
+export const updateQuote = mutation({
+  args: {
+    id: v.id("quotes"),
+    text: v.string(),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.id, {
+      text: args.text,
+    });
+  },
+});
+
 export const getRandomQuote = query({
   handler: async (ctx) => {
     const quotes = await ctx.db.query("quotes").collect();

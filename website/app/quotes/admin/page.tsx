@@ -52,10 +52,12 @@ export default function QuotesAdminPage() {
 
   const quotes = useQuery(api.quotes.getAllQuotes);
   const addQuote = useMutation(api.quotes.addQuote);
+  const updateQuote = useMutation(api.quotes.updateQuote);
   const deleteQuote = useMutation(api.quotes.deleteQuote);
 
   const [text, setText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [processingQuotes, setProcessingQuotes] = useState<Set<string>>(new Set());
 
   const nextAvailableDate = useMemo(() => {
     if (!quotes) return getToday();
@@ -86,9 +88,47 @@ export default function QuotesAdminPage() {
 
     setIsSubmitting(true);
     try {
-      await addQuote({ text: text.trim(), scheduledDate });
+      // Optimistically save the quote immediately with the original text
+      const quoteId = await addQuote({ text: text.trim(), scheduledDate });
+
+      // Clear the form immediately for user feedback
       setText('');
-      // The scheduledDate will be updated automatically via useEffect when quotes change
+
+      // Mark this quote as being processed
+      setProcessingQuotes(prev => new Set(prev).add(quoteId));
+
+      // Run AI correction in the background
+      try {
+        const aiResponse = await fetch('/api/ai-correct', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            content: text.trim(),
+          }),
+        });
+
+        if (aiResponse.ok) {
+          const aiResult = await aiResponse.json();
+          const correctedText = aiResult.content;
+
+          // Only update if the text actually changed
+          if (correctedText && correctedText !== text.trim()) {
+            await updateQuote({ id: quoteId, text: correctedText });
+          }
+        }
+      } catch (aiError) {
+        // AI correction failed, but quote is already saved - that's fine
+        console.log('AI correction failed, but quote was saved successfully:', aiError);
+      } finally {
+        // Remove from processing set when done
+        setProcessingQuotes(prev => {
+          const newSet = new Set(prev);
+          newSet.delete(quoteId);
+          return newSet;
+        });
+      }
     } catch (err) {
       console.error('Failed to add quote:', err);
     } finally {
@@ -168,7 +208,7 @@ export default function QuotesAdminPage() {
                 addQuoteToDatabase();
               }
             }}
-            placeholder="Enter your quote here..."
+            placeholder="Enter your quote here... (will be AI-corrected in the background)"
             required
           />
         </div>
@@ -181,7 +221,7 @@ export default function QuotesAdminPage() {
           />
         </div>
         <button type="submit" className="quote-form-submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Adding...' : 'Add Quote'}
+          {isSubmitting ? 'Saving...' : 'Add Quote'}
         </button>
       </form>
 
@@ -195,7 +235,22 @@ export default function QuotesAdminPage() {
               .sort((a, b) => b.createdAt - a.createdAt)
               .map((quote) => (
               <div key={quote._id} className="quote-card">
-                <p className="quote-card-text">&ldquo;{quote.text}&rdquo;</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                  <p className="quote-card-text">&ldquo;{quote.text}&rdquo;</p>
+                  {processingQuotes.has(quote._id) && (
+                    <span style={{
+                      backgroundColor: '#007bff',
+                      color: 'white',
+                      padding: '2px 6px',
+                      borderRadius: '4px',
+                      fontSize: '11px',
+                      fontWeight: '500',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      AI Processing...
+                    </span>
+                  )}
+                </div>
                 <div className="quote-card-meta">
                   <span>
                     {quote.scheduledDate
