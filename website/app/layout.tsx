@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Thomas Boom",
   description: "Developer - Building mobile apps & web tools",
   other: {
-    "me": "https://mastodon.social/@thomasboom",
+    me: "https://mastodon.social/@thomasboom",
   },
 };
 
@@ -18,9 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ConvexProviderWrapper>
-          {children}
-        </ConvexProviderWrapper>
+        <ConvexProviderWrapper>{children}</ConvexProviderWrapper>
       </body>
     </html>
   );

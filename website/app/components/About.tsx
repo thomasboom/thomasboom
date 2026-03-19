@@ -7,8 +7,8 @@ export default function About() {
       </div>
       <p className="about-text">
         Developer from The Netherlands who enjoys building useful applications.
-        Focus on <strong>user experiences</strong>, and tools that
-        genuinely <strong>help</strong> people in their daily lives.
+        Focus on <strong>user experiences</strong>, and tools that genuinely{" "}
+        <strong>help</strong> people in their daily lives.
       </p>
     </section>
   );

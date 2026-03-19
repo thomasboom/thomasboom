@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Links from '../components/Links';
+import Link from "next/link";
+import Links from "../components/Links";
 
 export default function LinksPage() {
   return (
@@ -17,7 +17,9 @@ export default function LinksPage() {
         </p>
       </div>
       <Links />
-      <Link href="/" className="back-link">← Back to home</Link>
+      <Link href="/" className="back-link">
+        ← Back to home
+      </Link>
     </div>
   );
 }

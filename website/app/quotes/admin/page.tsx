@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useState, useMemo, useEffect } from 'react';
-import { useQuery, useMutation } from 'convex/react';
-import { api } from '../../../convex/_generated/api';
-import { Id, Doc } from '../../../convex/_generated/dataModel';
-import Link from 'next/link';
+import { useState, useMemo, useEffect } from "react";
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { Id, Doc } from "../../../convex/_generated/dataModel";
+import Link from "next/link";
 
-const ADMIN_PASSWORD_HASH = process.env.NEXT_PUBLIC_ADMIN_PASSWORD_HASH || '';
+const ADMIN_PASSWORD_HASH = process.env.NEXT_PUBLIC_ADMIN_PASSWORD_HASH || "";
 
 async function sha256(message: string): Promise<string> {
   const msgBuffer = new TextEncoder().encode(message);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
 const getToday = () => {
@@ -27,8 +27,8 @@ const getNextAvailableDate = (quotes: Doc<"quotes">[]) => {
 
   // Get all scheduled dates as Date objects
   const scheduledDates = quotes
-    .filter(quote => quote.scheduledDate)
-    .map(quote => {
+    .filter((quote) => quote.scheduledDate)
+    .map((quote) => {
       const date = new Date(quote.scheduledDate);
       date.setHours(0, 0, 0, 0);
       return date.getTime();
@@ -47,24 +47,26 @@ const getNextAvailableDate = (quotes: Doc<"quotes">[]) => {
 
 export default function QuotesAdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const quotes = useQuery(api.quotes.getAllQuotes);
   const addQuote = useMutation(api.quotes.addQuote);
   const updateQuote = useMutation(api.quotes.updateQuote);
   const deleteQuote = useMutation(api.quotes.deleteQuote);
 
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [processingQuotes, setProcessingQuotes] = useState<Set<string>>(new Set());
+  const [processingQuotes, setProcessingQuotes] = useState<Set<string>>(
+    new Set(),
+  );
 
   const nextAvailableDate = useMemo(() => {
     if (!quotes) return getToday();
     return getNextAvailableDate(quotes);
   }, [quotes]);
 
-  const [scheduledDate, setScheduledDate] = useState('');
+  const [scheduledDate, setScheduledDate] = useState("");
 
   useEffect(() => {
     if (nextAvailableDate) {
@@ -77,9 +79,9 @@ export default function QuotesAdminPage() {
     const hash = await sha256(password);
     if (hash === ADMIN_PASSWORD_HASH) {
       setIsAuthenticated(true);
-      setError('');
+      setError("");
     } else {
-      setError('Invalid password');
+      setError("Invalid password");
     }
   };
 
@@ -92,17 +94,17 @@ export default function QuotesAdminPage() {
       const quoteId = await addQuote({ text: text.trim(), scheduledDate });
 
       // Clear the form immediately for user feedback
-      setText('');
+      setText("");
 
       // Mark this quote as being processed
-      setProcessingQuotes(prev => new Set(prev).add(quoteId));
+      setProcessingQuotes((prev) => new Set(prev).add(quoteId));
 
       // Run AI correction in the background
       try {
-        const aiResponse = await fetch('/api/ai-correct', {
-          method: 'POST',
+        const aiResponse = await fetch("/api/ai-correct", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             content: text.trim(),
@@ -120,17 +122,20 @@ export default function QuotesAdminPage() {
         }
       } catch (aiError) {
         // AI correction failed, but quote is already saved - that's fine
-        console.log('AI correction failed, but quote was saved successfully:', aiError);
+        console.log(
+          "AI correction failed, but quote was saved successfully:",
+          aiError,
+        );
       } finally {
         // Remove from processing set when done
-        setProcessingQuotes(prev => {
+        setProcessingQuotes((prev) => {
           const newSet = new Set(prev);
           newSet.delete(quoteId);
           return newSet;
         });
       }
     } catch (err) {
-      console.error('Failed to add quote:', err);
+      console.error("Failed to add quote:", err);
     } finally {
       setIsSubmitting(false);
     }
@@ -145,7 +150,7 @@ export default function QuotesAdminPage() {
     try {
       await deleteQuote({ id });
     } catch (err) {
-      console.error('Failed to delete quote:', err);
+      console.error("Failed to delete quote:", err);
     }
   };
 
@@ -157,9 +162,7 @@ export default function QuotesAdminPage() {
             <span>Admin</span>
             <span className="accent">Login</span>
           </h1>
-          <p className="meta">
-            Enter your password to access the quotes admin
-          </p>
+          <p className="meta">Enter your password to access the quotes admin</p>
         </div>
 
         <form onSubmit={handleLogin} className="quote-form">
@@ -172,13 +175,17 @@ export default function QuotesAdminPage() {
               placeholder="Enter password"
             />
           </div>
-          {error && <p style={{ color: '#ff6b6b', fontSize: '14px' }}>{error}</p>}
+          {error && (
+            <p style={{ color: "#ff6b6b", fontSize: "14px" }}>{error}</p>
+          )}
           <button type="submit" className="quote-form-submit">
             Login
           </button>
         </form>
 
-        <Link href="/" className="back-link">← Back to home</Link>
+        <Link href="/" className="back-link">
+          ← Back to home
+        </Link>
       </div>
     );
   }
@@ -192,7 +199,9 @@ export default function QuotesAdminPage() {
         </h1>
         <p className="meta">
           Manage your quotes
-          <span>Schedule quotes for specific dates or leave empty for random</span>
+          <span>
+            Schedule quotes for specific dates or leave empty for random
+          </span>
         </p>
       </div>
 
@@ -203,7 +212,7 @@ export default function QuotesAdminPage() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             onKeyDown={(e) => {
-              if (e.ctrlKey && e.key === 'Enter') {
+              if (e.ctrlKey && e.key === "Enter") {
                 e.preventDefault();
                 addQuoteToDatabase();
               }
@@ -220,57 +229,81 @@ export default function QuotesAdminPage() {
             onChange={(e) => setScheduledDate(e.target.value)}
           />
         </div>
-        <button type="submit" className="quote-form-submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Saving...' : 'Add Quote'}
+        <button
+          type="submit"
+          className="quote-form-submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Saving..." : "Add Quote"}
         </button>
       </form>
 
       {quotes && quotes.length > 0 && (
         <>
-          <h2 style={{ marginTop: '48px', marginBottom: '24px', fontSize: '24px', fontWeight: 400 }}>
+          <h2
+            style={{
+              marginTop: "48px",
+              marginBottom: "24px",
+              fontSize: "24px",
+              fontWeight: 400,
+            }}
+          >
             Existing Quotes
           </h2>
           <div className="quotes-list">
             {quotes
               .sort((a, b) => b.createdAt - a.createdAt)
               .map((quote) => (
-              <div key={quote._id} className="quote-card">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                  <p className="quote-card-text">&ldquo;{quote.text}&rdquo;</p>
-                  {processingQuotes.has(quote._id) && (
-                    <span style={{
-                      backgroundColor: '#007bff',
-                      color: 'white',
-                      padding: '2px 6px',
-                      borderRadius: '4px',
-                      fontSize: '11px',
-                      fontWeight: '500',
-                      whiteSpace: 'nowrap'
-                    }}>
-                      AI Processing...
-                    </span>
-                  )}
-                </div>
-                <div className="quote-card-meta">
-                  <span>
-                    {quote.scheduledDate
-                      ? new Date(quote.scheduledDate).toLocaleDateString()
-                      : 'Random'}
-                  </span>
-                  <button
-                    className="quote-card-delete"
-                    onClick={() => handleDelete(quote._id)}
+                <div key={quote._id} className="quote-card">
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      marginBottom: "12px",
+                    }}
                   >
-                    Delete
-                  </button>
+                    <p className="quote-card-text">
+                      &ldquo;{quote.text}&rdquo;
+                    </p>
+                    {processingQuotes.has(quote._id) && (
+                      <span
+                        style={{
+                          backgroundColor: "#007bff",
+                          color: "white",
+                          padding: "2px 6px",
+                          borderRadius: "4px",
+                          fontSize: "11px",
+                          fontWeight: "500",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        AI Processing...
+                      </span>
+                    )}
+                  </div>
+                  <div className="quote-card-meta">
+                    <span>
+                      {quote.scheduledDate
+                        ? new Date(quote.scheduledDate).toLocaleDateString()
+                        : "Random"}
+                    </span>
+                    <button
+                      className="quote-card-delete"
+                      onClick={() => handleDelete(quote._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </>
       )}
 
-      <Link href="/" className="back-link">← Back to home</Link>
+      <Link href="/" className="back-link">
+        ← Back to home
+      </Link>
     </div>
   );
 }

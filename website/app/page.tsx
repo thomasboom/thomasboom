@@ -1,34 +1,37 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import Navigation from './components/Navigation';
-import Work from './components/Work';
-import Skills from './components/Skills';
-import About from './components/About';
-import Contact from './components/Contact';
-import ProgressBar from './components/ProgressBar';
-import QuoteOfTheDay from './components/QuoteOfTheDay';
+import { useEffect } from "react";
+import Navigation from "./components/Navigation";
+import Work from "./components/Work";
+import Skills from "./components/Skills";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import ProgressBar from "./components/ProgressBar";
+import QuoteOfTheDay from "./components/QuoteOfTheDay";
 
 export default function Home() {
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      },
+    );
 
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
+    const sections = document.querySelectorAll(".section");
+    sections.forEach((section) => {
       observer.observe(section);
     });
 
     return () => {
-      sections.forEach(section => {
+      sections.forEach((section) => {
         observer.unobserve(section);
       });
     };

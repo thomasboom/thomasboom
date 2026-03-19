@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useQuery } from 'convex/react';
-import { api } from '../../convex/_generated/api';
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 const getTodayDate = () => {
   const now = new Date();
@@ -28,11 +28,11 @@ export default function QuoteOfTheDay() {
           </blockquote>
           {quote.scheduledDate && (
             <p className="quote-date">
-              {new Date(quote.scheduledDate).toLocaleDateString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
+              {new Date(quote.scheduledDate).toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
               })}
             </p>
           )}
