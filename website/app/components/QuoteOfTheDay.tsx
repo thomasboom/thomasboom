@@ -2,7 +2,6 @@
 
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
-import Link from 'next/link';
 
 const getTodayDate = () => {
   const now = new Date();
@@ -10,7 +9,7 @@ const getTodayDate = () => {
   return new Date(now.getTime() - tzOffsetMs).toISOString().slice(0, 10);
 };
 
-export default function QuotesPage() {
+export default function QuoteOfTheDay() {
   const today = getTodayDate();
   const scheduledQuote = useQuery(api.quotes.getQuoteForDate, { date: today });
   const randomQuote = useQuery(api.quotes.getRandomQuote);
@@ -18,23 +17,10 @@ export default function QuotesPage() {
   const quote = scheduledQuote ?? randomQuote;
 
   return (
-    <div className="quotes-container">
-      <div className="quotes-header">
-        <h1 className="name">
-          <span>Quote</span>
-          <span className="accent">of the Day</span>
-        </h1>
-        {scheduledQuote ? (
-          <p className="meta">
-            Today&apos;s featured quote
-          </p>
-        ) : (
-          <p className="meta">
-            A random quote for you
-          </p>
-        )}
-      </div>
-
+    <div id="quotes" className="section quotes-section">
+      <h2 className="section-title">
+        Quote<span className="accent"> of the Day</span>
+      </h2>
       {quote ? (
         <div className="quote-display">
           <blockquote className="quote-text">
@@ -56,8 +42,6 @@ export default function QuotesPage() {
           <p>No quotes yet. Add some in the admin dashboard!</p>
         </div>
       )}
-
-      <Link href="/" className="back-link">← Back to home</Link>
     </div>
   );
 }

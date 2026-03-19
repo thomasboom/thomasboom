@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
+import { Id } from '../../../convex/_generated/dataModel';
 import Link from 'next/link';
 
 const ADMIN_PASSWORD_HASH = process.env.NEXT_PUBLIC_ADMIN_PASSWORD_HASH || '';
@@ -60,9 +61,9 @@ export default function QuotesAdminPage() {
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: Id<"quotes">) => {
     try {
-      await deleteQuote({ id: id as any });
+      await deleteQuote({ id });
     } catch (err) {
       console.error('Failed to delete quote:', err);
     }
@@ -97,7 +98,7 @@ export default function QuotesAdminPage() {
           </button>
         </form>
 
-        <Link href="/quotes" className="back-link">← Back to quotes</Link>
+        <Link href="/" className="back-link">← Back to home</Link>
       </div>
     );
   }
@@ -166,7 +167,7 @@ export default function QuotesAdminPage() {
         </>
       )}
 
-      <Link href="/quotes" className="back-link">← Back to quotes</Link>
+      <Link href="/" className="back-link">← Back to home</Link>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import Skills from './components/Skills';
 import About from './components/About';
 import Contact from './components/Contact';
 import ProgressBar from './components/ProgressBar';
+import QuoteOfTheDay from './components/QuoteOfTheDay';
 
 export default function Home() {
   useEffect(() => {
@@ -53,6 +54,7 @@ export default function Home() {
         </div>
 
         <div className="right">
+          <QuoteOfTheDay />
           <Work />
           <Skills />
           <About />

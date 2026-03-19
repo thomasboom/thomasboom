@@ -12,18 +12,18 @@ export default function Navigation() {
 
   return (
     <nav className="nav">
+      <a href="#quotes" onClick={(e) => { e.preventDefault(); scrollTo('quotes'); }}>
+        <span className="nav-number">01</span> Quotes
+      </a>
       <a href="#work" onClick={(e) => { e.preventDefault(); scrollTo('work'); }}>
-        <span className="nav-number">01</span> Work
+        <span className="nav-number">02</span> Work
       </a>
       <a href="#skills" onClick={(e) => { e.preventDefault(); scrollTo('skills'); }}>
-        <span className="nav-number">02</span> Skills
+        <span className="nav-number">03</span> Skills
       </a>
       <a href="#about" onClick={(e) => { e.preventDefault(); scrollTo('about'); }}>
-        <span className="nav-number">03</span> About
+        <span className="nav-number">04</span> About
       </a>
-      <Link href="/quotes">
-        <span className="nav-number">04</span> Quotes
-      </Link>
       <a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}>
         <span className="nav-number">05</span> Contact
       </a>
