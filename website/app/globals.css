@@ -253,6 +253,55 @@ body {
   margin-left: 12px;
 }
 
+.work-collapsible {
+  margin-top: 24px;
+  border: 1px solid var(--border);
+  transition: border-color 0.3s ease;
+}
+
+.work-collapsible:hover {
+  border-color: var(--accent);
+}
+
+.work-collapsible-content .work-item {
+  padding: 16px 24px;
+}
+
+.work-collapsible-content .work-item h3 {
+  margin-bottom: 0;
+}
+
+.work-summary {
+  padding: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.3s ease;
+}
+
+.work-summary::-webkit-details-marker {
+  display: none;
+}
+
+.work-summary::before {
+  content: "▶";
+  font-size: 10px;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.work-collapsible[open] .work-summary::before {
+  transform: rotate(90deg);
+}
+
+.work-collapsible-content {
+  padding: 0 24px 24px 24px;
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
