@@ -62,7 +62,7 @@ export async function POST(request: Request) {
               "- Add or remove facts, sentences, paragraphs, or sections.",
               "- Rewrite for style, voice, or tone.",
               "- Change markdown structure, headings, or formatting.",
-              "Keep meaning, tone, and markdown intact. Prefer single-word or single-phrase fixes, but short sentence-level edits are allowed.",
+              "Keep meaning, tone, and markdown intact. Prefer single-word or single-phrase fixes, but short sentence-level edits are allowed. Always add a `.` to a end of a scenence.",
             ].join("\n"),
           },
           {
