@@ -4,7 +4,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: codeberg-small
     steps:
       - uses: actions/checkout@v4
       - run: npm install --global vercel@latest
