@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Links from "../components/Links";
+import Link from 'next/link';
+import Links from '../components/Links';
 
 export default function LinksPage() {
   return (

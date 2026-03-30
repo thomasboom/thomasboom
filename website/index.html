@@ -46,7 +46,7 @@
         overflow-x: auto;
       }
       code {
-        font-family: "Courier New", monospace;
+        font-family: 'Courier New', monospace;
       }
       button {
         padding: 12px 20px;
@@ -121,38 +121,38 @@
         navigator.clipboard
           .writeText(text)
           .then(() => {
-            button.textContent = "Copied!";
+            button.textContent = 'Copied!';
             setTimeout(() => {
               button.textContent = originalText;
             }, 2000);
           })
           .catch((err) => {
-            console.error("Failed to copy: ", err);
+            console.error('Failed to copy: ', err);
           });
       }
 
       document
-        .getElementById("copyInstall")
-        .addEventListener("click", function () {
+        .getElementById('copyInstall')
+        .addEventListener('click', function () {
           copyToClipboard(
-            "curl -fsSL https://codenamr.vercel.app/install.sh | bash",
-            this,
+            'curl -fsSL https://codenamr.vercel.app/install.sh | bash',
+            this
           );
         });
       document
-        .getElementById("copyUpdate")
-        .addEventListener("click", function () {
+        .getElementById('copyUpdate')
+        .addEventListener('click', function () {
           copyToClipboard(
-            "curl -fsSL https://codenamr.vercel.app/update.sh | bash",
-            this,
+            'curl -fsSL https://codenamr.vercel.app/update.sh | bash',
+            this
           );
         });
       document
-        .getElementById("copyUninstall")
-        .addEventListener("click", function () {
+        .getElementById('copyUninstall')
+        .addEventListener('click', function () {
           copyToClipboard(
-            "curl -fsSL https://codenamr.vercel.app/uninstall.sh | bash",
-            this,
+            'curl -fsSL https://codenamr.vercel.app/uninstall.sh | bash',
+            this
           );
         });
     </script>

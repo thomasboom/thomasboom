@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
-import { Id } from "../../convex/_generated/dataModel";
-import { useEffect, useState } from "react";
+import { useQuery, useMutation } from 'convex/react';
+import { api } from '../../convex/_generated/api';
+import { Id } from '../../convex/_generated/dataModel';
+import { useEffect, useState } from 'react';
 
 const getTodayDate = () => {
   const now = new Date();
@@ -12,11 +12,11 @@ const getTodayDate = () => {
 };
 
 const getUserId = () => {
-  if (typeof window === "undefined") return "";
-  let userId = localStorage.getItem("quote_user_id");
+  if (typeof window === 'undefined') return '';
+  let userId = localStorage.getItem('quote_user_id');
   if (!userId) {
     userId = crypto.randomUUID();
-    localStorage.setItem("quote_user_id", userId);
+    localStorage.setItem('quote_user_id', userId);
   }
   return userId;
 };
@@ -25,7 +25,7 @@ function QuoteVoting({
   quoteId,
   userId,
 }: {
-  quoteId: Id<"quotes">;
+  quoteId: Id<'quotes'>;
   userId: string;
 }) {
   const voteCounts = useQuery(api.quotes.getVoteCounts, { quoteId });
@@ -39,7 +39,7 @@ function QuoteVoting({
   return (
     <div className="quote-voting">
       <button
-        className={`vote-btn upvote ${userVote === 1 ? "active" : ""}`}
+        className={`vote-btn upvote ${userVote === 1 ? 'active' : ''}`}
         onClick={() => handleVote(1)}
         aria-label="Upvote"
       >
@@ -47,7 +47,7 @@ function QuoteVoting({
       </button>
       <span className="vote-score">{voteCounts?.score ?? 0}</span>
       <button
-        className={`vote-btn downvote ${userVote === -1 ? "active" : ""}`}
+        className={`vote-btn downvote ${userVote === -1 ? 'active' : ''}`}
         onClick={() => handleVote(-1)}
         aria-label="Downvote"
       >
@@ -58,7 +58,7 @@ function QuoteVoting({
 }
 
 export default function QuoteOfTheDay() {
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState('');
   const today = getTodayDate();
   const scheduledQuote = useQuery(api.quotes.getQuoteForDate, { date: today });
   const randomQuote = useQuery(api.quotes.getRandomQuote);
@@ -81,11 +81,11 @@ export default function QuoteOfTheDay() {
           </blockquote>
           {quote.scheduledDate && (
             <p className="quote-date">
-              {new Date(quote.scheduledDate).toLocaleDateString("en-US", {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric",
+              {new Date(quote.scheduledDate).toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
               })}
             </p>
           )}

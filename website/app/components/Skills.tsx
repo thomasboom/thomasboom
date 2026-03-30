@@ -1,11 +1,11 @@
 export default function Skills() {
   const skills = [
-    { name: "Flutter", desc: "Mobile development" },
-    { name: "TypeScript", desc: "Web development" },
-    { name: "Kotlin", desc: "Android development" },
-    { name: "Supabase", desc: "Backend & database" },
-    { name: "Dart", desc: "Programming language" },
-    { name: "JavaScript", desc: "Web development" },
+    { name: 'Flutter', desc: 'Mobile development' },
+    { name: 'TypeScript', desc: 'Web development' },
+    { name: 'Kotlin', desc: 'Android development' },
+    { name: 'Supabase', desc: 'Backend & database' },
+    { name: 'Dart', desc: 'Programming language' },
+    { name: 'JavaScript', desc: 'Web development' },
   ];
 
   return (

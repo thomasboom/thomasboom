@@ -101,152 +101,332 @@ export default function Work() {
         <div className="work-collapsible-content">
           <article className="work-item">
             <h3>
-              <a href="https://github.com/zed-industries/zed" target="_blank" rel="noopener noreferrer">Zed</a>
+              <a
+                href="https://github.com/zed-industries/zed"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Zed
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/signalapp/Signal-Android" target="_blank" rel="noopener noreferrer">Signal Android</a>
+              <a
+                href="https://github.com/signalapp/Signal-Android"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Signal Android
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/AntennaPod/AntennaPod" target="_blank" rel="noopener noreferrer">AntennaPod</a>
+              <a
+                href="https://github.com/AntennaPod/AntennaPod"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                AntennaPod
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/IP-Car/IP-Car" target="_blank" rel="noopener noreferrer">IP-Car</a>
+              <a
+                href="https://github.com/IP-Car/IP-Car"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                IP-Car
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/codyogden/killedbygoogle" target="_blank" rel="noopener noreferrer">Killed by Google</a>
+              <a
+                href="https://github.com/codyogden/killedbygoogle"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Killed by Google
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/1612elphi/delphitools" target="_blank" rel="noopener noreferrer">DelphiTools</a>
+              <a
+                href="https://github.com/1612elphi/delphitools"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                DelphiTools
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/Buage/n20" target="_blank" rel="noopener noreferrer">N20</a>
+              <a
+                href="https://github.com/Buage/n20"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                N20
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/Githubguy132010/devvy" target="_blank" rel="noopener noreferrer">Devvy</a>
+              <a
+                href="https://github.com/Githubguy132010/devvy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Devvy
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/IP-Car/android-app" target="_blank" rel="noopener noreferrer">IP-Car Android App</a>
+              <a
+                href="https://github.com/IP-Car/android-app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                IP-Car Android App
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/IP-Car/web-app" target="_blank" rel="noopener noreferrer">IP-Car Web App</a>
+              <a
+                href="https://github.com/IP-Car/web-app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                IP-Car Web App
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/Kilo-Org/kilocode" target="_blank" rel="noopener noreferrer">KiloCode</a>
+              <a
+                href="https://github.com/Kilo-Org/kilocode"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                KiloCode
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/QuestPhone/questphone" target="_blank" rel="noopener noreferrer">QuestPhone</a>
+              <a
+                href="https://github.com/QuestPhone/questphone"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                QuestPhone
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/SchweGELBin/OpenBible2" target="_blank" rel="noopener noreferrer">OpenBible2</a>
+              <a
+                href="https://github.com/SchweGELBin/OpenBible2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                OpenBible2
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/TopMyster/Ripple" target="_blank" rel="noopener noreferrer">Ripple</a>
+              <a
+                href="https://github.com/TopMyster/Ripple"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ripple
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/Trease-Focus/trease-app" target="_blank" rel="noopener noreferrer">Trease App</a>
+              <a
+                href="https://github.com/Trease-Focus/trease-app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Trease App
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/cgueret/Scriptorium" target="_blank" rel="noopener noreferrer">Scriptorium</a>
+              <a
+                href="https://github.com/cgueret/Scriptorium"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Scriptorium
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/dhruv0206/dev-proof-portfolio-open-source-search" target="_blank" rel="noopener noreferrer">Dev Proof Portfolio Open Source Search</a>
+              <a
+                href="https://github.com/dhruv0206/dev-proof-portfolio-open-source-search"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Dev Proof Portfolio Open Source Search
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/emersion/hydroxide" target="_blank" rel="noopener noreferrer">Hydroxide</a>
+              <a
+                href="https://github.com/emersion/hydroxide"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Hydroxide
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/ervan0707/bitchat-web" target="_blank" rel="noopener noreferrer">Bitchat Web</a>
+              <a
+                href="https://github.com/ervan0707/bitchat-web"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Bitchat Web
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/flathub/flathub" target="_blank" rel="noopener noreferrer">Flathub</a>
+              <a
+                href="https://github.com/flathub/flathub"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Flathub
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/is-a-dev/register" target="_blank" rel="noopener noreferrer">is-a-dev Register</a>
+              <a
+                href="https://github.com/is-a-dev/register"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                is-a-dev Register
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/is-a-software/is-a-software" target="_blank" rel="noopener noreferrer">is-a-software</a>
+              <a
+                href="https://github.com/is-a-software/is-a-software"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                is-a-software
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/is-an-ai-dev/register" target="_blank" rel="noopener noreferrer">is-an-ai-dev Register</a>
+              <a
+                href="https://github.com/is-an-ai-dev/register"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                is-an-ai-dev Register
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/kem-a/AppManager" target="_blank" rel="noopener noreferrer">AppManager</a>
+              <a
+                href="https://github.com/kem-a/AppManager"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                AppManager
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/pop-os/popsicle" target="_blank" rel="noopener noreferrer">Popsicle</a>
+              <a
+                href="https://github.com/pop-os/popsicle"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Popsicle
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/sk88studiosinc-maker/Soulsound" target="_blank" rel="noopener noreferrer">Soulsound</a>
+              <a
+                href="https://github.com/sk88studiosinc-maker/Soulsound"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Soulsound
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/thepushkarp/wasclaudedowntoday" target="_blank" rel="noopener noreferrer">Was Claude Down Today</a>
+              <a
+                href="https://github.com/thepushkarp/wasclaudedowntoday"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Was Claude Down Today
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/thomasboom/BreathSpace" target="_blank" rel="noopener noreferrer">BreathSpace</a>
+              <a
+                href="https://github.com/thomasboom/BreathSpace"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                BreathSpace
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/urikdev/Urik" target="_blank" rel="noopener noreferrer">Urik</a>
+              <a
+                href="https://github.com/urikdev/Urik"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Urik
+              </a>
             </h3>
           </article>
           <article className="work-item">
             <h3>
-              <a href="https://github.com/yjeanrenaud/yj_nearbyglasses" target="_blank" rel="noopener noreferrer">Nearby Glasses</a>
+              <a
+                href="https://github.com/yjeanrenaud/yj_nearbyglasses"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Nearby Glasses
+              </a>
             </h3>
           </article>
         </div>

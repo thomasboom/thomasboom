@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Codenamr CLI Installation</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Fragment+Mono:wght@400&display=swap");
+      @import url('https://fonts.googleapis.com/css2?family=Fragment+Mono:wght@400&display=swap');
 
       * {
         margin: 0;
@@ -22,7 +22,7 @@
       }
 
       body {
-        font-family: "Fragment Mono", monospace;
+        font-family: 'Fragment Mono', monospace;
         background: var(--bg);
         color: var(--text);
         min-height: 100vh;
@@ -141,7 +141,7 @@
       }
 
       code {
-        font-family: "Courier New", monospace;
+        font-family: 'Courier New', monospace;
         font-size: 13px;
         color: var(--text);
         white-space: nowrap;
@@ -221,7 +221,7 @@
             onclick="
               copyCommand(
                 this,
-                'curl -fsSL https://codenamr.vercel.app/install.sh | bash',
+                'curl -fsSL https://codenamr.vercel.app/install.sh | bash'
               )
             "
           >
@@ -239,7 +239,7 @@
             onclick="
               copyCommand(
                 this,
-                'curl -fsSL https://codenamr.vercel.app/update.sh | bash',
+                'curl -fsSL https://codenamr.vercel.app/update.sh | bash'
               )
             "
           >
@@ -259,7 +259,7 @@
             onclick="
               copyCommand(
                 this,
-                'curl -fsSL https://codenamr.vercel.app/uninstall.sh | bash',
+                'curl -fsSL https://codenamr.vercel.app/uninstall.sh | bash'
               )
             "
           >
@@ -280,15 +280,15 @@
           .writeText(text)
           .then(() => {
             const originalText = button.textContent;
-            button.textContent = "Copied!";
-            button.classList.add("copied");
+            button.textContent = 'Copied!';
+            button.classList.add('copied');
             setTimeout(() => {
               button.textContent = originalText;
-              button.classList.remove("copied");
+              button.classList.remove('copied');
             }, 2000);
           })
           .catch((err) => {
-            console.error("Failed to copy:", err);
+            console.error('Failed to copy:', err);
           });
       }
     </script>

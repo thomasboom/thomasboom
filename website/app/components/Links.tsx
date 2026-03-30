@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
 export default function Links() {
   const links = [
-    { label: "GitHub", url: "https://github.com/thomasboom", icon: "GH" },
+    { label: 'GitHub', url: 'https://github.com/thomasboom', icon: 'GH' },
     {
-      label: "Mastodon",
-      url: "https://mastodon.social/@thomasnow",
-      icon: "MA",
+      label: 'Mastodon',
+      url: 'https://mastodon.social/@thomasnow',
+      icon: 'MA',
     },
     {
-      label: "Bluesky",
-      url: "https://bsky.app/profile/thomasnowprod.bsky.social",
-      icon: "BS",
+      label: 'Bluesky',
+      url: 'https://bsky.app/profile/thomasnowprod.bsky.social',
+      icon: 'BS',
     },
-    { label: "Email", url: "mailto:thomasnowprod@proton.me", icon: "@" },
+    { label: 'Email', url: 'mailto:thomasnowprod@proton.me', icon: '@' },
   ];
 
   return (

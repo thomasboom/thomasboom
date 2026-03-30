@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { ConvexProviderWrapper } from "./components/ConvexProvider";
+import type { Metadata } from 'next';
+import './globals.css';
+import { ConvexProviderWrapper } from './components/ConvexProvider';
 
 export const metadata: Metadata = {
-  title: "Thomas Boom",
-  description: "Developer - Building mobile apps & web tools",
+  title: 'Thomas Boom',
+  description: 'Developer - Building mobile apps & web tools',
   other: {
-    me: "https://mastodon.social/@thomasboom",
+    me: 'https://mastodon.social/@thomasboom',
   },
 };
 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fragment+Mono:wght@400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono:wght@400&display=swap');
 
 * {
   margin: 0;
@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  font-family: "Fragment Mono", monospace;
+  font-family: 'Fragment Mono', monospace;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
@@ -123,7 +123,7 @@ body {
 }
 
 .nav a::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -221,7 +221,7 @@ body {
 }
 
 .work-item h3::after {
-  content: "↗";
+  content: '↗';
   font-size: 16px;
   color: var(--accent);
   opacity: 0;
@@ -248,7 +248,7 @@ body {
 }
 
 .work-item .tech span:not(:last-child)::after {
-  content: "·";
+  content: '·';
   color: var(--border);
   margin-left: 12px;
 }
@@ -288,7 +288,7 @@ body {
 }
 
 .work-summary::before {
-  content: "▶";
+  content: '▶';
   font-size: 10px;
   color: var(--accent);
   transition: transform 0.3s ease;
@@ -319,7 +319,7 @@ body {
 }
 
 .skill::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -394,7 +394,7 @@ body {
 }
 
 .contact-item a::before {
-  content: "→";
+  content: '→';
   color: var(--accent);
   opacity: 0;
   transform: translateX(-8px);
@@ -456,7 +456,7 @@ body {
 }
 
 .links-link::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -857,7 +857,7 @@ body {
 }
 
 .copy-button::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -1101,7 +1101,7 @@ body {
   padding: 12px;
   max-height: 280px;
   overflow: auto;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   font-size: 12px;
   line-height: 1.7;
   white-space: pre-wrap;
@@ -1325,7 +1325,7 @@ body {
 }
 
 .comment-children::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 7px;
   top: 0;
@@ -1396,11 +1396,11 @@ body {
 }
 
 .quote-text::before {
-  content: "";
+  content: '';
 }
 
 .quote-text::after {
-  content: "";
+  content: '';
 }
 
 .quote-date {

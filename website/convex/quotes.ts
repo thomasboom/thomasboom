@@ -1,5 +1,5 @@
-import { query, mutation } from "./_generated/server";
-import { v } from "convex/values";
+import { query, mutation } from './_generated/server';
+import { v } from 'convex/values';
 
 export const addQuote = mutation({
   args: {
@@ -7,7 +7,7 @@ export const addQuote = mutation({
     scheduledDate: v.string(),
   },
   handler: async (ctx, args) => {
-    return await ctx.db.insert("quotes", {
+    return await ctx.db.insert('quotes', {
       text: args.text,
       scheduledDate: args.scheduledDate,
       createdAt: Date.now(),
@@ -21,8 +21,8 @@ export const getQuoteForDate = query({
   },
   handler: async (ctx, args) => {
     const quotes = await ctx.db
-      .query("quotes")
-      .withIndex("by_scheduledDate", (q) => q.eq("scheduledDate", args.date))
+      .query('quotes')
+      .withIndex('by_scheduledDate', (q) => q.eq('scheduledDate', args.date))
       .collect();
     return quotes[0] || null;
   },
@@ -30,13 +30,13 @@ export const getQuoteForDate = query({
 
 export const getAllQuotes = query({
   handler: async (ctx) => {
-    return await ctx.db.query("quotes").collect();
+    return await ctx.db.query('quotes').collect();
   },
 });
 
 export const deleteQuote = mutation({
   args: {
-    id: v.id("quotes"),
+    id: v.id('quotes'),
   },
   handler: async (ctx, args) => {
     await ctx.db.delete(args.id);
@@ -45,7 +45,7 @@ export const deleteQuote = mutation({
 
 export const updateQuote = mutation({
   args: {
-    id: v.id("quotes"),
+    id: v.id('quotes'),
     text: v.string(),
   },
   handler: async (ctx, args) => {
@@ -57,7 +57,7 @@ export const updateQuote = mutation({
 
 export const getRandomQuote = query({
   handler: async (ctx) => {
-    const quotes = await ctx.db.query("quotes").collect();
+    const quotes = await ctx.db.query('quotes').collect();
     if (quotes.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * quotes.length);
     return quotes[randomIndex];
@@ -66,15 +66,15 @@ export const getRandomQuote = query({
 
 export const vote = mutation({
   args: {
-    quoteId: v.id("quotes"),
+    quoteId: v.id('quotes'),
     userId: v.string(),
     vote: v.number(),
   },
   handler: async (ctx, args) => {
     const existingVotes = await ctx.db
-      .query("quoteVotes")
-      .withIndex("by_quote_user", (q) =>
-        q.eq("quoteId", args.quoteId).eq("userId", args.userId)
+      .query('quoteVotes')
+      .withIndex('by_quote_user', (q) =>
+        q.eq('quoteId', args.quoteId).eq('userId', args.userId)
       )
       .collect();
 
@@ -82,30 +82,30 @@ export const vote = mutation({
       const existingVote = existingVotes[0];
       if (existingVote.vote === args.vote) {
         await ctx.db.delete(existingVote._id);
-        return { action: "removed" };
+        return { action: 'removed' };
       } else {
         await ctx.db.patch(existingVote._id, { vote: args.vote });
-        return { action: "updated" };
+        return { action: 'updated' };
       }
     }
 
-    await ctx.db.insert("quoteVotes", {
+    await ctx.db.insert('quoteVotes', {
       quoteId: args.quoteId,
       userId: args.userId,
       vote: args.vote,
     });
-    return { action: "added" };
+    return { action: 'added' };
   },
 });
 
 export const getVoteCounts = query({
   args: {
-    quoteId: v.id("quotes"),
+    quoteId: v.id('quotes'),
   },
   handler: async (ctx, args) => {
     const votes = await ctx.db
-      .query("quoteVotes")
-      .withIndex("by_quote_user", (q) => q.eq("quoteId", args.quoteId))
+      .query('quoteVotes')
+      .withIndex('by_quote_user', (q) => q.eq('quoteId', args.quoteId))
       .collect();
 
     let upvotes = 0;
@@ -120,14 +120,14 @@ export const getVoteCounts = query({
 
 export const getUserVote = query({
   args: {
-    quoteId: v.id("quotes"),
+    quoteId: v.id('quotes'),
     userId: v.string(),
   },
   handler: async (ctx, args) => {
     const votes = await ctx.db
-      .query("quoteVotes")
-      .withIndex("by_quote_user", (q) =>
-        q.eq("quoteId", args.quoteId).eq("userId", args.userId)
+      .query('quoteVotes')
+      .withIndex('by_quote_user', (q) =>
+        q.eq('quoteId', args.quoteId).eq('userId', args.userId)
       )
       .collect();
     return votes.length > 0 ? votes[0].vote : 0;

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
 export default function Navigation() {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -14,7 +14,7 @@ export default function Navigation() {
         href="#quotes"
         onClick={(e) => {
           e.preventDefault();
-          scrollTo("quotes");
+          scrollTo('quotes');
         }}
       >
         <span className="nav-number">01</span> Quotes
@@ -23,7 +23,7 @@ export default function Navigation() {
         href="#work"
         onClick={(e) => {
           e.preventDefault();
-          scrollTo("work");
+          scrollTo('work');
         }}
       >
         <span className="nav-number">02</span> Work
@@ -32,7 +32,7 @@ export default function Navigation() {
         href="#skills"
         onClick={(e) => {
           e.preventDefault();
-          scrollTo("skills");
+          scrollTo('skills');
         }}
       >
         <span className="nav-number">03</span> Skills
@@ -41,7 +41,7 @@ export default function Navigation() {
         href="#about"
         onClick={(e) => {
           e.preventDefault();
-          scrollTo("about");
+          scrollTo('about');
         }}
       >
         <span className="nav-number">04</span> About
@@ -50,7 +50,7 @@ export default function Navigation() {
         href="#contact"
         onClick={(e) => {
           e.preventDefault();
-          scrollTo("contact");
+          scrollTo('contact');
         }}
       >
         <span className="nav-number">05</span> Contact

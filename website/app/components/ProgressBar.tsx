@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default function ProgressBar() {
   const [progress, setProgress] = useState(0);
@@ -14,8 +14,8 @@ export default function ProgressBar() {
       setProgress(scrollPercent);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return <div className="progress-bar" style={{ width: `${progress}%` }}></div>;

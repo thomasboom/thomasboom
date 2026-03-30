@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { useState, useMemo, useEffect } from "react";
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
-import { Id, Doc } from "../../convex/_generated/dataModel";
-import Link from "next/link";
+import { useState, useMemo, useEffect } from 'react';
+import { useQuery, useMutation } from 'convex/react';
+import { api } from '../../convex/_generated/api';
+import { Id, Doc } from '../../convex/_generated/dataModel';
+import Link from 'next/link';
 
-const ADMIN_PASSWORD_HASH = process.env.NEXT_PUBLIC_ADMIN_PASSWORD_HASH || "";
+const ADMIN_PASSWORD_HASH = process.env.NEXT_PUBLIC_ADMIN_PASSWORD_HASH || '';
 
 async function sha256(message: string): Promise<string> {
   const msgBuffer = new TextEncoder().encode(message);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+  return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
 const getToday = () => {
@@ -21,7 +21,7 @@ const getToday = () => {
   return new Date(now.getTime() - tzOffsetMs).toISOString().slice(0, 10);
 };
 
-const getNextAvailableDate = (quotes: Doc<"quotes">[]) => {
+const getNextAvailableDate = (quotes: Doc<'quotes'>[]) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -47,18 +47,18 @@ const getNextAvailableDate = (quotes: Doc<"quotes">[]) => {
 
 export default function QuotesAdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const quotes = useQuery(api.quotes.getAllQuotes);
   const addQuote = useMutation(api.quotes.addQuote);
   const updateQuote = useMutation(api.quotes.updateQuote);
   const deleteQuote = useMutation(api.quotes.deleteQuote);
 
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [processingQuotes, setProcessingQuotes] = useState<Set<string>>(
-    new Set(),
+    new Set()
   );
 
   const nextAvailableDate = useMemo(() => {
@@ -66,7 +66,7 @@ export default function QuotesAdminPage() {
     return getNextAvailableDate(quotes);
   }, [quotes]);
 
-  const [scheduledDate, setScheduledDate] = useState("");
+  const [scheduledDate, setScheduledDate] = useState('');
 
   useEffect(() => {
     if (nextAvailableDate) {
@@ -79,9 +79,9 @@ export default function QuotesAdminPage() {
     const hash = await sha256(password);
     if (hash === ADMIN_PASSWORD_HASH) {
       setIsAuthenticated(true);
-      setError("");
+      setError('');
     } else {
-      setError("Invalid password");
+      setError('Invalid password');
     }
   };
 
@@ -94,17 +94,17 @@ export default function QuotesAdminPage() {
       const quoteId = await addQuote({ text: text.trim(), scheduledDate });
 
       // Clear the form immediately for user feedback
-      setText("");
+      setText('');
 
       // Mark this quote as being processed
       setProcessingQuotes((prev) => new Set(prev).add(quoteId));
 
       // Run AI correction in the background
       try {
-        const aiResponse = await fetch("/api/ai-correct", {
-          method: "POST",
+        const aiResponse = await fetch('/api/ai-correct', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             content: text.trim(),
@@ -123,8 +123,8 @@ export default function QuotesAdminPage() {
       } catch (aiError) {
         // AI correction failed, but quote is already saved - that's fine
         console.log(
-          "AI correction failed, but quote was saved successfully:",
-          aiError,
+          'AI correction failed, but quote was saved successfully:',
+          aiError
         );
       } finally {
         // Remove from processing set when done
@@ -135,7 +135,7 @@ export default function QuotesAdminPage() {
         });
       }
     } catch (err) {
-      console.error("Failed to add quote:", err);
+      console.error('Failed to add quote:', err);
     } finally {
       setIsSubmitting(false);
     }
@@ -146,11 +146,11 @@ export default function QuotesAdminPage() {
     await addQuoteToDatabase();
   };
 
-  const handleDelete = async (id: Id<"quotes">) => {
+  const handleDelete = async (id: Id<'quotes'>) => {
     try {
       await deleteQuote({ id });
     } catch (err) {
-      console.error("Failed to delete quote:", err);
+      console.error('Failed to delete quote:', err);
     }
   };
 
@@ -176,7 +176,7 @@ export default function QuotesAdminPage() {
             />
           </div>
           {error && (
-            <p style={{ color: "#ff6b6b", fontSize: "14px" }}>{error}</p>
+            <p style={{ color: '#ff6b6b', fontSize: '14px' }}>{error}</p>
           )}
           <button type="submit" className="quote-form-submit">
             Login
@@ -212,7 +212,7 @@ export default function QuotesAdminPage() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             onKeyDown={(e) => {
-              if (e.ctrlKey && e.key === "Enter") {
+              if (e.ctrlKey && e.key === 'Enter') {
                 e.preventDefault();
                 addQuoteToDatabase();
               }
@@ -234,7 +234,7 @@ export default function QuotesAdminPage() {
           className="quote-form-submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Saving..." : "Add Quote"}
+          {isSubmitting ? 'Saving...' : 'Add Quote'}
         </button>
       </form>
 
@@ -242,9 +242,9 @@ export default function QuotesAdminPage() {
         <>
           <h2
             style={{
-              marginTop: "48px",
-              marginBottom: "24px",
-              fontSize: "24px",
+              marginTop: '48px',
+              marginBottom: '24px',
+              fontSize: '24px',
               fontWeight: 400,
             }}
           >
@@ -257,10 +257,10 @@ export default function QuotesAdminPage() {
                 <div key={quote._id} className="quote-card">
                   <div
                     style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      marginBottom: "12px",
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      marginBottom: '12px',
                     }}
                   >
                     <p className="quote-card-text">
@@ -269,13 +269,13 @@ export default function QuotesAdminPage() {
                     {processingQuotes.has(quote._id) && (
                       <span
                         style={{
-                          backgroundColor: "#007bff",
-                          color: "white",
-                          padding: "2px 6px",
-                          borderRadius: "4px",
-                          fontSize: "11px",
-                          fontWeight: "500",
-                          whiteSpace: "nowrap",
+                          backgroundColor: '#007bff',
+                          color: 'white',
+                          padding: '2px 6px',
+                          borderRadius: '4px',
+                          fontSize: '11px',
+                          fontWeight: '500',
+                          whiteSpace: 'nowrap',
                         }}
                       >
                         AI Processing...
@@ -286,7 +286,7 @@ export default function QuotesAdminPage() {
                     <span>
                       {quote.scheduledDate
                         ? new Date(quote.scheduledDate).toLocaleDateString()
-                        : "Random"}
+                        : 'Random'}
                     </span>
                     <button
                       className="quote-card-delete"
