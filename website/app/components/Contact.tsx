@@ -1,12 +1,13 @@
 export default function Contact() {
   const contacts = [
     { label: "Email", href: "mailto:thomasnowprod@proton.me" },
-    { label: "GitHub", href: "https://github.com/thomasboom" },
+    // { label: "GitHub", href: "https://github.com/thomasboom" },
+    { label: "Codeberg", href: "https://codeberg.org/thomasboom" },
+    { label: "Mastodon", href: "https://mastodon.social/@thomasboom" },
     {
       label: "Bluesky",
       href: "https://bsky.app/profile/thomasboom123.bsky.social",
     },
-    { label: "Mastodon", href: "https://mastodon.social/@thomasboom" },
   ];
 
   return (
