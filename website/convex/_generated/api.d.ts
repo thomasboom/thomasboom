@@ -8,15 +8,17 @@
  * @module
  */
 
-import type * as quotes from '../quotes.js';
+import type * as comments from "../comments.js";
+import type * as quotes from "../quotes.js";
 
 import type {
   ApiFromModules,
   FilterApi,
   FunctionReference,
-} from 'convex/server';
+} from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  comments: typeof comments;
   quotes: typeof quotes;
 }>;
 
@@ -30,7 +32,7 @@ declare const fullApi: ApiFromModules<{
  */
 export declare const api: FilterApi<
   typeof fullApi,
-  FunctionReference<any, 'public'>
+  FunctionReference<any, "public">
 >;
 
 /**
@@ -43,7 +45,7 @@ export declare const api: FilterApi<
  */
 export declare const internal: FilterApi<
   typeof fullApi,
-  FunctionReference<any, 'internal'>
+  FunctionReference<any, "internal">
 >;
 
 export declare const components: {};

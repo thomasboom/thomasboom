@@ -11,6 +11,11 @@ export default function Navigation() {
   return (
     <nav className="nav">
       <a
+        href="/blog"
+      >
+        <span className="nav-number">00</span> Blog
+      </a>
+      <a
         href="#quotes"
         onClick={(e) => {
           e.preventDefault();
