@@ -32,11 +32,15 @@ type Translations = {
     contact: string;
   };
   about: {
-    textStart: string;
-    textMiddle: string;
-    textEnd: string;
-    focus: string;
-    help: string;
+    intro: string;
+    userExperiences: string;
+    middle: string;
+    dailyLives: string;
+    outro: string;
+    openSource: string;
+    and: string;
+    freedom: string;
+    ending: string;
   };
   work: {
     contributedTo: string;
@@ -92,12 +96,16 @@ const translations: Record<Language, Translations> = {
       contact: '04 - CONTACT',
     },
     about: {
-      textStart:
-        'Developer from The Netherlands who enjoys building useful applications.',
-      textMiddle: 'Focus on',
-      textEnd: 'and tools that genuinely',
-      focus: 'user experiences',
-      help: 'help',
+      intro:
+        "I'm a developer from The Netherlands who enjoys building useful applications. I focus on",
+      userExperiences: 'user experiences',
+      middle: ', and tools that genuinely help users in their',
+      dailyLives: 'daily lives',
+      outro: '. I care about a rich',
+      openSource: 'open source ecosystem',
+      and: 'and the',
+      freedom: 'freedom',
+      ending: 'to do what you want with the things you own.',
     },
     work: {
       contributedTo: 'Contributed to',
@@ -154,12 +162,16 @@ const translations: Record<Language, Translations> = {
       contact: '04 - CONTACT',
     },
     about: {
-      textStart:
-        'Ontwikkelaar uit Nederland die graag nuttige applicaties bouwt.',
-      textMiddle: 'Focus op',
-      textEnd: 'en tools die mensen echt',
-      focus: 'gebruikerservaringen',
-      help: 'helpen',
+      intro:
+        'Ik ben een ontwikkelaar uit Nederland die graag nuttige applicaties bouwt. Ik focus op',
+      userExperiences: 'gebruikerservaringen',
+      middle: 'en tools die gebruikers echt helpen in hun',
+      dailyLives: 'dagelijks leven',
+      outro: '. Ik geef om een rijk',
+      openSource: 'open source-ecosysteem',
+      and: 'en de',
+      freedom: 'vrijheid',
+      ending: 'om met je eigen apparaten te doen wat je wilt.',
     },
     work: {
       contributedTo: 'Bijgedragen aan',
