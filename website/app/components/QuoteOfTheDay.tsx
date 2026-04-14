@@ -89,7 +89,7 @@ export default function QuoteOfTheDay() {
         </div>
       ) : (
         <div className="empty-state">
-          <p>No quotes yet. Add some in the admin dashboard!</p>
+          <p>Loading quote of the day...</p>
         </div>
       )}
     </div>
