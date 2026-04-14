@@ -1,8 +1,14 @@
+'use client';
+
+import { useLanguage } from './LanguageProvider';
+
 export default function Work() {
+  const { t } = useLanguage();
+
   return (
     <section className="section" id="work">
       <div className="section-header">
-        <h2 className="section-title">01 — SELECTED WORK</h2>
+        <h2 className="section-title">{t.sections.work}</h2>
         <span className="section-line"></span>
       </div>
 
@@ -16,7 +22,7 @@ export default function Work() {
             YAM Launcher
           </a>
         </h3>
-        <p>A fast, open and customizable launcher for Android</p>
+        <p>{t.work.yam}</p>
         <div className="tech">
           <span>Kotlin</span>
           <span>Google Play Store</span>
@@ -31,10 +37,7 @@ export default function Work() {
             IP-Car
           </a>
         </h3>
-        <p>
-          A remote-controlled robot that gives children with disabilities a real
-          presence in the classroom, from home
-        </p>
+        <p>{t.work.ipcar}</p>
         <div className="tech">
           <span>Svelte</span>
           <span>Electron</span>
@@ -51,10 +54,7 @@ export default function Work() {
             SupGit
           </a>
         </h3>
-        <p>
-          A simplified Git CLI for beginners who don&apos;t want to leave the
-          terminal
-        </p>
+        <p>{t.work.supgit}</p>
         <div className="tech">
           <span>Rust</span>
           <span>Git</span>
@@ -72,10 +72,7 @@ export default function Work() {
             AIRun
           </a>
         </h3>
-        <p>
-          Forgot that you have dozens of AI CLIs installed? Find the one you
-          need before executing your prompt
-        </p>
+        <p>{t.work.airun}</p>
         <div className="tech">
           <span>Rust</span>
           <span>CLI</span>
@@ -92,7 +89,7 @@ export default function Work() {
             BijbelQuiz
           </a>
         </h3>
-        <p>Test your Bible knowledge with engaging quizzes.</p>
+        <p>{t.work.bijbelquiz}</p>
         <div className="tech">
           <span>Flutter</span>
           <span>Dart</span>
@@ -102,7 +99,7 @@ export default function Work() {
       </article>
 
       <details className="work-collapsible">
-        <summary className="work-summary">Contributed to</summary>
+        <summary className="work-summary">{t.work.contributedTo}</summary>
         <div className="work-collapsible-content">
           <article className="work-item">
             <h3>

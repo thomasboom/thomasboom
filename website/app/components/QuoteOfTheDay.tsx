@@ -4,6 +4,7 @@ import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { Id } from '../../convex/_generated/dataModel';
 import { useState } from 'react';
+import { useLanguage } from './LanguageProvider';
 
 const getTodayDate = () => {
   const now = new Date();
@@ -24,9 +25,13 @@ const getUserId = () => {
 function QuoteVoting({
   quoteId,
   userId,
+  upvoteLabel,
+  downvoteLabel,
 }: {
   quoteId: Id<'quotes'>;
   userId: string;
+  upvoteLabel: string;
+  downvoteLabel: string;
 }) {
   const voteCounts = useQuery(api.quotes.getVoteCounts, { quoteId });
   const userVote = useQuery(api.quotes.getUserVote, { quoteId, userId });
@@ -41,7 +46,7 @@ function QuoteVoting({
       <button
         className={`vote-btn upvote ${userVote === 1 ? 'active' : ''}`}
         onClick={() => handleVote(1)}
-        aria-label="Upvote"
+        aria-label={upvoteLabel}
       >
         ▲
       </button>
@@ -49,7 +54,7 @@ function QuoteVoting({
       <button
         className={`vote-btn downvote ${userVote === -1 ? 'active' : ''}`}
         onClick={() => handleVote(-1)}
-        aria-label="Downvote"
+        aria-label={downvoteLabel}
       >
         ▼
       </button>
@@ -58,6 +63,7 @@ function QuoteVoting({
 }
 
 export default function QuoteOfTheDay() {
+  const { t } = useLanguage();
   const [userId] = useState(() => getUserId());
   const today = getTodayDate();
   const scheduledQuote = useQuery(api.quotes.getQuoteForDate, { date: today });
@@ -68,7 +74,8 @@ export default function QuoteOfTheDay() {
   return (
     <div id="quotes" className="section quotes-section">
       <h2 className="section-title">
-        Quote<span className="accent"> of the Day</span>
+        {t.quote.title}
+        <span className="accent">{t.quote.titleAccent}</span>
       </h2>
       {quote ? (
         <div className="quote-display">
@@ -77,19 +84,29 @@ export default function QuoteOfTheDay() {
           </blockquote>
           {quote.scheduledDate && (
             <p className="quote-date">
-              {new Date(quote.scheduledDate).toLocaleDateString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
+              {new Date(quote.scheduledDate).toLocaleDateString(
+                t.quote.dateLocale,
+                {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                }
+              )}
             </p>
           )}
-          {userId && <QuoteVoting quoteId={quote._id} userId={userId} />}
+          {userId && (
+            <QuoteVoting
+              quoteId={quote._id}
+              userId={userId}
+              upvoteLabel={t.quote.upvote}
+              downvoteLabel={t.quote.downvote}
+            />
+          )}
         </div>
       ) : (
         <div className="empty-state">
-          <p>Loading quote of the day...</p>
+          <p>{t.quote.loading}</p>
         </div>
       )}
     </div>

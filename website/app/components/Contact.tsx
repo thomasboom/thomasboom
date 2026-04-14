@@ -1,4 +1,10 @@
+'use client';
+
+import { useLanguage } from './LanguageProvider';
+
 export default function Contact() {
+  const { t } = useLanguage();
+
   const contacts = [
     { label: 'Email', href: 'mailto:thomasnowprod@proton.me' },
     { label: 'GitHub', href: 'https://github.com/thomasboom' },
@@ -17,7 +23,7 @@ export default function Contact() {
   return (
     <section className="section" id="contact">
       <div className="section-header">
-        <h2 className="section-title">04 — CONTACT</h2>
+        <h2 className="section-title">{t.sections.contact}</h2>
         <span className="section-line"></span>
       </div>
       <div className="contact-list">

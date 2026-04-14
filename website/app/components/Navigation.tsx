@@ -1,8 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import { useLanguage } from './LanguageProvider';
 
 export default function Navigation() {
+  const { t } = useLanguage();
+
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -13,7 +16,7 @@ export default function Navigation() {
   return (
     <nav className="nav">
       <Link href="/blog">
-        <span className="nav-number">00</span> Blog
+        <span className="nav-number">00</span> {t.nav.blog}
       </Link>
       <a
         href="#quotes"
@@ -22,7 +25,7 @@ export default function Navigation() {
           scrollTo('quotes');
         }}
       >
-        <span className="nav-number">01</span> Quotes
+        <span className="nav-number">01</span> {t.nav.quotes}
       </a>
       <a
         href="#work"
@@ -31,7 +34,7 @@ export default function Navigation() {
           scrollTo('work');
         }}
       >
-        <span className="nav-number">02</span> Work
+        <span className="nav-number">02</span> {t.nav.work}
       </a>
       <a
         href="#skills"
@@ -40,7 +43,7 @@ export default function Navigation() {
           scrollTo('skills');
         }}
       >
-        <span className="nav-number">03</span> Skills
+        <span className="nav-number">03</span> {t.nav.skills}
       </a>
       <a
         href="#about"
@@ -49,7 +52,7 @@ export default function Navigation() {
           scrollTo('about');
         }}
       >
-        <span className="nav-number">04</span> About
+        <span className="nav-number">04</span> {t.nav.about}
       </a>
       <a
         href="#contact"
@@ -58,7 +61,7 @@ export default function Navigation() {
           scrollTo('contact');
         }}
       >
-        <span className="nav-number">05</span> Contact
+        <span className="nav-number">05</span> {t.nav.contact}
       </a>
     </nav>
   );

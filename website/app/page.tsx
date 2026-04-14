@@ -8,8 +8,11 @@ import About from './components/About';
 import Contact from './components/Contact';
 import ProgressBar from './components/ProgressBar';
 import QuoteOfTheDay from './components/QuoteOfTheDay';
+import { LanguageProvider, useLanguage } from './components/LanguageProvider';
 
-export default function Home() {
+function HomeContent() {
+  const { t } = useLanguage();
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -48,9 +51,9 @@ export default function Home() {
               <span className="accent">Boom</span>
             </h1>
             <p className="meta">
-              Developer
-              <span>Based in The Netherlands</span>
-              <span>Building mobile apps & web tools</span>
+              {t.hero.role}
+              <span>{t.hero.basedIn}</span>
+              <span>{t.hero.building}</span>
             </p>
           </div>
           <Navigation />
@@ -65,10 +68,18 @@ export default function Home() {
 
           <footer className="footer">
             <span>© 2026</span>
-            <span>The Netherlands</span>
+            <span>{t.footer.country}</span>
           </footer>
         </div>
       </div>
     </>
+  );
+}
+
+export default function Home() {
+  return (
+    <LanguageProvider>
+      <HomeContent />
+    </LanguageProvider>
   );
 }
