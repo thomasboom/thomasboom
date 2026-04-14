@@ -52,7 +52,7 @@ export default function Work() {
           </a>
         </h3>
         <p>
-          A simplified Git CLI for beginners who don't want to leave the
+          A simplified Git CLI for beginners who don&apos;t want to leave the
           terminal
         </p>
         <div className="tech">
