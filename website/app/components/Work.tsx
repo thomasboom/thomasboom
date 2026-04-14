@@ -9,7 +9,7 @@ export default function Work() {
       <article className="work-item">
         <h3>
           <a
-            href="https://github.com/ThomasNowProductions/YAM-Launcher"
+            href="https://codeberg.org/thomasboom/YAM-Launcher"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -31,7 +31,10 @@ export default function Work() {
             IP-Car
           </a>
         </h3>
-        <p>A remote-controlled robot that gives children with disabilities a real presence in the classroom, from home</p>
+        <p>
+          A remote-controlled robot that gives children with disabilities a real
+          presence in the classroom, from home
+        </p>
         <div className="tech">
           <span>Svelte</span>
           <span>Electron</span>
@@ -41,14 +44,17 @@ export default function Work() {
       <article className="work-item">
         <h3>
           <a
-            href="https://supgit.vercel.app"
+            href="https://thomasboom.codeberg.page/SupGIT/"
             target="_blank"
             rel="noopener noreferrer"
           >
             SupGit
           </a>
         </h3>
-        <p>A simplified Git CLI for beginners who don't want to leave the terminal</p>
+        <p>
+          A simplified Git CLI for beginners who don't want to leave the
+          terminal
+        </p>
         <div className="tech">
           <span>Rust</span>
           <span>Git</span>
@@ -59,7 +65,7 @@ export default function Work() {
       <article className="work-item">
         <h3>
           <a
-            href="https://airun-cli.vercel.app"
+            href="https://thomasboom.codeberg.page/AIRun/"
             target="_blank"
             rel="noopener noreferrer"
           >
