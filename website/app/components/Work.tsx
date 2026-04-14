@@ -16,27 +16,25 @@ export default function Work() {
             YAM Launcher
           </a>
         </h3>
-        <p>Yet Another Minimalist launcher for Android</p>
+        <p>A fast, open and customizable launcher for Android</p>
         <div className="tech">
           <span>Kotlin</span>
           <span>Google Play Store</span>
+          <span>F-Droid</span>
+          <span>Izzyondroid</span>
         </div>
       </article>
 
       <article className="work-item">
         <h3>
-          <a
-            href="https://github.com/thomasboom/Codenamr"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Codenamr
+          <a href="https://ipcar.dev" target="_blank" rel="noopener noreferrer">
+            IP-Car
           </a>
         </h3>
-        <p>A dead simple and lightning fast CLI for generating codenames</p>
+        <p>A remote-controlled robot that gives children with disabilities a real presence in the classroom, from home</p>
         <div className="tech">
-          <span>Rust</span>
-          <span>CLI</span>
+          <span>Svelte</span>
+          <span>Electron</span>
         </div>
       </article>
 
@@ -50,10 +48,11 @@ export default function Work() {
             SupGit
           </a>
         </h3>
-        <p>The Git CLI, simplified.</p>
+        <p>A simplified Git CLI for beginners who don't want to leave the terminal</p>
         <div className="tech">
           <span>Rust</span>
           <span>Git</span>
+          <span>CLI</span>
         </div>
       </article>
 
