@@ -265,6 +265,11 @@ body {
 
 .work-collapsible-content .work-item {
   padding: 16px 24px;
+  margin-bottom: 12px;
+}
+
+.work-collapsible-content .work-item:last-child {
+  margin-bottom: 0;
 }
 
 .work-collapsible-content .work-item h3 {
