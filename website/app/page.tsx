@@ -7,7 +7,6 @@ import Skills from './components/Skills';
 import About from './components/About';
 import Contact from './components/Contact';
 import ProgressBar from './components/ProgressBar';
-import QuoteOfTheDay from './components/QuoteOfTheDay';
 import { LanguageProvider, useLanguage } from './components/LanguageProvider';
 
 function HomeContent() {
@@ -56,15 +55,13 @@ function HomeContent() {
         </div>
 
         <div className="right">
-          <QuoteOfTheDay />
+          <About />
           <Work />
           <Skills />
-          <About />
           <Contact />
 
           <footer className="footer">
-            <span>© 2026</span>
-            <span>{t.footer.country}</span>
+            <span>© 2026 Thomas Boom</span>
           </footer>
         </div>
       </div>

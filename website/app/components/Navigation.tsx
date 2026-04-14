@@ -19,13 +19,13 @@ export default function Navigation() {
         <span className="nav-number">00</span> {t.nav.blog}
       </Link>
       <a
-        href="#quotes"
+        href="#about"
         onClick={(e) => {
           e.preventDefault();
-          scrollTo('quotes');
+          scrollTo('about');
         }}
       >
-        <span className="nav-number">01</span> {t.nav.quotes}
+        <span className="nav-number">01</span> {t.nav.about}
       </a>
       <a
         href="#work"
@@ -46,22 +46,13 @@ export default function Navigation() {
         <span className="nav-number">03</span> {t.nav.skills}
       </a>
       <a
-        href="#about"
-        onClick={(e) => {
-          e.preventDefault();
-          scrollTo('about');
-        }}
-      >
-        <span className="nav-number">04</span> {t.nav.about}
-      </a>
-      <a
         href="#contact"
         onClick={(e) => {
           e.preventDefault();
           scrollTo('contact');
         }}
       >
-        <span className="nav-number">05</span> {t.nav.contact}
+        <span className="nav-number">04</span> {t.nav.contact}
       </a>
     </nav>
   );
