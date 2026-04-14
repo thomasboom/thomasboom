@@ -1,15 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { Id } from '../../convex/_generated/dataModel';
 
 interface Comment {
-  _id: Id<"comments">;
+  _id: Id<'comments'>;
   name: string;
   content: string;
-  parentId?: Id<"comments">;
+  parentId?: Id<'comments'>;
   createdAt: number;
   _creationTime: number;
 }
@@ -22,11 +22,11 @@ function buildCommentTree(comments: Comment[]): CommentWithReplies[] {
   const map = new Map<string, CommentWithReplies>();
   const roots: CommentWithReplies[] = [];
 
-  comments.forEach(comment => {
+  comments.forEach((comment) => {
     map.set(comment._id as string, { ...comment, replies: [] });
   });
 
-  comments.forEach(comment => {
+  comments.forEach((comment) => {
     const node = map.get(comment._id as string)!;
     if (comment.parentId) {
       const parent = map.get(comment.parentId as string);
@@ -43,7 +43,15 @@ function buildCommentTree(comments: Comment[]): CommentWithReplies[] {
   return roots.sort((a, b) => b.createdAt - a.createdAt);
 }
 
-function CommentItem({ comment, postSlug, onReply }: { comment: CommentWithReplies; postSlug: string; onReply: (id: Id<"comments">) => void }) {
+function CommentItem({
+  comment,
+  postSlug,
+  onReply,
+}: {
+  comment: CommentWithReplies;
+  postSlug: string;
+  onReply: (id: Id<'comments'>) => void;
+}) {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [replyContent, setReplyContent] = useState('');
   const [replyName, setReplyName] = useState('');
@@ -81,7 +89,10 @@ function CommentItem({ comment, postSlug, onReply }: { comment: CommentWithRepli
       </div>
       <div className="comment-content">{comment.content}</div>
       <div className="comment-actions">
-        <button className="comment-reply-button" onClick={() => onReply(comment._id)}>
+        <button
+          className="comment-reply-button"
+          onClick={() => onReply(comment._id)}
+        >
           Reply
         </button>
       </div>
@@ -106,8 +117,14 @@ function CommentItem({ comment, postSlug, onReply }: { comment: CommentWithRepli
             required
           />
           <div className="reply-actions">
-            <button type="submit" className="comment-submit">Reply</button>
-            <button type="button" className="secondary-button" onClick={() => setShowReplyForm(false)}>
+            <button type="submit" className="comment-submit">
+              Reply
+            </button>
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={() => setShowReplyForm(false)}
+            >
               Cancel
             </button>
           </div>
@@ -116,8 +133,13 @@ function CommentItem({ comment, postSlug, onReply }: { comment: CommentWithRepli
 
       {comment.replies.length > 0 && (
         <div className="comment-children">
-          {comment.replies.map(reply => (
-            <CommentItem key={reply._id} comment={reply} postSlug={postSlug} onReply={onReply} />
+          {comment.replies.map((reply) => (
+            <CommentItem
+              key={reply._id}
+              comment={reply}
+              postSlug={postSlug}
+              onReply={onReply}
+            />
           ))}
         </div>
       )}
@@ -130,7 +152,7 @@ export function Comments({ postSlug }: { postSlug: string }) {
   const addComment = useMutation(api.comments.addComment);
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
-  const [replyTo, setReplyTo] = useState<Id<"comments"> | null>(null);
+  const [replyTo, setReplyTo] = useState<Id<'comments'> | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -148,9 +170,11 @@ export function Comments({ postSlug }: { postSlug: string }) {
     setReplyTo(null);
   };
 
-  const handleReply = (id: Id<"comments">) => {
+  const handleReply = (id: Id<'comments'>) => {
     setReplyTo(id);
-    document.getElementById('comment-form')?.scrollIntoView({ behavior: 'smooth' });
+    document
+      .getElementById('comment-form')
+      ?.scrollIntoView({ behavior: 'smooth' });
   };
 
   if (!comments) {
@@ -175,7 +199,7 @@ export function Comments({ postSlug }: { postSlug: string }) {
         />
         <textarea
           className="comment-input"
-          placeholder={replyTo ? "Write a reply..." : "Write a comment..."}
+          placeholder={replyTo ? 'Write a reply...' : 'Write a comment...'}
           value={content}
           onChange={(e) => setContent(e.target.value)}
           maxLength={1000}
@@ -185,11 +209,20 @@ export function Comments({ postSlug }: { postSlug: string }) {
           <span className="character-count">{content.length}/1000</span>
           <div>
             {replyTo && (
-              <button type="button" className="secondary-button" onClick={() => setReplyTo(null)} style={{ marginRight: '12px' }}>
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={() => setReplyTo(null)}
+                style={{ marginRight: '12px' }}
+              >
                 Cancel reply
               </button>
             )}
-            <button type="submit" className="comment-submit" disabled={!name.trim() || !content.trim()}>
+            <button
+              type="submit"
+              className="comment-submit"
+              disabled={!name.trim() || !content.trim()}
+            >
               Submit
             </button>
           </div>
@@ -197,11 +230,18 @@ export function Comments({ postSlug }: { postSlug: string }) {
       </form>
 
       {commentTree.length === 0 ? (
-        <div className="comments-empty">No comments yet. Be the first to comment!</div>
+        <div className="comments-empty">
+          No comments yet. Be the first to comment!
+        </div>
       ) : (
         <div className="comments-list">
-          {commentTree.map(comment => (
-            <CommentItem key={comment._id} comment={comment} postSlug={postSlug} onReply={handleReply} />
+          {commentTree.map((comment) => (
+            <CommentItem
+              key={comment._id}
+              comment={comment}
+              postSlug={postSlug}
+              onReply={handleReply}
+            />
           ))}
         </div>
       )}

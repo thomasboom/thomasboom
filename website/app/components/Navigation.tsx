@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function Navigation() {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -10,11 +12,9 @@ export default function Navigation() {
 
   return (
     <nav className="nav">
-      <a
-        href="/blog"
-      >
+      <Link href="/blog">
         <span className="nav-number">00</span> Blog
-      </a>
+      </Link>
       <a
         href="#quotes"
         onClick={(e) => {

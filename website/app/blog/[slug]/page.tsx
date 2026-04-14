@@ -3,10 +3,14 @@ import { posts } from '../posts';
 import type { Metadata } from 'next';
 import { Comments } from '../../components/Comments';
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
-  const post = posts.find(p => p.slug === slug);
-  
+  const post = posts.find((p) => p.slug === slug);
+
   if (!post) {
     return {};
   }
@@ -14,20 +18,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.title,
     other: {
-      "fediverse:Creator": "@thomasboom@mastodon.social",
+      'fediverse:Creator': '@thomasboom@mastodon.social',
     },
   };
 }
 
-export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  const post = posts.find(p => p.slug === slug);
+  const post = posts.find((p) => p.slug === slug);
 
   if (!post) {
     return (
       <div className="blog-container">
         <h1>Post not found</h1>
-        <Link href="/blog" className="back-link">← Back to blog</Link>
+        <Link href="/blog" className="back-link">
+          ← Back to blog
+        </Link>
       </div>
     );
   }
@@ -37,7 +47,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <div className="blog-post">
         <div className="post-meta">
           <span className="post-date">{post.date}</span>
-          <Link href="/blog" className="back-to-blog">← All posts</Link>
+          <Link href="/blog" className="back-to-blog">
+            ← All posts
+          </Link>
         </div>
         <h1 className="post-title">{post.title}</h1>
         <div className="post-content">
@@ -69,15 +81,29 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             if (lastIndex < paragraph.length) {
               parts.push(paragraph.slice(lastIndex));
             }
-            if (parts.some(part => typeof part === 'object')) {
-              return <p key={index}>{parts.map((part, i) => typeof part === 'object' ? <Link key={i} href={part.url} className="inline-link">{part.text}</Link> : part)}</p>;
+            if (parts.some((part) => typeof part === 'object')) {
+              return (
+                <p key={index}>
+                  {parts.map((part, i) =>
+                    typeof part === 'object' ? (
+                      <Link key={i} href={part.url} className="inline-link">
+                        {part.text}
+                      </Link>
+                    ) : (
+                      part
+                    )
+                  )}
+                </p>
+              );
             }
             return <p key={index}>{paragraph}</p>;
           })}
         </div>
       </div>
       <Comments postSlug={slug} />
-      <Link href="/" className="back-link">← Back to home</Link>
+      <Link href="/" className="back-link">
+        ← Back to home
+      </Link>
     </div>
   );
 }

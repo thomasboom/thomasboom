@@ -19,7 +19,10 @@ export default function NewBlogPost() {
   const [isDiffOpen, setIsDiffOpen] = useState(false);
   const [isAiWorking, setIsAiWorking] = useState(false);
   const [aiError, setAiError] = useState('');
-  const [aiDraft, setAiDraft] = useState<{ title: string; content: string } | null>(null);
+  const [aiDraft, setAiDraft] = useState<{
+    title: string;
+    content: string;
+  } | null>(null);
   const autosaveKey = 'blog-new-post-autosave';
 
   useEffect(() => {
@@ -169,14 +172,19 @@ export default function NewBlogPost() {
         body: JSON.stringify({ title, content }),
       });
 
-      const data = (await response.json()) as { title?: string; content?: string; error?: string };
+      const data = (await response.json()) as {
+        title?: string;
+        content?: string;
+        error?: string;
+      };
 
       if (!response.ok) {
         throw new Error(data.error ?? 'AI correction failed.');
       }
 
       const nextTitle = typeof data.title === 'string' ? data.title : title;
-      const nextContent = typeof data.content === 'string' ? data.content : content;
+      const nextContent =
+        typeof data.content === 'string' ? data.content : content;
 
       if (nextTitle === title && nextContent === content) {
         setAiError('AI suggested no changes.');
@@ -186,7 +194,9 @@ export default function NewBlogPost() {
       setAiDraft({ title: nextTitle, content: nextContent });
       setIsDiffOpen(true);
     } catch (error) {
-      setAiError(error instanceof Error ? error.message : 'AI correction failed.');
+      setAiError(
+        error instanceof Error ? error.message : 'AI correction failed.'
+      );
     } finally {
       setIsAiWorking(false);
     }
@@ -215,7 +225,9 @@ export default function NewBlogPost() {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="My New Post"
             />
-            <span className="help-text">Slug: {slug || '(auto-generated from title)'}</span>
+            <span className="help-text">
+              Slug: {slug || '(auto-generated from title)'}
+            </span>
           </div>
 
           <div className="form-group">
@@ -279,7 +291,6 @@ export default function NewBlogPost() {
             {aiError || 'Light grammar touch-up via OpenRouter.'}
           </div>
         </div>
-
       </div>
 
       {isModalOpen && (
@@ -295,9 +306,13 @@ export default function NewBlogPost() {
                 ✕
               </button>
             </div>
-            <p className="modal-subtitle">1. Add to app/blog/posts.ts posts array:</p>
+            <p className="modal-subtitle">
+              1. Add to app/blog/posts.ts posts array:
+            </p>
             <div className="modal-code">
-              <pre><code>{code}</code></pre>
+              <pre>
+                <code>{code}</code>
+              </pre>
             </div>
             <div className="modal-actions">
               <button
@@ -357,7 +372,10 @@ export default function NewBlogPost() {
                         <div className="diff-column-label">Original</div>
                         <div className="diff-block">
                           {diff.left.map((token, index) => (
-                            <span key={`title-left-${index}`} className={`diff-token ${token.type}`}>
+                            <span
+                              key={`title-left-${index}`}
+                              className={`diff-token ${token.type}`}
+                            >
                               {token.text}
                             </span>
                           ))}
@@ -367,7 +385,10 @@ export default function NewBlogPost() {
                         <div className="diff-column-label">AI Version</div>
                         <div className="diff-block">
                           {diff.right.map((token, index) => (
-                            <span key={`title-right-${index}`} className={`diff-token ${token.type}`}>
+                            <span
+                              key={`title-right-${index}`}
+                              className={`diff-token ${token.type}`}
+                            >
                               {token.text}
                             </span>
                           ))}
@@ -390,7 +411,10 @@ export default function NewBlogPost() {
                         <div className="diff-column-label">Original</div>
                         <div className="diff-block">
                           {diff.left.map((token, index) => (
-                            <span key={`content-left-${index}`} className={`diff-token ${token.type}`}>
+                            <span
+                              key={`content-left-${index}`}
+                              className={`diff-token ${token.type}`}
+                            >
                               {token.text}
                             </span>
                           ))}
@@ -400,7 +424,10 @@ export default function NewBlogPost() {
                         <div className="diff-column-label">AI Version</div>
                         <div className="diff-block">
                           {diff.right.map((token, index) => (
-                            <span key={`content-right-${index}`} className={`diff-token ${token.type}`}>
+                            <span
+                              key={`content-right-${index}`}
+                              className={`diff-token ${token.type}`}
+                            >
                               {token.text}
                             </span>
                           ))}
@@ -430,7 +457,9 @@ export default function NewBlogPost() {
         </div>
       )}
 
-      <Link href="/blog" className="back-link">← Back to blog</Link>
+      <Link href="/blog" className="back-link">
+        ← Back to blog
+      </Link>
     </div>
   );
 }

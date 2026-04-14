@@ -12,7 +12,7 @@ export default function BlogPage() {
           Thoughts & Writing on development, technology, and more.
         </p>
       </div>
-      
+
       <div className="posts-list">
         {posts.length === 0 ? (
           <div className="empty-state">
@@ -20,18 +20,29 @@ export default function BlogPage() {
           </div>
         ) : (
           posts.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className="post-link">
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="post-link"
+            >
               <div className="post-card">
                 <div className="post-date">{post.date}</div>
                 <h2 className="post-title">{post.title}</h2>
-                <p className="post-excerpt">{post.content.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').substring(0, 200)}...</p>
+                <p className="post-excerpt">
+                  {post.content
+                    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+                    .substring(0, 200)}
+                  ...
+                </p>
               </div>
             </Link>
           ))
         )}
       </div>
 
-      <Link href="/" className="back-link">← Back to home</Link>
+      <Link href="/" className="back-link">
+        ← Back to home
+      </Link>
     </div>
   );
 }

@@ -3,7 +3,7 @@
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { Id } from '../../convex/_generated/dataModel';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const getTodayDate = () => {
   const now = new Date();
@@ -58,16 +58,12 @@ function QuoteVoting({
 }
 
 export default function QuoteOfTheDay() {
-  const [userId, setUserId] = useState('');
+  const [userId] = useState(() => getUserId());
   const today = getTodayDate();
   const scheduledQuote = useQuery(api.quotes.getQuoteForDate, { date: today });
   const randomQuote = useQuery(api.quotes.getRandomQuote);
 
   const quote = scheduledQuote ?? randomQuote;
-
-  useEffect(() => {
-    setUserId(getUserId());
-  }, []);
 
   return (
     <div id="quotes" className="section quotes-section">
