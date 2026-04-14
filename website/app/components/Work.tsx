@@ -107,7 +107,7 @@ export default function Work() {
           <article className="work-item">
             <h3>
               <a
-                href="https://github.com/zed-industries/zed"
+                href="https://zed.dev"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -118,7 +118,7 @@ export default function Work() {
           <article className="work-item">
             <h3>
               <a
-                href="https://github.com/signalapp/Signal-Android"
+                href="https://signal.org"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -129,7 +129,7 @@ export default function Work() {
           <article className="work-item">
             <h3>
               <a
-                href="https://github.com/AntennaPod/AntennaPod"
+                href="https://antennapod.org/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -140,18 +140,7 @@ export default function Work() {
           <article className="work-item">
             <h3>
               <a
-                href="https://github.com/IP-Car/IP-Car"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                IP-Car
-              </a>
-            </h3>
-          </article>
-          <article className="work-item">
-            <h3>
-              <a
-                href="https://github.com/codyogden/killedbygoogle"
+                href="https://killedbygoogle.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -162,7 +151,7 @@ export default function Work() {
           <article className="work-item">
             <h3>
               <a
-                href="https://github.com/1612elphi/delphitools"
+                href="https://tools.rmv.fyi/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -173,7 +162,7 @@ export default function Work() {
           <article className="work-item">
             <h3>
               <a
-                href="https://github.com/Buage/n20"
+                href="https://n20.me/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -195,29 +184,7 @@ export default function Work() {
           <article className="work-item">
             <h3>
               <a
-                href="https://github.com/IP-Car/android-app"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                IP-Car Android App
-              </a>
-            </h3>
-          </article>
-          <article className="work-item">
-            <h3>
-              <a
-                href="https://github.com/IP-Car/web-app"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                IP-Car Web App
-              </a>
-            </h3>
-          </article>
-          <article className="work-item">
-            <h3>
-              <a
-                href="https://github.com/Kilo-Org/kilocode"
+                href="https://kilo.ai"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -228,7 +195,7 @@ export default function Work() {
           <article className="work-item">
             <h3>
               <a
-                href="https://github.com/QuestPhone/questphone"
+                href="https://questphone.app/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
