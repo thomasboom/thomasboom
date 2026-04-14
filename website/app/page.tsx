@@ -50,11 +50,7 @@ function HomeContent() {
               <span>Thomas</span>
               <span className="accent">Boom</span>
             </h1>
-            <p className="meta">
-              {t.hero.role}
-              <span>{t.hero.basedIn}</span>
-              <span>{t.hero.building}</span>
-            </p>
+            <p className="meta">{t.hero.building}</p>
           </div>
           <Navigation />
         </div>

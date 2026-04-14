@@ -83,7 +83,7 @@ const translations: Record<Language, Translations> = {
     hero: {
       role: 'Developer',
       basedIn: 'Based in The Netherlands',
-      building: 'Building mobile apps & web tools',
+      building: 'Building software to improve lives',
     },
     sections: {
       work: '01 - SELECTED WORK',
@@ -145,7 +145,7 @@ const translations: Record<Language, Translations> = {
     hero: {
       role: 'Ontwikkelaar',
       basedIn: 'Gebaseerd in Nederland',
-      building: 'Bouwt mobiele apps en webtools',
+      building: 'Software bouwen om levens te verbeteren',
     },
     sections: {
       work: '01 - UITGELICHT WERK',

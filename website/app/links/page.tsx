@@ -14,10 +14,7 @@ function LinksPageContent() {
           <span>Thomas</span>
           <span className="accent">Boom</span>
         </h1>
-        <p className="meta">
-          {t.hero.role}
-          <span>{t.links.basedIn}</span>
-        </p>
+        <p className="meta">{t.hero.building}</p>
       </div>
       <Links />
       <Link href="/" className="back-link">
