@@ -6,8 +6,6 @@ export default function Contact() {
     { label: 'Signal', href: 'https://signal.me/#eu/fEo_ZOMCPYGFE3QyEDyQy3c3Jz8hWsmpTLFxW2CHRQwVehMlgjhNKKKUX3LtsDcQ' },
     { label: 'Mastodon', href: 'https://mastodon.social/@thomasboom' },
     { label: 'Bluesky', href: 'https://bsky.app/profile/thomasboom123.bsky.social' },
-    { label: 'Lemmy', href: 'https://feddit.nl/u/thomasboom' },
-    { label: 'Matrix', href: 'https://matrix.to/#/@thomasboom:matrix.org' },
   ];
 
   return (
