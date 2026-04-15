@@ -1,21 +1,26 @@
-import { defineConfig, globalIgnores } from 'eslint/config';
-import nextVitals from 'eslint-config-next/core-web-vitals';
-import nextTs from 'eslint-config-next/typescript';
+import tseslint from 'typescript-eslint';
+import svelte from 'eslint-plugin-svelte';
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    '.next/**',
-    'out/**',
-    'build/**',
-    'next-env.d.ts',
-    // Generated and build artifacts:
-    'convex/_generated/**',
-    'dist/**',
-  ]),
-]);
-
-export default eslintConfig;
+export default tseslint.config(
+  {
+    ignores: [
+      '.next/**',
+      '.svelte-kit/**',
+      '.vercel/**',
+      'build/**',
+      'convex/_generated/**',
+      'dist/**',
+      'node_modules/**',
+    ],
+  },
+  ...tseslint.configs.recommended,
+  ...svelte.configs['flat/recommended'],
+  {
+    files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
+    languageOptions: {
+      parserOptions: {
+        parser: tseslint.parser,
+      },
+    },
+  }
+);

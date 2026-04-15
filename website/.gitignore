@@ -11,8 +11,13 @@ node_modules
 /.next/
 /out/
 
+# SvelteKit / Vite
+/.svelte-kit/
+/vite.svg
+
 # Production
 /build
+/dist
 
 # Misc
 .DS_Store
