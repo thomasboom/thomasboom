@@ -1,50 +1,43 @@
 <script lang="ts">
   import { t } from '$lib/language';
-
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 </script>
 
 <nav class="nav" aria-label="Main navigation">
   <a href="/blog"><span class="nav-number">00</span> {$t.nav.blog}</a>
-  <a
-    href="#about"
-    onclick={(e) => {
-      e.preventDefault();
-      scrollTo('about');
+  <button
+    type="button"
+    class="nav-link"
+    onclick={() => {
+      document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
     <span class="nav-number">01</span> {$t.nav.about}
-  </a>
-  <a
-    href="#work"
-    onclick={(e) => {
-      e.preventDefault();
-      scrollTo('work');
+  </button>
+  <button
+    type="button"
+    class="nav-link"
+    onclick={() => {
+      document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
     <span class="nav-number">02</span> {$t.nav.work}
-  </a>
-  <a
-    href="#skills"
-    onclick={(e) => {
-      e.preventDefault();
-      scrollTo('skills');
+  </button>
+  <button
+    type="button"
+    class="nav-link"
+    onclick={() => {
+      document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
     <span class="nav-number">03</span> {$t.nav.skills}
-  </a>
-  <a
-    href="#contact"
-    onclick={(e) => {
-      e.preventDefault();
-      scrollTo('contact');
+  </button>
+  <button
+    type="button"
+    class="nav-link"
+    onclick={() => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
     <span class="nav-number">04</span> {$t.nav.contact}
-  </a>
+  </button>
 </nav>

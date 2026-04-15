@@ -20,11 +20,15 @@ export const getQuoteForDate = query({
     date: v.string(),
   },
   handler: async (ctx, args) => {
-    const quotes = await ctx.db
-      .query('quotes')
-      .withIndex('by_scheduledDate', (q) => q.eq('scheduledDate', args.date))
-      .collect();
-    return quotes[0] || null;
+    try {
+      return await ctx.db
+        .query('quotes')
+        .withIndex('by_scheduledDate', (q) => q.eq('scheduledDate', args.date))
+        .first();
+    } catch (e) {
+      console.error('Error fetching quote for date:', e);
+      return null;
+    }
   },
 });
 
@@ -57,10 +61,15 @@ export const updateQuote = mutation({
 
 export const getRandomQuote = query({
   handler: async (ctx) => {
-    const quotes = await ctx.db.query('quotes').collect();
-    if (quotes.length === 0) return null;
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    return quotes[randomIndex];
+    try {
+      const quotes = await ctx.db.query('quotes').collect();
+      if (quotes.length === 0) return null;
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      return quotes[randomIndex];
+    } catch (e) {
+      console.error('Error fetching random quote:', e);
+      return null;
+    }
   },
 });
 
@@ -71,30 +80,34 @@ export const vote = mutation({
     vote: v.number(),
   },
   handler: async (ctx, args) => {
-    const existingVotes = await ctx.db
-      .query('quoteVotes')
-      .withIndex('by_quote_user', (q) =>
-        q.eq('quoteId', args.quoteId).eq('userId', args.userId)
-      )
-      .collect();
+    try {
+      const existingVote = await ctx.db
+        .query('quoteVotes')
+        .withIndex('by_quote_user', (q) =>
+          q.eq('quoteId', args.quoteId).eq('userId', args.userId)
+        )
+        .first();
 
-    if (existingVotes.length > 0) {
-      const existingVote = existingVotes[0];
-      if (existingVote.vote === args.vote) {
-        await ctx.db.delete(existingVote._id);
-        return { action: 'removed' };
-      } else {
-        await ctx.db.patch(existingVote._id, { vote: args.vote });
-        return { action: 'updated' };
+      if (existingVote) {
+        if (existingVote.vote === args.vote) {
+          await ctx.db.delete(existingVote._id);
+          return { action: 'removed' };
+        } else {
+          await ctx.db.patch(existingVote._id, { vote: args.vote });
+          return { action: 'updated' };
+        }
       }
-    }
 
-    await ctx.db.insert('quoteVotes', {
-      quoteId: args.quoteId,
-      userId: args.userId,
-      vote: args.vote,
-    });
-    return { action: 'added' };
+      await ctx.db.insert('quoteVotes', {
+        quoteId: args.quoteId,
+        userId: args.userId,
+        vote: args.vote,
+      });
+      return { action: 'added' };
+    } catch (e) {
+      console.error('Error voting:', e);
+      throw e;
+    }
   },
 });
 
@@ -103,18 +116,23 @@ export const getVoteCounts = query({
     quoteId: v.id('quotes'),
   },
   handler: async (ctx, args) => {
-    const votes = await ctx.db
-      .query('quoteVotes')
-      .withIndex('by_quote_user', (q) => q.eq('quoteId', args.quoteId))
-      .collect();
+    try {
+      const votes = await ctx.db
+        .query('quoteVotes')
+        .withIndex('by_quote_user', (q) => q.eq('quoteId', args.quoteId))
+        .collect();
 
-    let upvotes = 0;
-    let downvotes = 0;
-    for (const v of votes) {
-      if (v.vote === 1) upvotes++;
-      else if (v.vote === -1) downvotes++;
+      let upvotes = 0;
+      let downvotes = 0;
+      for (const v of votes) {
+        if (v.vote === 1) upvotes++;
+        else if (v.vote === -1) downvotes++;
+      }
+      return { upvotes, downvotes, score: upvotes - downvotes };
+    } catch (e) {
+      console.error('Error fetching vote counts:', e);
+      return { upvotes: 0, downvotes: 0, score: 0 };
     }
-    return { upvotes, downvotes, score: upvotes - downvotes };
   },
 });
 
@@ -124,12 +142,17 @@ export const getUserVote = query({
     userId: v.string(),
   },
   handler: async (ctx, args) => {
-    const votes = await ctx.db
-      .query('quoteVotes')
-      .withIndex('by_quote_user', (q) =>
-        q.eq('quoteId', args.quoteId).eq('userId', args.userId)
-      )
-      .collect();
-    return votes.length > 0 ? votes[0].vote : 0;
+    try {
+      const vote = await ctx.db
+        .query('quoteVotes')
+        .withIndex('by_quote_user', (q) =>
+          q.eq('quoteId', args.quoteId).eq('userId', args.userId)
+        )
+        .first();
+      return vote?.vote ?? 0;
+    } catch (e) {
+      console.error('Error fetching user vote:', e);
+      return 0;
+    }
   },
 });

@@ -5,7 +5,7 @@
     rel="noopener noreferrer"
     class="links-link"
   >
-    <span class="links-icon">GH</span>
+    <span class="links-icon" aria-hidden="true">GH</span>
     <span>GitHub</span>
   </a>
   <a
@@ -14,7 +14,7 @@
     rel="noopener noreferrer"
     class="links-link"
   >
-    <span class="links-icon">MA</span>
+    <span class="links-icon" aria-hidden="true">MA</span>
     <span>Mastodon</span>
   </a>
   <a
@@ -23,7 +23,7 @@
     rel="noopener noreferrer"
     class="links-link"
   >
-    <span class="links-icon">BS</span>
+    <span class="links-icon" aria-hidden="true">BS</span>
     <span>Bluesky</span>
   </a>
   <a
@@ -32,7 +32,7 @@
     rel="noopener noreferrer"
     class="links-link"
   >
-    <span class="links-icon">@</span>
+    <span class="links-icon" aria-hidden="true">@</span>
     <span>Email</span>
   </a>
 </div>

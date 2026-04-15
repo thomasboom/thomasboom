@@ -20,6 +20,8 @@
   let name = $state('');
   let content = $state('');
   let replyTo = $state<Id<'comments'> | null>(null);
+  let isSubmitting = $state(false);
+  let errorMessage = $state<string | null>(null);
 
   const buildCommentTree = (comments: Comment[]): CommentWithReplies[] => {
     const map = new Map<string, CommentWithReplies>();
@@ -50,27 +52,40 @@
 
   const handleSubmit = async (event: SubmitEvent) => {
     event.preventDefault();
-    if (!name.trim() || !content.trim()) return;
+    if (!name.trim() || !content.trim() || isSubmitting) return;
 
-    await client.mutation(api.comments.addComment, {
-      postSlug,
-      name,
-      content,
-      parentId: replyTo ?? undefined,
-    });
+    isSubmitting = true;
+    errorMessage = null;
 
-    name = '';
-    content = '';
-    replyTo = null;
+    try {
+      await client.mutation(api.comments.addComment, {
+        postSlug,
+        name,
+        content,
+        parentId: replyTo ?? undefined,
+      });
+
+      name = '';
+      content = '';
+      replyTo = null;
+    } catch (e) {
+      errorMessage = e instanceof Error ? e.message : 'Failed to submit comment. Please try again.';
+    } finally {
+      isSubmitting = false;
+    }
   };
 
-  const handleReply = (id: Id<'comments'>) => {
+  const handleReply = (id: Id<'comments'>, event: MouseEvent) => {
     replyTo = id;
-    document.getElementById('comment-form')?.scrollIntoView({ behavior: 'smooth' });
+    const target = event.currentTarget as HTMLElement;
+    const form = target.closest('.comments-section')?.querySelector('#comment-form');
+    if (form instanceof HTMLElement) {
+      form.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const commentTree = $derived(
-    commentsQuery.data ? buildCommentTree(commentsQuery.data as Comment[]) : []
+    commentsQuery.data ? buildCommentTree(commentsQuery.data) : []
   );
 </script>
 
@@ -82,7 +97,7 @@
     </div>
     <div class="comment-content">{comment.content}</div>
     <div class="comment-actions">
-      <button class="comment-reply-button" onclick={() => handleReply(comment._id)}>Reply</button>
+      <button class="comment-reply-button" onclick={(e) => handleReply(comment._id, e)}>Reply</button>
     </div>
 
     {#if comment.replies.length > 0}
@@ -98,9 +113,16 @@
 <div class="comments-section">
   <h2 class="comments-title">Comments</h2>
 
+  {#if errorMessage}
+    <div class="comments-error" role="alert">{errorMessage}</div>
+  {/if}
+
   <form class="comment-form" id="comment-form" onsubmit={handleSubmit}>
-    <input type="text" class="comment-name-input" placeholder="Your name" bind:value={name} maxlength="50" required />
+    <label class="visually-hidden" for="comment-name">Your name</label>
+    <input id="comment-name" type="text" class="comment-name-input" placeholder="Your name" bind:value={name} maxlength="50" required />
+    <label class="visually-hidden" for="comment-content">Your comment</label>
     <textarea
+      id="comment-content"
       class="comment-input"
       placeholder={replyTo ? 'Write a reply...' : 'Write a comment...'}
       bind:value={content}
@@ -120,8 +142,8 @@
             Cancel reply
           </button>
         {/if}
-        <button type="submit" class="comment-submit" disabled={!name.trim() || !content.trim()}>
-          Submit
+        <button type="submit" class="comment-submit" disabled={!name.trim() || !content.trim() || isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>
       </div>
     </div>

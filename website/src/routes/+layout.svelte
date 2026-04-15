@@ -3,10 +3,16 @@
   import '../app.css';
 
   const { children } = $props();
-  const convexUrl = import.meta.env.NEXT_PUBLIC_CONVEX_URL as string | undefined;
+  const convexUrl = import.meta.env.PUBLIC_CONVEX_URL as string | undefined;
 
-  if (convexUrl) {
-    setupConvex(convexUrl);
+  if (!convexUrl) {
+    console.warn('Convex URL not configured. Set PUBLIC_CONVEX_URL environment variable.');
+  } else {
+    try {
+      setupConvex(convexUrl);
+    } catch (e) {
+      console.error('Failed to initialize Convex:', e);
+    }
   }
 </script>
 

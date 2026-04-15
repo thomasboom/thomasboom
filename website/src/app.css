@@ -142,7 +142,8 @@ body {
   animation: fadeInUp 0.8s ease 0.8s forwards;
 }
 
-.nav a {
+.nav a,
+.nav button {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -154,9 +155,18 @@ body {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  width: 100%;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
 }
 
-.nav a::before {
+.nav a::before,
+.nav button::before {
   content: '';
   position: absolute;
   left: 0;
@@ -168,12 +178,14 @@ body {
   transition: transform 0.3s ease;
 }
 
-.nav a:hover {
+.nav a:hover,
+.nav button:hover {
   padding-left: 16px;
   color: var(--accent);
 }
 
-.nav a:hover::before {
+.nav a:hover::before,
+.nav button:hover::before {
   transform: scaleY(1);
 }
 
@@ -183,7 +195,8 @@ body {
   min-width: 20px;
 }
 
-.nav a:hover .nav-number {
+.nav a:hover .nav-number,
+.nav button:hover .nav-number {
   color: var(--accent);
 }
 

@@ -8,6 +8,8 @@
   import Contact from '$lib/components/Contact.svelte';
   import ProgressBar from '$lib/components/ProgressBar.svelte';
 
+  const year = new Date().getFullYear();
+
   onMount(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -55,7 +57,7 @@
     <Contact />
 
     <footer class="footer">
-      <span>© 2026 Thomas Boom</span>
+      <span>© {year} Thomas Boom</span>
     </footer>
   </section>
 </main>

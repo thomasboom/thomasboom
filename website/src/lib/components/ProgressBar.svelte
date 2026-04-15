@@ -1,14 +1,16 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  let progress = 0;
+  let progress = $state(0);
 
   onMount(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      progress = scrollPercent;
+      if (docHeight > 0) {
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progress = Math.min(100, Math.max(0, scrollPercent));
+      }
     };
 
     window.addEventListener('scroll', handleScroll);

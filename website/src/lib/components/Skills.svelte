@@ -1,13 +1,13 @@
 <script lang="ts">
   import { t } from '$lib/language';
 
-  const skills = [
-    { name: 'Flutter', desc: () => $t.skills.mobile },
-    { name: 'Kotlin', desc: () => $t.skills.android },
-    { name: 'Rust', desc: () => $t.skills.language },
-    { name: 'TypeScript', desc: () => $t.skills.web },
-    { name: 'JavaScript', desc: () => $t.skills.web },
-    { name: 'Svelte', desc: () => $t.skills.web },
+  const skills: { name: string; desc: string }[] = [
+    { name: 'Flutter', desc: 'Mobile apps for iOS and Android with a single codebase.' },
+    { name: 'Kotlin', desc: 'Native Android development with Jetpack Compose.' },
+    { name: 'Rust', desc: 'Systems programming for high-performance applications.' },
+    { name: 'TypeScript', desc: 'Type-safe web development with React, Svelte, and Node.js.' },
+    { name: 'JavaScript', desc: 'Web development with modern ES6+ patterns.' },
+    { name: 'Svelte', desc: 'Build user interfaces with reactive, compiler-first approach.' },
   ];
 </script>
 
@@ -20,7 +20,7 @@
     {#each skills as skill (skill.name)}
       <li class="skill">
         <span class="skill-name">{skill.name}</span>
-        <span class="skill-desc">{skill.desc()}</span>
+        <span class="skill-desc">{skill.desc}</span>
       </li>
     {/each}
   </ul>

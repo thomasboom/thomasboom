@@ -22,6 +22,14 @@
 
     return parts;
   };
+
+  const parsedContent = $derived(
+    data.post?.content.split('\n').map((paragraph: string) => ({
+      type: paragraph.startsWith('## ') ? 'h2' : paragraph.startsWith('### ') ? 'h3' : paragraph.startsWith('- ') ? 'li' : paragraph.startsWith('```') || paragraph.trim() === '' ? 'skip' : 'p',
+      content: paragraph.replace(/^## |^### |^- /, ''),
+      parsed: paragraph.startsWith('## ') || paragraph.startsWith('### ') || paragraph.startsWith('- ') || paragraph.startsWith('```') || paragraph.trim() === '' ? null : parseParagraph(paragraph),
+    })) ?? []
+  );
 </script>
 
 <svelte:head>
@@ -45,17 +53,16 @@
       </div>
       <h1 class="post-title">{data.post.title}</h1>
       <div class="post-content">
-        {#each data.post.content.split('\n') as paragraph}
-          {#if paragraph.startsWith('## ')}
-            <h2>{paragraph.replace('## ', '')}</h2>
-          {:else if paragraph.startsWith('### ')}
-            <h3>{paragraph.replace('### ', '')}</h3>
-          {:else if paragraph.startsWith('- ')}
-            <li>{paragraph.replace('- ', '')}</li>
-          {:else if !paragraph.startsWith('```') && paragraph.trim() !== ''}
-            {@const parts = parseParagraph(paragraph)}
+        {#each parsedContent as paragraph}
+          {#if paragraph.type === 'h2'}
+            <h2>{paragraph.content}</h2>
+          {:else if paragraph.type === 'h3'}
+            <h3>{paragraph.content}</h3>
+          {:else if paragraph.type === 'li'}
+            <li>{paragraph.content}</li>
+          {:else if paragraph.type === 'p' && paragraph.parsed}
             <p>
-              {#each parts as part}
+              {#each paragraph.parsed as part}
                 {#if typeof part === 'string'}
                   {part}
                 {:else}
