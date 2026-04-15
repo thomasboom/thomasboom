@@ -17,18 +17,16 @@
   ];
 </script>
 
-<section class="section" id="contact">
-  <div class="section-header">
-    <h2 class="section-title">{$t.sections.contact}</h2>
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <header class="section-header">
+    <h2 class="section-title" id="contact-title">{$t.sections.contact}</h2>
     <span class="section-line"></span>
-  </div>
-  <div class="contact-list">
+  </header>
+  <nav class="contact-list" aria-label="Contact links">
     {#each contacts as contact (contact.href)}
-      <div class="contact-item">
-        <a href={contact.href} target="_blank" rel="noopener noreferrer">
-          {contact.label}
-        </a>
-      </div>
+      <a href={contact.href} class="contact-item" target="_blank" rel="noopener noreferrer">
+        {contact.label}
+      </a>
     {/each}
-  </div>
+  </nav>
 </section>

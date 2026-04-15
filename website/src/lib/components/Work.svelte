@@ -2,11 +2,11 @@
   import { t } from '$lib/language';
 </script>
 
-<section class="section" id="work">
-  <div class="section-header">
-    <h2 class="section-title">{$t.sections.work}</h2>
+<section class="section" id="work" aria-labelledby="work-title">
+  <header class="section-header">
+    <h2 class="section-title" id="work-title">{$t.sections.work}</h2>
     <span class="section-line"></span>
-  </div>
+  </header>
 
   <article class="work-item">
     <h3>
@@ -15,13 +15,13 @@
       </a>
     </h3>
     <p>{$t.work.yam}</p>
-    <div class="tech"><span>Kotlin</span><span>Google Play Store</span><span>F-Droid</span><span>Izzyondroid</span></div>
+    <ul class="tech"><li>Kotlin</li><li>Google Play Store</li><li>F-Droid</li><li>Izzyondroid</li></ul>
   </article>
 
   <article class="work-item">
     <h3><a href="https://ipcar.dev" target="_blank" rel="noopener noreferrer">IP-Car</a></h3>
     <p>{$t.work.ipcar}</p>
-    <div class="tech"><span>Svelte</span><span>Electron</span></div>
+    <ul class="tech"><li>Svelte</li><li>Electron</li></ul>
   </article>
 
   <article class="work-item">
@@ -29,19 +29,19 @@
       <a href="https://thomasboom.codeberg.page/SupGIT/" target="_blank" rel="noopener noreferrer">SupGit</a>
     </h3>
     <p>{$t.work.supgit}</p>
-    <div class="tech"><span>Rust</span><span>Git</span><span>CLI</span></div>
+    <ul class="tech"><li>Rust</li><li>Git</li><li>CLI</li></ul>
   </article>
 
   <article class="work-item">
     <h3><a href="https://thomasboom.codeberg.page/AIRun/" target="_blank" rel="noopener noreferrer">AIRun</a></h3>
     <p>{$t.work.airun}</p>
-    <div class="tech"><span>Rust</span><span>CLI</span></div>
+    <ul class="tech"><li>Rust</li><li>CLI</li></ul>
   </article>
 
   <article class="work-item">
     <h3><a href="https://bijbelquiz.app" target="_blank" rel="noopener noreferrer">BijbelQuiz</a></h3>
     <p>{$t.work.bijbelquiz}</p>
-    <div class="tech"><span>Flutter</span><span>Dart</span><span>Supabase</span><span>Gemini API</span></div>
+    <ul class="tech"><li>Flutter</li><li>Dart</li><li>Supabase</li><li>Gemini API</li></ul>
   </article>
 
   <details class="work-collapsible">

@@ -7,11 +7,33 @@
 }
 
 :root {
-  --bg: #0f0f0f;
-  --text: #f0f0f0;
+  /* Background colors */
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #0b0b0b;
+  --bg-tertiary: #0a0a0a;
+  --bg-elevated: #101010;
+  --bg-inset: #111;
+
+  /* Text colors */
+  --text-primary: #f0f0f0;
+  --text-secondary: #ccc;
+  --text-muted: #777;
+  --text-faint: #666;
+  --text-subtle: #555;
+
+  /* Accent colors */
   --accent: #ff3c00;
   --accent-dim: rgba(255, 60, 0, 0.1);
+  --accent-subtle: rgba(255, 60, 0, 0.06);
+
+  /* Border colors */
   --border: #222;
+  --border-subtle: #1a1a1a;
+
+  /* Semantic aliases */
+  --bg: var(--bg-primary);
+  --text: var(--text-primary);
+  --text-muted: var(--text-faint);
 }
 
 html {
@@ -31,6 +53,10 @@ body {
   min-height: 100vh;
 }
 
+.profile-header {
+  margin-bottom: 24px;
+}
+
 .progress-bar {
   position: fixed;
   top: 0;
@@ -41,7 +67,7 @@ body {
   transition: width 0.1s ease-out;
 }
 
-.left {
+.sidebar-left {
   padding: 48px;
   display: flex;
   flex-direction: column;
@@ -50,6 +76,14 @@ body {
   position: sticky;
   top: 0;
   height: 100vh;
+}
+
+.content-right {
+  padding: 48px;
+}
+
+.profile-header {
+  margin-bottom: 24px;
 }
 
 .right {
@@ -90,7 +124,7 @@ body {
 
 .meta {
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
   line-height: 1.8;
   opacity: 0;
   transform: translateY(20px);
@@ -144,7 +178,7 @@ body {
 }
 
 .nav-number {
-  color: #444;
+  color: var(--text-subtle);
   font-size: 12px;
   min-width: 20px;
 }
@@ -238,7 +272,7 @@ body {
 
 .work-item p {
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
   margin-bottom: 12px;
 }
 
@@ -246,13 +280,17 @@ body {
   font-size: 12px;
   color: var(--accent);
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.work-item .tech span:not(:last-child)::after {
+.work-item .tech li:not(:last-child)::after {
   content: '·';
   color: var(--border);
-  margin-left: 12px;
+  margin-left: 8px;
 }
 
 .work-collapsible {
@@ -313,6 +351,9 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .skill {
@@ -323,6 +364,9 @@ body {
   cursor: default;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .skill::before {
@@ -356,7 +400,7 @@ body {
 
 .skill-desc {
   font-size: 11px;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .skill:hover .skill-desc {
@@ -388,9 +432,6 @@ body {
 
 .contact-item {
   padding: 16px 0;
-}
-
-.contact-item a {
   font-size: 24px;
   color: var(--text);
   text-decoration: none;
@@ -400,7 +441,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.contact-item a::before {
+.contact-item::before {
   content: '→';
   color: var(--accent);
   opacity: 0;
@@ -408,12 +449,12 @@ body {
   transition: all 0.3s ease;
 }
 
-.contact-item a:hover {
+.contact-item:hover {
   color: var(--accent);
   padding-left: 8px;
 }
 
-.contact-item a:hover::before {
+.contact-item:hover::before {
   opacity: 1;
   transform: translateX(0);
 }
@@ -423,7 +464,7 @@ body {
   padding-top: 24px;
   border-top: 1px solid var(--border);
   font-size: 12px;
-  color: #666;
+  color: var(--text-muted);
   display: flex;
   gap: 24px;
 }
@@ -519,7 +560,7 @@ body {
 .back-link {
   margin-top: 48px;
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -627,7 +668,7 @@ body {
 
 .post-date {
   font-size: 12px;
-  color: #666;
+  color: var(--text-muted);
   margin-bottom: 8px;
 }
 
@@ -640,7 +681,7 @@ body {
 
 .post-excerpt {
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
   line-height: 1.6;
 }
 
@@ -659,7 +700,7 @@ body {
 
 .back-to-blog {
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -716,7 +757,7 @@ body {
 
 .empty-state p {
   font-size: 16px;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .blog-editor {
@@ -815,7 +856,7 @@ body {
 .instructions ol {
   padding-left: 24px;
   font-size: 13px;
-  color: #ccc;
+  color: var(--text-secondary);
   line-height: 1.8;
 }
 
@@ -825,7 +866,7 @@ body {
 
 .form-group .help-text {
   font-size: 11px;
-  color: #666;
+  color: var(--text-muted);
   margin-top: 4px;
 }
 
@@ -920,7 +961,7 @@ body {
 
 .ai-status {
   font-size: 12px;
-  color: #aaa;
+  color: var(--text-secondary);
   min-height: 16px;
 }
 
@@ -955,9 +996,9 @@ body {
   top: 28px;
   width: 240px;
   padding: 14px;
-  background: #0f0f0f;
+  background: var(--bg-primary);
   border: 1px solid var(--border);
-  color: #ddd;
+  color: var(--text-secondary);
   font-size: 12px;
   display: none;
   flex-direction: column;
@@ -991,7 +1032,7 @@ body {
 
 .modal {
   width: min(860px, 100%);
-  background: #0b0b0b;
+  background: var(--bg-secondary);
   border: 1px solid var(--border);
   padding: 24px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
@@ -1030,12 +1071,12 @@ body {
 
 .modal-subtitle {
   font-size: 12px;
-  color: #aaa;
+  color: var(--text-secondary);
   margin-bottom: 12px;
 }
 
 .modal-code pre {
-  background: #111;
+  background: var(--bg-inset);
   padding: 16px;
   border-left: 3px solid var(--accent);
   overflow-x: auto;
@@ -1089,7 +1130,7 @@ body {
 }
 
 .diff-block {
-  background: #101010;
+  background: var(--bg-elevated);
   border: 1px solid var(--border);
   padding: 12px;
   max-height: 280px;
@@ -1116,7 +1157,7 @@ body {
 }
 
 .diff-token.same {
-  color: #cfcfcf;
+  color: var(--text-secondary);
 }
 
 @media (max-width: 880px) {
@@ -1214,7 +1255,7 @@ body {
 
 .character-count {
   font-size: 12px;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .comment-submit {
@@ -1250,7 +1291,7 @@ body {
 .comments-loading,
 .comments-empty {
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
   padding: 24px;
   text-align: center;
   border: 1px solid var(--border);
@@ -1334,7 +1375,7 @@ body {
   gap: 10px;
   padding: 16px;
   border: 1px solid var(--border);
-  background: #0a0a0a;
+  background: var(--bg-tertiary);
 }
 
 .reply-actions {
@@ -1345,7 +1386,7 @@ body {
 
 .comment-date {
   font-size: 11px;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .quotes-container {
@@ -1399,7 +1440,7 @@ body {
 .quote-date {
   margin-top: 32px;
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .quote-voting {
@@ -1417,12 +1458,12 @@ body {
   padding: 8px 12px;
   font-size: 16px;
   cursor: pointer;
-  color: var(--text-muted);
+  color: var(--text-faint);
   transition: all 0.2s ease;
 }
 
 .vote-btn:hover {
-  background: var(--bg-secondary);
+  background: var(--bg-elevated);
   color: var(--text);
 }
 
@@ -1500,7 +1541,7 @@ body {
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .quote-card-delete {

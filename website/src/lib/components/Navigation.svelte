@@ -9,7 +9,7 @@
   };
 </script>
 
-<nav class="nav">
+<nav class="nav" aria-label="Main navigation">
   <a href="/blog"><span class="nav-number">00</span> {$t.nav.blog}</a>
   <a
     href="#about"

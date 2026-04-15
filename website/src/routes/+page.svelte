@@ -36,19 +36,19 @@
 </script>
 
 <ProgressBar />
-<div class="container">
-  <div class="left">
-    <div>
+<main class="container">
+  <aside class="sidebar-left">
+    <header class="profile-header">
       <h1 class="name">
         <span>Thomas</span>
         <span class="accent">Boom</span>
       </h1>
       <p class="meta">{$t.hero.building}</p>
-    </div>
+    </header>
     <Navigation />
-  </div>
+  </aside>
 
-  <div class="right">
+  <section class="content-right">
     <About />
     <Work />
     <Skills />
@@ -57,5 +57,5 @@
     <footer class="footer">
       <span>© 2026 Thomas Boom</span>
     </footer>
-  </div>
-</div>
+  </section>
+</main>

@@ -2,11 +2,11 @@
   import { t } from '$lib/language';
 </script>
 
-<section class="section" id="about">
-  <div class="section-header">
-    <h2 class="section-title">{$t.sections.about}</h2>
+<section class="section" id="about" aria-labelledby="about-title">
+  <header class="section-header">
+    <h2 class="section-title" id="about-title">{$t.sections.about}</h2>
     <span class="section-line"></span>
-  </div>
+  </header>
   <p class="about-text">
     {$t.about.intro} <strong>{$t.about.userExperiences}</strong>{$t.about.middle}
     <strong>{$t.about.dailyLives}</strong>{$t.about.outro}

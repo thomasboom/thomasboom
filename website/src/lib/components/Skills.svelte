@@ -11,17 +11,17 @@
   ];
 </script>
 
-<section class="section" id="skills">
-  <div class="section-header">
-    <h2 class="section-title">{$t.sections.skills}</h2>
+<section class="section" id="skills" aria-labelledby="skills-title">
+  <header class="section-header">
+    <h2 class="section-title" id="skills-title">{$t.sections.skills}</h2>
     <span class="section-line"></span>
-  </div>
-  <div class="skills-grid">
+  </header>
+  <ul class="skills-grid">
     {#each skills as skill (skill.name)}
-      <div class="skill">
-        <div class="skill-name">{skill.name}</div>
-        <div class="skill-desc">{skill.desc()}</div>
-      </div>
+      <li class="skill">
+        <span class="skill-name">{skill.name}</span>
+        <span class="skill-desc">{skill.desc()}</span>
+      </li>
     {/each}
-  </div>
+  </ul>
 </section>
