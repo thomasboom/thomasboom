@@ -14,6 +14,7 @@
       label: 'Bluesky',
       href: 'https://bsky.app/profile/thomasboom.com',
     },
+    { label: 'GitLab', href: 'https://gitlab.com/thomasboom/' },
   ];
 </script>
 
