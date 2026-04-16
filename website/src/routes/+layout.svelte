@@ -30,7 +30,6 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Thomas Boom" />
   <meta name="twitter:description" content="Building software to improve lives." />
-  <meta name="me" content="https://mastodon.social/@thomasboom" />
 </svelte:head>
 
 {@render children()}
