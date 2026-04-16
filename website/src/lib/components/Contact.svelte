@@ -12,7 +12,7 @@
     { label: 'Mastodon', href: 'https://mastodon.social/@thomasboom' },
     {
       label: 'Bluesky',
-      href: 'https://bsky.app/profile/thomasboom123.bsky.social',
+      href: 'https://bsky.app/profile/thomasboom.com',
     },
   ];
 </script>
@@ -24,7 +24,12 @@
   </header>
   <nav class="contact-list" aria-label="Contact links">
     {#each contacts as contact (contact.href)}
-      <a href={contact.href} class="contact-item" target="_blank" rel="noopener noreferrer">
+      <a
+        href={contact.href}
+        class="contact-item"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {contact.label}
       </a>
     {/each}
