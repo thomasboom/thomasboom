@@ -587,7 +587,7 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .left {
+  .sidebar-left {
     position: relative;
     height: auto;
     padding: 32px;
@@ -595,7 +595,7 @@ body {
     border-bottom: 1px solid var(--border);
   }
 
-  .right {
+  .content-right {
     padding: 32px;
   }
 
@@ -611,17 +611,17 @@ body {
     font-size: 24px;
   }
 
-  .contact-item a {
+  .contact-item {
     font-size: 20px;
   }
 }
 
 @media (max-width: 500px) {
-  .left {
+  .sidebar-left {
     padding: 24px;
   }
 
-  .right {
+  .content-right {
     padding: 24px;
   }
 
@@ -631,6 +631,36 @@ body {
 
   .links-container {
     padding: 24px;
+  }
+
+  .name {
+    font-size: clamp(36px, 12vw, 64px);
+  }
+
+  .about-text {
+    font-size: 16px;
+    padding: 16px;
+  }
+
+  .work-item {
+    padding: 16px;
+  }
+
+  .work-item h3 {
+    font-size: 20px;
+  }
+
+  .contact-item {
+    font-size: 16px;
+  }
+
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 12px;
   }
 }
 
