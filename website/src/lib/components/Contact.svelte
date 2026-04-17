@@ -3,18 +3,17 @@
 
   const contacts = [
     { label: 'Email', href: 'mailto:thomas@thomasboom.com' },
-    { label: 'GitHub', href: 'https://github.com/thomasboom' },
     { label: 'Codeberg', href: 'https://codeberg.org/thomasboom' },
-    {
-      label: 'Signal',
-      href: 'https://signal.me/#eu/fEo_ZOMCPYGFE3QyEDyQy3c3Jz8hWsmpTLFxW2CHRQwVehMlgjhNKKKUX3LtsDcQ',
-    },
+    { label: 'GitHub', href: 'https://github.com/thomasboom' },
     { label: 'Mastodon', href: 'https://mastodon.social/@thomasboom' },
     {
       label: 'Bluesky',
       href: 'https://bsky.app/profile/thomasboom.com',
     },
-    { label: 'GitLab', href: 'https://gitlab.com/thomasboom/' },
+    {
+      label: 'Signal',
+      href: 'https://signal.me/#eu/fEo_ZOMCPYGFE3QyEDyQy3c3Jz8hWsmpTLFxW2CHRQwVehMlgjhNKKKUX3LtsDcQ',
+    },
   ];
 </script>
 
