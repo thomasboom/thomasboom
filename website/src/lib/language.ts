@@ -6,6 +6,7 @@ export type Language = 'en' | 'nl';
 type Translations = {
   nav: {
     quotes: string;
+    notes: string;
     work: string;
     skills: string;
     about: string;
@@ -60,6 +61,13 @@ type Translations = {
     basedIn: string;
     backHome: string;
   };
+  notes: {
+    title: string;
+    subtitle: string;
+    empty: string;
+    backHome: string;
+    backToList: string;
+  };
   footer: {
     country: string;
   };
@@ -69,6 +77,7 @@ const translations: Record<Language, Translations> = {
   en: {
     nav: {
       quotes: 'Quotes',
+      notes: 'Notes',
       work: 'Work',
       skills: 'Skills',
       about: 'About',
@@ -127,6 +136,13 @@ const translations: Record<Language, Translations> = {
       basedIn: 'Based in The Netherlands',
       backHome: 'Back to home',
     },
+    notes: {
+      title: 'Notes',
+      subtitle: 'Personal notes and thoughts.',
+      empty: 'No notes yet.',
+      backHome: 'Back to home',
+      backToList: 'Back to notes',
+    },
     footer: {
       country: 'The Netherlands',
     },
@@ -134,6 +150,7 @@ const translations: Record<Language, Translations> = {
   nl: {
     nav: {
       quotes: 'Citaten',
+      notes: 'Notities',
       work: 'Werk',
       skills: 'Vaardigheden',
       about: 'Over',
@@ -191,6 +208,13 @@ const translations: Record<Language, Translations> = {
     links: {
       basedIn: 'Gebaseerd in Nederland',
       backHome: 'Terug naar home',
+    },
+    notes: {
+      title: 'Notities',
+      subtitle: 'Persoonlijke notities en gedachten.',
+      empty: 'Nog geen notities.',
+      backHome: 'Terug naar home',
+      backToList: 'Terug naar notities',
     },
     footer: {
       country: 'Nederland',

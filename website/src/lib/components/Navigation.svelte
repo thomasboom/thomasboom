@@ -3,6 +3,9 @@
 </script>
 
 <nav class="nav" aria-label="Main navigation">
+  <a href="/notes" class="nav-link">
+    <span class="nav-number">00</span> {$t.nav.notes}
+  </a>
   <button
     type="button"
     class="nav-link"
@@ -10,7 +13,7 @@
       document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
-    <span class="nav-number">00</span> {$t.nav.about}
+    <span class="nav-number">01</span> {$t.nav.about}
   </button>
   <button
     type="button"
@@ -19,7 +22,7 @@
       document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
-    <span class="nav-number">01</span> {$t.nav.work}
+    <span class="nav-number">02</span> {$t.nav.work}
   </button>
   <button
     type="button"
@@ -28,7 +31,7 @@
       document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
-    <span class="nav-number">02</span> {$t.nav.skills}
+    <span class="nav-number">03</span> {$t.nav.skills}
   </button>
   <button
     type="button"
@@ -37,6 +40,6 @@
       document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
-    <span class="nav-number">03</span> {$t.nav.contact}
+    <span class="nav-number">04</span> {$t.nav.contact}
   </button>
 </nav>
