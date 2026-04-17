@@ -12,11 +12,4 @@ export default defineSchema({
     userId: v.string(),
     vote: v.number(),
   }).index('by_quote_user', ['quoteId', 'userId']),
-  comments: defineTable({
-    postSlug: v.string(),
-    name: v.string(),
-    content: v.string(),
-    parentId: v.optional(v.id('comments')),
-    createdAt: v.number(),
-  }).index('by_postSlug', ['postSlug']),
 });

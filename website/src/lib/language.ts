@@ -5,7 +5,6 @@ export type Language = 'en' | 'nl';
 
 type Translations = {
   nav: {
-    blog: string;
     quotes: string;
     work: string;
     skills: string;
@@ -69,7 +68,6 @@ type Translations = {
 const translations: Record<Language, Translations> = {
   en: {
     nav: {
-      blog: 'Blog',
       quotes: 'Quotes',
       work: 'Work',
       skills: 'Skills',
@@ -135,7 +133,6 @@ const translations: Record<Language, Translations> = {
   },
   nl: {
     nav: {
-      blog: 'Blog',
       quotes: 'Citaten',
       work: 'Werk',
       skills: 'Vaardigheden',
