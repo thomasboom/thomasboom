@@ -49,6 +49,7 @@
     <div class="work-collapsible-content">
       <article class="work-item"><h3><a href="https://zed.dev" target="_blank" rel="noopener noreferrer">Zed</a></h3></article>
       <article class="work-item"><h3><a href="https://signal.org" target="_blank" rel="noopener noreferrer">Signal Android</a></h3></article>
+      <article class="work-item"><h3><a href="https://aboutsignal.com" target="_blank" rel="noopener noreferrer">AboutSignal</a></h3></article>
       <article class="work-item"><h3><a href="https://antennapod.org/" target="_blank" rel="noopener noreferrer">AntennaPod</a></h3></article>
       <article class="work-item"><h3><a href="https://killedbygoogle.com/" target="_blank" rel="noopener noreferrer">Killed by Google</a></h3></article>
       <article class="work-item"><h3><a href="https://tools.rmv.fyi/" target="_blank" rel="noopener noreferrer">DelphiTools</a></h3></article>
