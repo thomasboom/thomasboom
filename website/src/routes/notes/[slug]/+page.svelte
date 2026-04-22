@@ -7,7 +7,12 @@
 
 <svelte:head>
   <title>{data.displayDate} — Notes — Thomas Boom</title>
+  <link rel="canonical" href="https://thomasboom.com/notes/{data.slug}" />
   <meta name="description" content="Note from {data.displayDate}" />
+  <meta property="og:title" content="{data.displayDate} — Notes — Thomas Boom" />
+  <meta property="og:description" content="Note from {data.displayDate}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://thomasboom.com/notes/{data.slug}" />
 </svelte:head>
 
 <div class="notes-reader">

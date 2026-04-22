@@ -7,7 +7,12 @@
 
 <svelte:head>
   <title>Notes — Thomas Boom</title>
+  <link rel="canonical" href="https://thomasboom.com/notes" />
   <meta name="description" content="Personal notes and thoughts by Thomas Boom." />
+  <meta property="og:title" content="Notes — Thomas Boom" />
+  <meta property="og:description" content="Personal notes and thoughts by Thomas Boom." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://thomasboom.com/notes" />
 </svelte:head>
 
 <div class="notes-container">

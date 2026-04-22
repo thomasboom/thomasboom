@@ -18,6 +18,7 @@
 
 <svelte:head>
   <title>Thomas Boom</title>
+  <link rel="canonical" href="https://thomasboom.com/" />
   <meta name="description" content="Building software to improve lives." />
   <meta
     name="keywords"
@@ -27,9 +28,22 @@
   <meta property="og:description" content="Building software to improve lives." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://thomasboom.com/" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Thomas Boom" />
   <meta name="twitter:description" content="Building software to improve lives." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Thomas Boom",
+      "url": "https://thomasboom.com/",
+      "jobTitle": "Software Engineer",
+      "sameAs": [
+        "https://mastodon.social/@thomasboom"
+      ]
+    }
+  </script>
 </svelte:head>
 
 {@render children()}
