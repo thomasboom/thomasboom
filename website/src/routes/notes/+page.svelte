@@ -8,6 +8,7 @@
 <svelte:head>
   <title>Notes — Thomas Boom</title>
   <link rel="canonical" href="https://thomasboom.com/notes" />
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
   <meta name="description" content="Personal notes and thoughts by Thomas Boom." />
   <meta property="og:title" content="Notes — Thomas Boom" />
   <meta property="og:description" content="Personal notes and thoughts by Thomas Boom." />
