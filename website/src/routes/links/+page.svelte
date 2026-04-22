@@ -6,9 +6,9 @@
 <svelte:head>
   <title>Links — Thomas Boom</title>
   <link rel="canonical" href="https://thomasboom.com/links" />
-  <meta name="description" content="Links collection by Thomas Boom." />
+  <meta name="description" content="Contact Thomas Boom via Email, Codeberg, GitHub, Mastodon, Bluesky, or Signal." />
   <meta property="og:title" content="Links — Thomas Boom" />
-  <meta property="og:description" content="Links collection by Thomas Boom." />
+  <meta property="og:description" content="Contact Thomas Boom via Email, Codeberg, GitHub, Mastodon, Bluesky, or Signal." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://thomasboom.com/links" />
 </svelte:head>
