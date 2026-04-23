@@ -2,7 +2,7 @@
   import { t } from '$lib/language';
 
   const contacts = [
-    { label: 'Email', href: 'mailto:thomas@thomasboom.com' },
+    { label: 'Email', href: 'mailto:contact@thomasboom.com' },
     { label: 'Codeberg', href: 'https://codeberg.org/thomasboom' },
     { label: 'GitHub', href: 'https://github.com/thomasboom' },
     { label: 'Mastodon', href: 'https://mastodon.social/@thomasboom' },
