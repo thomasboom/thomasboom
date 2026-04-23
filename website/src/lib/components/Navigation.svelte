@@ -19,10 +19,19 @@
     type="button"
     class="nav-link"
     onclick={() => {
+      document.getElementById('codeberg-stats')?.scrollIntoView({ behavior: 'smooth' });
+    }}
+  >
+    <span class="nav-number">02</span> Codeberg Stats
+  </button>
+  <button
+    type="button"
+    class="nav-link"
+    onclick={() => {
       document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
-    <span class="nav-number">02</span> {$t.nav.work}
+    <span class="nav-number">03</span> {$t.nav.work}
   </button>
   <button
     type="button"
@@ -31,7 +40,7 @@
       document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
-    <span class="nav-number">03</span> {$t.nav.skills}
+    <span class="nav-number">04</span> {$t.nav.skills}
   </button>
   <button
     type="button"
@@ -40,6 +49,6 @@
       document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
-    <span class="nav-number">04</span> {$t.nav.contact}
+    <span class="nav-number">05</span> {$t.nav.contact}
   </button>
 </nav>

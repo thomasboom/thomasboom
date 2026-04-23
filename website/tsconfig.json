@@ -19,7 +19,8 @@
     "src/**/*.svelte",
     "convex/**/*.ts",
     "vite.config.ts",
-    "svelte.config.js"
+    "svelte.config.js",
+    ".svelte-kit/ambient.d.ts"
   ],
   "exclude": ["app", ".next", "dist", "node_modules"]
 }

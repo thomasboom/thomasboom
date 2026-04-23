@@ -89,10 +89,10 @@ const translations: Record<Language, Translations> = {
       building: 'Building software to improve lives.',
     },
     sections: {
-      work: '01 - SELECTED WORK',
-      skills: '02 - SKILLS',
-      about: '03 - ABOUT',
-      contact: '04 - CONTACT',
+      work: 'SELECTED WORK',
+      skills: 'SKILLS',
+      about: 'ABOUT',
+      contact: 'CONTACT',
     },
     about: {
       intro:
@@ -162,10 +162,10 @@ const translations: Record<Language, Translations> = {
       building: 'Software bouwen om levens te verbeteren.',
     },
     sections: {
-      work: '01 - UITGELICHT WERK',
-      skills: '02 - VAARDIGHEDEN',
-      about: '03 - OVER',
-      contact: '04 - CONTACT',
+      work: 'UITGELICHT WERK',
+      skills: 'VAARDIGHEDEN',
+      about: 'OVER',
+      contact: 'CONTACT',
     },
     about: {
       intro:

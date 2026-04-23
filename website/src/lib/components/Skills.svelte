@@ -13,7 +13,7 @@
 
 <section class="section" id="skills" aria-labelledby="skills-title">
   <header class="section-header">
-    <h2 class="section-title" id="skills-title">{$t.sections.skills}</h2>
+    <h2 class="section-title" id="skills-title">04 - {$t.sections.skills}</h2>
     <span class="section-line"></span>
   </header>
   <ul class="skills-grid">

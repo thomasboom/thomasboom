@@ -7,8 +7,11 @@
   import About from '$lib/components/About.svelte';
   import Contact from '$lib/components/Contact.svelte';
   import ProgressBar from '$lib/components/ProgressBar.svelte';
+  import CodebergStats from '$lib/components/CodebergStats.svelte';
 
   const year = new Date().getFullYear();
+
+  export let data;
 
   onMount(() => {
     const observer = new IntersectionObserver(
@@ -52,6 +55,7 @@
 
   <section class="content-right">
     <About />
+    <CodebergStats stats={data.codebergStats} />
     <Work />
     <Skills />
     <Contact />

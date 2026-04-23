@@ -19,7 +19,7 @@
 
 <section class="section" id="contact" aria-labelledby="contact-title">
   <header class="section-header">
-    <h2 class="section-title" id="contact-title">{$t.sections.contact}</h2>
+    <h2 class="section-title" id="contact-title">05 - {$t.sections.contact}</h2>
     <span class="section-line"></span>
   </header>
   <nav class="contact-list" aria-label="Contact links">
