@@ -1,0 +1,34 @@
+{
+  "redirects": [
+    {
+      "source": "/codeberg",
+      "destination": "https://codeberg.org/thomasboom",
+      "statusCode": 307
+    },
+    {
+      "source": "/email",
+      "destination": "mailto:contact@thomasboom.com",
+      "statusCode": 307
+    },
+    {
+      "source": "/github",
+      "destination": "https://github.com/thomasboom",
+      "statusCode": 307
+    },
+    {
+      "source": "/mastodon",
+      "destination": "https://mastodon.social/@thomasboom",
+      "statusCode": 307
+    },
+    {
+      "source": "/bluesky",
+      "destination": "https://bsky.app/profile/thomasboom.com",
+      "statusCode": 307
+    },
+    {
+      "source": "/signal",
+      "destination": "https://signal.me/#eu/fEo_ZOMCPYGFE3QyEDyQy3c3Jz8hWsmpTLFxW2CHRQwVehMlgjhNKKKUX3LtsDcQ",
+      "statusCode": 307
+    }
+  ]
+}
