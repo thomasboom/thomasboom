@@ -29,6 +29,31 @@
       "source": "/signal",
       "destination": "https://signal.me/#eu/fEo_ZOMCPYGFE3QyEDyQy3c3Jz8hWsmpTLFxW2CHRQwVehMlgjhNKKKUX3LtsDcQ",
       "statusCode": 307
+    },
+    {
+      "source": "/ipcar",
+      "destination": "https://ipcar.dev",
+      "statusCode": 307
+    },
+    {
+      "source": "/yam-launcher",
+      "destination": "https://codeberg.org/thomasboom/YAM-Launcher",
+      "statusCode": 307
+    },
+    {
+      "source": "/bijbelquiz",
+      "destination": "https://bijbelquiz.app",
+      "statusCode": 307
+    },
+    {
+      "source": "/supgit",
+      "destination": "https://thomasboom.codeberg.page/SupGIT/",
+      "statusCode": 307
+    },
+    {
+      "source": "/airun",
+      "destination": "https://thomasboom.codeberg.page/AIRun/",
+      "statusCode": 307
     }
   ]
 }
