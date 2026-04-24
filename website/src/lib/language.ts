@@ -110,11 +110,11 @@ const translations: Record<Language, Translations> = {
       contributedTo: 'Contributed to',
       yam: 'A fast, open and customizable launcher for Android',
       ipcar:
-        'A remote-controlled robot that gives children with disabilities a real presence in the classroom, from home',
+        'A remote-controlled robot that gives children with disabilities a real presence in the classroom, from home.',
       supgit:
-        "A simplified Git CLI for beginners who don't want to leave the terminal",
+        "A simplified Git CLI for beginners who don't want to leave the terminal.",
       airun:
-        'Forgot that you have dozens of AI CLIs installed? Find the one you need before executing your prompt',
+        'Forgot that you have dozens of AI CLIs installed? Find the one you need before executing your prompt.',
       bijbelquiz: 'Test your Bible knowledge with engaging quizzes.',
     },
     skills: {
