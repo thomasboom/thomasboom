@@ -50,6 +50,37 @@ async function fetchCodebergHeatmap(fetch: ServerFetch, pat: string) {
   return heatmap.filter((entry) => entry.timestamp >= cutoffTimestamp);
 }
 
+async function fetchLastContributedRepo(fetch: ServerFetch, pat: string) {
+  const response = await fetch(
+    `https://codeberg.org/api/v1/users/${username}/repos?limit=50`,
+    {
+      headers: {
+        Authorization: `token ${pat}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    return null;
+  }
+
+  const repos = await response.json();
+
+  if (!Array.isArray(repos) || repos.length === 0) {
+    return null;
+  }
+
+  const sorted = repos.sort((a, b) =>
+    new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+  );
+  const repo = sorted[0];
+
+  return {
+    name: repo.full_name,
+    url: repo.html_url,
+  };
+}
+
 async function fetchGitHubHeatmap(fetch: ServerFetch, pat: string) {
   const query = `
     query($username: String!, $from: DateTime!, $to: DateTime!) {
@@ -155,14 +186,16 @@ export const load: PageServerLoad = async ({ fetch }) => {
         firstContributionDaysAgo: null,
         contributionsLast365Days: null,
         totalContributions: null,
+        lastContributedRepo: null,
       },
     };
   }
 
   try {
-    const [githubHeatmap, codebergHeatmap] = await Promise.all([
+    const [githubHeatmap, codebergHeatmap, lastContributedRepo] = await Promise.all([
       fetchGitHubHeatmap(fetch, githubPat),
       fetchCodebergHeatmap(fetch, codebergPat),
+      fetchLastContributedRepo(fetch, codebergPat),
     ]);
     const heatmap = mergeHeatmaps(githubHeatmap, codebergHeatmap);
 
@@ -173,6 +206,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
           firstContributionDaysAgo: null,
           contributionsLast365Days: 0,
           totalContributions: 0,
+          lastContributedRepo,
         },
       };
     }
@@ -202,6 +236,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
         firstContributionDaysAgo,
         contributionsLast365Days,
         totalContributions,
+        lastContributedRepo,
       },
     };
   } catch (error) {
@@ -211,6 +246,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
         firstContributionDaysAgo: null,
         contributionsLast365Days: null,
         totalContributions: null,
+        lastContributedRepo: null,
       },
     };
   }

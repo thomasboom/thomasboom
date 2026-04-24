@@ -4,6 +4,7 @@
     firstContributionDaysAgo: number | null;
     contributionsLast365Days: number | null;
     totalContributions: number | null;
+    lastContributedRepo: { name: string; url: string } | null;
   }
 
   interface Props {
@@ -36,6 +37,13 @@
         <span class="stat-label">total contributions</span>
       </div>
     </div>
+
+    <div class="stat-card repo-card">
+      <a href={stats.lastContributedRepo?.url ?? '#'} class="stat-value repo-link" target="_blank" rel="noopener noreferrer">
+        {stats.lastContributedRepo?.name ?? 'N/A'}
+      </a>
+      <span class="stat-label">last contributed repository</span>
+    </div>
   {/if}
 </section>
 
@@ -44,6 +52,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
+  }
+
+  .repo-card {
+    margin-top: 12px;
   }
 
   .stat-card {
@@ -64,6 +76,16 @@
     font-size: 48px;
     color: var(--accent);
     line-height: 1;
+  }
+
+  .repo-link {
+    text-decoration: none;
+    font-size: 24px;
+    word-break: break-word;
+  }
+
+  .repo-link:hover {
+    text-decoration: underline;
   }
 
   .stat-label {
