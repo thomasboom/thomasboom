@@ -9,14 +9,14 @@
   </header>
 
   <article class="work-item">
-    <h3><a href="https://ipcar.dev" target="_blank" rel="noopener noreferrer">IP-Car</a></h3>
+    <h3><a href="/ipcar" target="_blank" rel="noopener noreferrer">IP-Car</a></h3>
     <p>{$t.work.ipcar}</p>
     <ul class="tech"><li>Svelte</li><li>Electron</li></ul>
   </article>
 
   <article class="work-item">
     <h3>
-      <a href="https://codeberg.org/thomasboom/YAM-Launcher" target="_blank" rel="noopener noreferrer">
+      <a href="/yam-launcher" target="_blank" rel="noopener noreferrer">
         YAM Launcher
       </a>
     </h3>
@@ -25,21 +25,21 @@
   </article>
 
   <article class="work-item">
-    <h3><a href="https://bijbelquiz.app" target="_blank" rel="noopener noreferrer">BijbelQuiz</a></h3>
+    <h3><a href="/bijbelquiz" target="_blank" rel="noopener noreferrer">BijbelQuiz</a></h3>
     <p>{$t.work.bijbelquiz}</p>
     <ul class="tech"><li>Flutter</li><li>Dart</li><li>Supabase</li><li>Gemini API</li></ul>
   </article>
 
   <article class="work-item">
     <h3>
-      <a href="https://thomasboom.codeberg.page/SupGIT/" target="_blank" rel="noopener noreferrer">SupGit</a>
+      <a href="/supgit" target="_blank" rel="noopener noreferrer">SupGit</a>
     </h3>
     <p>{$t.work.supgit}</p>
     <ul class="tech"><li>Rust</li><li>Git</li><li>CLI</li></ul>
   </article>
 
   <article class="work-item">
-    <h3><a href="https://thomasboom.codeberg.page/AIRun/" target="_blank" rel="noopener noreferrer">AIRun</a></h3>
+    <h3><a href="/airun" target="_blank" rel="noopener noreferrer">AIRun</a></h3>
     <p>{$t.work.airun}</p>
     <ul class="tech"><li>Rust</li><li>CLI</li></ul>
   </article>

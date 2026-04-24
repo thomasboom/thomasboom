@@ -2,17 +2,17 @@
   import { t } from '$lib/language';
 
   const contacts = [
-    { label: 'Email', href: 'mailto:contact@thomasboom.com' },
-    { label: 'Codeberg', href: 'https://codeberg.org/thomasboom' },
-    { label: 'GitHub', href: 'https://github.com/thomasboom' },
-    { label: 'Mastodon', href: 'https://mastodon.social/@thomasboom' },
+    { label: 'Email', href: '/email' },
+    { label: 'Codeberg', href: '/codeberg' },
+    { label: 'GitHub', href: '/github' },
+    { label: 'Mastodon', href: '/mastodon' },
     {
       label: 'Bluesky',
-      href: 'https://bsky.app/profile/thomasboom.com',
+      href: '/bluesky',
     },
     {
       label: 'Signal',
-      href: 'https://signal.me/#eu/fEo_ZOMCPYGFE3QyEDyQy3c3Jz8hWsmpTLFxW2CHRQwVehMlgjhNKKKUX3LtsDcQ',
+      href: '/signal',
     },
   ];
 </script>
