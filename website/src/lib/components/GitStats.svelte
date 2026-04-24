@@ -15,7 +15,7 @@
 
 <section class="section" id="git-stats" aria-labelledby="stats-title">
   <header class="section-header">
-    <h2 class="section-title" id="stats-title">02 - GIT STATS</h2>
+    <h2 class="section-title" id="stats-title">03 - GIT STATS</h2>
     <span class="section-line"></span>
   </header>
 

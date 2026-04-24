@@ -19,10 +19,19 @@
     type="button"
     class="nav-link"
     onclick={() => {
+      document.getElementById('how-i-work')?.scrollIntoView({ behavior: 'smooth' });
+    }}
+  >
+    <span class="nav-number">02</span> {$t.nav.howIWork}
+  </button>
+  <button
+    type="button"
+    class="nav-link"
+    onclick={() => {
       document.getElementById('git-stats')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
-    <span class="nav-number">02</span> Git Stats
+    <span class="nav-number">03</span> Git Stats
   </button>
   <button
     type="button"
@@ -31,16 +40,7 @@
       document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
-    <span class="nav-number">03</span> {$t.nav.work}
-  </button>
-  <button
-    type="button"
-    class="nav-link"
-    onclick={() => {
-      document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
-    }}
-  >
-    <span class="nav-number">04</span> {$t.nav.skills}
+    <span class="nav-number">04</span> {$t.nav.work}
   </button>
   <button
     type="button"

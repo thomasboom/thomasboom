@@ -3,7 +3,7 @@
   import { t } from '$lib/language';
   import Navigation from '$lib/components/Navigation.svelte';
   import Work from '$lib/components/Work.svelte';
-  import Skills from '$lib/components/Skills.svelte';
+  import HowIWork from '$lib/components/Skills.svelte';
   import About from '$lib/components/About.svelte';
   import Contact from '$lib/components/Contact.svelte';
   import ProgressBar from '$lib/components/ProgressBar.svelte';
@@ -55,9 +55,9 @@
 
   <section class="content-right">
     <About />
+    <HowIWork />
     <GitStats stats={data.gitStats} />
     <Work />
-    <Skills />
     <Contact />
 
     <footer class="footer">

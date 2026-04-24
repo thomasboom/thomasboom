@@ -1,26 +1,36 @@
 <script lang="ts">
   import { t } from '$lib/language';
 
-  const skills: { name: string; desc: string }[] = [
-    { name: 'Flutter', desc: 'Mobile apps for iOS and Android with a single codebase.' },
-    { name: 'Kotlin', desc: 'Native Android development with Jetpack Compose.' },
-    { name: 'Rust', desc: 'Systems programming for high-performance applications.' },
-    { name: 'TypeScript', desc: 'Type-safe web development with React, Svelte, and Node.js.' },
-    { name: 'JavaScript', desc: 'Web development with modern ES6+ patterns.' },
-    { name: 'Svelte', desc: 'Build user interfaces with reactive, compiler-first approach.' },
+  const values = [
+    {
+      name: 'FOSS',
+      desc: 'Building and supporting free and open source software that anyone can use, study, and improve.',
+    },
+    {
+      name: 'User Privacy',
+      desc: 'Minimizing data collection, avoiding tracking, and keeping personal information personal.',
+    },
+    {
+      name: 'Self-Ownership',
+      desc: 'You should control your own data, devices, and digital life without restrictions from others.',
+    },
+    {
+      name: 'Beyond Big Tech',
+      desc: 'Reducing dependence on major tech monopolies by choosing independent and decentralized alternatives.',
+    },
   ];
 </script>
 
-<section class="section" id="skills" aria-labelledby="skills-title">
+<section class="section" id="how-i-work" aria-labelledby="how-i-work-title">
   <header class="section-header">
-    <h2 class="section-title" id="skills-title">04 - {$t.sections.skills}</h2>
+    <h2 class="section-title" id="how-i-work-title">02 - {$t.sections.howIWork}</h2>
     <span class="section-line"></span>
   </header>
   <ul class="skills-grid">
-    {#each skills as skill (skill.name)}
+    {#each values as value (value.name)}
       <li class="skill">
-        <span class="skill-name">{skill.name}</span>
-        <span class="skill-desc">{skill.desc}</span>
+        <span class="skill-name">{value.name}</span>
+        <span class="skill-desc">{value.desc}</span>
       </li>
     {/each}
   </ul>

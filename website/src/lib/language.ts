@@ -8,7 +8,7 @@ type Translations = {
     quotes: string;
     notes: string;
     work: string;
-    skills: string;
+    howIWork: string;
     about: string;
     contact: string;
   };
@@ -19,7 +19,7 @@ type Translations = {
   };
   sections: {
     work: string;
-    skills: string;
+    howIWork: string;
     about: string;
     contact: string;
   };
@@ -79,7 +79,7 @@ const translations: Record<Language, Translations> = {
       quotes: 'Quotes',
       notes: 'Notes',
       work: 'Work',
-      skills: 'Skills',
+      howIWork: 'How I work',
       about: 'About',
       contact: 'Contact',
     },
@@ -90,7 +90,7 @@ const translations: Record<Language, Translations> = {
     },
     sections: {
       work: 'SELECTED WORK',
-      skills: 'SKILLS',
+      howIWork: 'HOW I WORK',
       about: 'ABOUT',
       contact: 'CONTACT',
     },
@@ -152,7 +152,7 @@ const translations: Record<Language, Translations> = {
       quotes: 'Citaten',
       notes: 'Notities',
       work: 'Werk',
-      skills: 'Vaardigheden',
+      howIWork: 'Mijn werkwijze',
       about: 'Over',
       contact: 'Contact',
     },
@@ -163,7 +163,7 @@ const translations: Record<Language, Translations> = {
     },
     sections: {
       work: 'UITGELICHT WERK',
-      skills: 'VAARDIGHEDEN',
+      howIWork: 'MIJN WERKWIJZE',
       about: 'OVER',
       contact: 'CONTACT',
     },

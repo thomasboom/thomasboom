@@ -4,7 +4,7 @@
 
 <section class="section" id="work" aria-labelledby="work-title">
   <header class="section-header">
-    <h2 class="section-title" id="work-title">03 - {$t.sections.work}</h2>
+    <h2 class="section-title" id="work-title">04 - {$t.sections.work}</h2>
     <span class="section-line"></span>
   </header>
 
