@@ -150,7 +150,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
     ].filter(Boolean);
 
     return {
-      codebergStats: {
+      gitStats: {
         error: `${missingVars.join(' and ')} not configured`,
         firstContributionDaysAgo: null,
         contributionsLast365Days: null,
@@ -168,7 +168,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
 
     if (heatmap.length === 0) {
       return {
-        codebergStats: {
+        gitStats: {
           error: null,
           firstContributionDaysAgo: null,
           contributionsLast365Days: 0,
@@ -197,7 +197,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
     );
 
     return {
-      codebergStats: {
+      gitStats: {
         error: null,
         firstContributionDaysAgo,
         contributionsLast365Days,
@@ -206,7 +206,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
     };
   } catch (error) {
     return {
-      codebergStats: {
+      gitStats: {
         error: error instanceof Error ? error.message : 'Unknown error',
         firstContributionDaysAgo: null,
         contributionsLast365Days: null,

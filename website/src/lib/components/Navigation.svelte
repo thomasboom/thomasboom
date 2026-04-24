@@ -19,10 +19,10 @@
     type="button"
     class="nav-link"
     onclick={() => {
-      document.getElementById('codeberg-stats')?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('git-stats')?.scrollIntoView({ behavior: 'smooth' });
     }}
   >
-    <span class="nav-number">02</span> Codeberg Stats
+    <span class="nav-number">02</span> Git Stats
   </button>
   <button
     type="button"

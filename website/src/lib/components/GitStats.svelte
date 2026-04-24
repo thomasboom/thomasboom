@@ -1,5 +1,5 @@
 <script lang="ts">
-  interface CodebergStats {
+  interface GitStats {
     error: string | null;
     firstContributionDaysAgo: number | null;
     contributionsLast365Days: number | null;
@@ -7,15 +7,15 @@
   }
 
   interface Props {
-    stats: CodebergStats;
+    stats: GitStats;
   }
 
   let { stats }: Props = $props();
 </script>
 
-<section class="section" id="codeberg-stats" aria-labelledby="stats-title">
+<section class="section" id="git-stats" aria-labelledby="stats-title">
   <header class="section-header">
-    <h2 class="section-title" id="stats-title">02 - CODEBERG STATS</h2>
+    <h2 class="section-title" id="stats-title">02 - GIT STATS</h2>
     <span class="section-line"></span>
   </header>
 

@@ -7,7 +7,7 @@
   import About from '$lib/components/About.svelte';
   import Contact from '$lib/components/Contact.svelte';
   import ProgressBar from '$lib/components/ProgressBar.svelte';
-  import CodebergStats from '$lib/components/CodebergStats.svelte';
+  import GitStats from '$lib/components/GitStats.svelte';
 
   const year = new Date().getFullYear();
 
@@ -55,7 +55,7 @@
 
   <section class="content-right">
     <About />
-    <CodebergStats stats={data.codebergStats} />
+    <GitStats stats={data.gitStats} />
     <Work />
     <Skills />
     <Contact />
