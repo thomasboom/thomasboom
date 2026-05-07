@@ -1,8 +1,3 @@
 ## Hi there 👋
 
-- 🔭 I'm currently working on [BijbelQuiz](https://codeberg.org/thomasboom/BijbelQuiz), [YAM Launcher](https://codeberg.org/thomasboom/YAM-Launcher), and many of my other [smaller projects](https://codeberg.org/thomasboom?tab=repositories) .
-- 🌱 I'm currently learning many AI releated things like OpenClaw
-- 👯 I'm looking to collaborate on [BijbelQuiz](https://bijbelquiz.app/github)
-- 📫 How to reach me: email me via [thomasnowprod@proton.me](mailto:thomasnowprod@proton.me)
-- 😄 Pronouns: he/him
-- ⚡ Fun fact: Flutter is the future
+I'm building software to improve lives at [Codeberg](https://codeberg.org/thomasboom). I feel like a big tech-controlled platform with more and more slop is not the right place for free software. As such, I've decided to move to [Codeberg](https://codeberg.org), a free home for free software.
