@@ -1,6 +1,4 @@
-import { getNotesDir, parseDateFromSlug, extractTitle } from '$lib/notes';
-import fs from 'fs';
-import path from 'path';
+import { parseDateFromSlug, extractTitle } from '$lib/notes';
 
 interface Note {
   slug: string;
@@ -8,24 +6,23 @@ interface Note {
   title: string;
 }
 
-function getNotes(): Note[] {
-  const notesDir = getNotesDir();
-  let files: string[];
-  try {
-    files = fs.readdirSync(notesDir).filter((f) => f.endsWith('.md'));
-  } catch {
-    return [];
-  }
+// Statically import all markdown notes at build time
+const noteFiles = import.meta.glob('/content/notes/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
 
+function getNotes(): Note[] {
   const notes: Note[] = [];
 
-  for (const file of files) {
-    const slug = file.replace(/\.md$/, '');
+  for (const [filePath, content] of Object.entries(noteFiles)) {
+    const filename = filePath.split('/').pop()!;
+    const slug = filename.replace(/\.md$/, '');
     const date = parseDateFromSlug(slug);
     if (!date) continue;
 
-    const content = fs.readFileSync(path.join(notesDir, file), 'utf-8');
-    const title = extractTitle(content);
+    const title = extractTitle(content as string);
 
     notes.push({
       slug,
@@ -59,7 +56,7 @@ export const GET = () => {
       <link>${siteUrl}/notes/${note.slug}</link>
       <guid>${siteUrl}/notes/${note.slug}</guid>
       <pubDate>${new Date(note.date).toUTCString()}</pubDate>
-    </item>`
+    </item>`,
       )
       .join('')}
   </channel>

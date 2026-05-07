@@ -1,9 +1,13 @@
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
-import fs from 'fs';
-import path from 'path';
 import { marked } from 'marked';
-import { getNotesDir, parseDateFromSlug } from '$lib/notes';
+import { parseDateFromSlug } from '$lib/notes';
+
+// Lazily import markdown files by slug
+const noteModules = import.meta.glob('/content/notes/*.md', {
+  query: '?raw',
+  import: 'default',
+});
 
 export const load: PageServerLoad = async ({ params }) => {
   const { slug } = params;
@@ -12,14 +16,17 @@ export const load: PageServerLoad = async ({ params }) => {
     throw error(404, 'Note not found');
   }
 
-  const filePath = path.join(getNotesDir(), `${slug}.md`);
+  // Find the matching module
+  const matchingPath = Object.keys(noteModules).find(
+    (path) => path.endsWith(`${slug}.md`) || path.endsWith(`/${slug}.md`),
+  );
 
-  let content: string;
-  try {
-    content = fs.readFileSync(filePath, 'utf-8');
-  } catch {
+  if (!matchingPath) {
     throw error(404, 'Note not found');
   }
+
+  // Import the module dynamically
+  const content = (await noteModules[matchingPath]()) as string;
 
   const html = marked.parse(content, { async: false });
 

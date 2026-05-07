@@ -1,7 +1,12 @@
 import type { PageServerLoad } from './$types';
-import fs from 'fs';
-import path from 'path';
-import { getNotesDir, parseDateFromSlug, extractTitle } from '$lib/notes';
+import { parseDateFromSlug, extractTitle } from '$lib/notes';
+
+// Statically import all markdown notes at build time
+const noteFiles = import.meta.glob('/content/notes/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
 
 interface NoteMeta {
   slug: string;
@@ -11,24 +16,15 @@ interface NoteMeta {
 }
 
 export const load: PageServerLoad = async () => {
-  const notesDir = getNotesDir();
-
-  let files: string[];
-  try {
-    files = fs.readdirSync(notesDir).filter((f) => f.endsWith('.md'));
-  } catch {
-    return { notes: [] };
-  }
-
   const notes: NoteMeta[] = [];
 
-  for (const file of files) {
-    const slug = file.replace(/\.md$/, '');
+  for (const [filePath, content] of Object.entries(noteFiles)) {
+    const filename = filePath.split('/').pop()!;
+    const slug = filename.replace(/\.md$/, '');
     const date = parseDateFromSlug(slug);
     if (!date) continue;
 
-    const content = fs.readFileSync(path.join(notesDir, file), 'utf-8');
-    const title = extractTitle(content);
+    const title = extractTitle(content as string);
 
     notes.push({
       slug,

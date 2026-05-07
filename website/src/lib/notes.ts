@@ -1,13 +1,3 @@
-import { fileURLToPath } from 'url';
-import path from 'path';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const NOTES_DIR = path.resolve(__dirname, '../../content/notes');
-
-export function getNotesDir(): string {
-  return NOTES_DIR;
-}
-
 export function parseDateFromSlug(slug: string): Date | null {
   const match = slug.match(/^(\d{2})-(\d{2})-(\d{4})$/);
   if (!match) return null;
