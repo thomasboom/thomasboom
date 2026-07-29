@@ -1,3 +1,3 @@
 ## Hi there 👋
 
-I'm building software to improve lives at [Codeberg](https://codeberg.org/thomasboom). I feel like a big tech-controlled platform with more and more slop is not the right place for free software. As such, I've decided to move to [Codeberg](https://codeberg.org), a free home for free software.
+I was building FOSS software at [Codeberg](https://codeberg.org/thomasboom), but since their ToS changes against AI, [I](https://r.thomasboom.com/git) have moved to [my own Forge](https://forgejo.thomasboom.com). Hope to see you there!
